@@ -27,9 +27,9 @@ export default function Header() {
             <div className="flex justify-between items-center h-20 md:h-24">
               
               {/* Logo */}
-              <div className="flex-shrink-0 flex items-center">
+              <div className="flex-shrink-0 flex items-center h-full py-2">
                 <Link href="/">
-                  <img src="/logo.png" alt="Constructech Estimation" className="h-14 md:h-16 w-auto mix-blend-multiply object-contain origin-left" />
+                  <img src="/logo.png" alt="Constructech Estimation" className="h-16 md:h-20 w-auto mix-blend-multiply object-contain origin-left transform scale-110 md:scale-125 translate-x-2" />
                 </Link>
               </div>
 
@@ -53,11 +53,13 @@ export default function Header() {
                 
                 {/* Services Dropdown */}
                 {isServicesOpen && (
-                  <div className="absolute left-0 top-[100%] w-64 bg-white shadow-xl border-t-4 border-brand-orange py-2 z-50">
-                    <Link href="/services#cost-estimation" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Construction Cost Estimation</Link>
-                    <Link href="/services#material-takeoffs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Material Takeoffs</Link>
-                    <Link href="/services#bid-preparation" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Bid Preparation & Support</Link>
-                    <Link href="/services#quantity-takeoffs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Quantity Takeoffs</Link>
+                  <div className="absolute left-0 top-[100%] w-64 pt-6 z-50">
+                    <div className="bg-white shadow-xl border-t-4 border-brand-orange py-2">
+                      <Link href="/services#cost-estimation" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Construction Cost Estimation</Link>
+                      <Link href="/services#material-takeoffs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Material Takeoffs</Link>
+                      <Link href="/services#bid-preparation" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Bid Preparation & Support</Link>
+                      <Link href="/services#quantity-takeoffs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Quantity Takeoffs</Link>
+                    </div>
                   </div>
                 )}
               </div>

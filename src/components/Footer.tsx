@@ -8,8 +8,8 @@ export default function Footer() {
           
           {/* Logo & Contact */}
           <div>
-            <Link href="/" className="inline-block mb-6">
-              <img src="/logo.png" alt="Constructech Estimation" className="h-24 md:h-28 w-auto brightness-0 invert object-contain" />
+            <Link href="/" className="inline-block mb-6 bg-white p-2 rounded-lg">
+              <img src="/logo.png" alt="Constructech Estimation" className="h-16 md:h-20 w-auto object-contain" />
             </Link>
             <p className="text-gray-300 text-[15px] mb-6 leading-relaxed">
               Constructech Estimation is a reliable and accurate construction estimating firm in the US, providing takeoff services to builders, contractors, and owners.
