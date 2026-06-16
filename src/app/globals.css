@@ -13,6 +13,22 @@
   --color-brand-navy: var(--constructech-navy);
   --color-brand-orange: var(--constructech-orange);
   --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --animate-marquee: marquee 25s linear infinite;
+  --animate-vibrate: vibrate 0.9s infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes vibrate {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
 }
 
 @media (prefers-color-scheme: dark) {

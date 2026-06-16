@@ -2,164 +2,330 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <>
-      {/* Hero Section */}
-      <section className="relative bg-brand-navy text-white overflow-hidden">
-        {/* Abstract Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <svg className="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <polygon fill="currentColor" points="0,100 100,0 100,100" />
-          </svg>
+    <div className="w-full flex flex-col">
+      {/* 1. HERO SECTION */}
+      <section className="relative w-full bg-brand-navy min-h-[600px] flex items-center pt-16 pb-32">
+        {/* Background Overlay Placeholder (The competitor uses a large background image here) */}
+        <div className="absolute inset-0 bg-black/50 z-0"></div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="text-left text-white max-w-2xl">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+                Construction Estimating &amp;<br />
+                <span className="text-brand-orange">Design Engineering Services</span>
+              </h1>
+              <p className="text-lg md:text-xl mb-8 leading-relaxed font-medium">
+                Our building estimating company expert in design and construction estimates. Enhance your project management with the support of our professional estimators.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a 
+                  href="tel:1-888-859-0222" 
+                  className="bg-brand-orange hover:bg-[#d65f29] text-white px-8 py-4 rounded font-bold text-lg text-center transition shadow-lg"
+                >
+                  Call Us
+                </a>
+                <a 
+                  href="#" 
+                  className="bg-white hover:bg-gray-100 text-brand-navy px-8 py-4 rounded font-bold text-lg text-center transition shadow-lg flex items-center justify-center gap-2"
+                >
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Company Profile
+                </a>
+              </div>
+            </div>
+            
+            {/* Right Placeholder Image */}
+            <div className="hidden md:block">
+              {/* <div className="w-full h-[400px] bg-gray-800 rounded-lg shadow-2xl flex items-center justify-center">
+                <span className="text-gray-500">Hero Side Image Placeholder</span>
+              </div> */}
+            </div>
+          </div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-24 md:py-32 lg:py-40 flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 md:pr-12 text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
-              Precision <span className="text-brand-orange">Estimates</span> for Construction Professionals
-            </h1>
-            <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto md:mx-0">
-              Win more bids and increase your profit margins with our highly accurate and reliable construction estimating and material takeoff services.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Link href="/contact" className="px-8 py-3 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-md shadow-lg transition transform hover:-translate-y-1">
-                Get a Free Quote
-              </Link>
-              <Link href="/services" className="px-8 py-3 bg-transparent border-2 border-white hover:bg-white hover:text-brand-navy text-white font-bold rounded-md transition">
-                Explore Services
-              </Link>
-            </div>
-          </div>
-          
-          <div className="md:w-1/2 mt-12 md:mt-0">
-            <div className="bg-white p-2 rounded-xl shadow-2xl transform rotate-2 hover:rotate-0 transition duration-500">
-              {/* Replace with a generated image later if needed, using a placeholder for now */}
-              <div className="aspect-[4/3] bg-gray-200 rounded-lg flex items-center justify-center overflow-hidden relative">
-                 <div className="absolute inset-0 bg-gradient-to-tr from-brand-navy/20 to-transparent"></div>
-                 <span className="text-brand-navy/50 font-bold text-xl">Construction Blueprint Illustration</span>
-              </div>
+        {/* STATS OVERLAP - Overlaps Hero and Next Section exactly like competitor */}
+        <div className="absolute left-0 right-0 -bottom-16 z-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+              {[
+                { label: 'Customer Satisfaction', value: '98%' },
+                { label: 'Industry Awards', value: '20+' },
+                { label: 'Years Experience', value: '15+' },
+                { label: 'Projects Completed', value: '5000+' }
+              ].map((stat, i) => (
+                <div key={i} className="bg-white rounded-lg shadow-xl p-6 text-center border-b-4 border-brand-orange transform hover:-translate-y-1 transition-transform duration-300">
+                  <div className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-2">{stat.value}</div>
+                  <div className="text-sm md:text-base font-semibold text-gray-600 uppercase tracking-wide">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Trust Badges / Stats */}
-      <section className="bg-white py-12 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-extrabold text-brand-navy mb-2">99%</div>
-              <div className="text-sm text-gray-500 font-medium uppercase tracking-wider">Accuracy Rate</div>
-            </div>
-            <div>
-              <div className="text-4xl font-extrabold text-brand-navy mb-2">24-48h</div>
-              <div className="text-sm text-gray-500 font-medium uppercase tracking-wider">Turnaround Time</div>
-            </div>
-            <div>
-              <div className="text-4xl font-extrabold text-brand-navy mb-2">$5B+</div>
-              <div className="text-sm text-gray-500 font-medium uppercase tracking-wider">Estimated Value</div>
-            </div>
-            <div>
-              <div className="text-4xl font-extrabold text-brand-navy mb-2">1,500+</div>
-              <div className="text-sm text-gray-500 font-medium uppercase tracking-wider">Projects Completed</div>
-            </div>
+      {/* 2. REVIEWS PLACEHOLDER */}
+      <section className="pt-32 pb-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-block px-4 py-1 bg-brand-orange/10 text-brand-orange font-bold rounded-full mb-4 uppercase text-sm tracking-wider">
+            Testimonials
+          </div>
+          <h2 className="text-3xl font-extrabold text-brand-navy mb-10">See What Our Clients Say</h2>
+          <div className="w-full max-w-4xl mx-auto h-[120px] bg-white border border-gray-200 rounded flex items-center justify-center shadow-sm">
+            <p className="text-gray-400 font-medium">Trustindex Google Reviews Widget Placeholder</p>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-20 bg-gray-50">
+      {/* 3. OUR TRADES */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-brand-orange font-bold tracking-widest uppercase text-sm mb-2">Our Expertise</h2>
-            <h3 className="text-3xl md:text-4xl font-extrabold text-brand-navy">Comprehensive Estimating Services</h3>
-            <div className="mt-4 w-24 h-1 bg-brand-orange mx-auto rounded-full"></div>
+            <div className="inline-block px-4 py-1 bg-brand-orange/10 text-brand-orange font-bold rounded-full mb-4 uppercase text-sm tracking-wider">
+              Our Trades
+            </div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy">Who Do We Help?</h2>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Service 1 */}
-            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
-              <div className="p-8">
-                <div className="w-14 h-14 bg-orange-100 text-brand-orange rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h4 className="text-xl font-bold text-brand-navy mb-3">Cost Estimating</h4>
-                <p className="text-gray-600 mb-6">Detailed and accurate cost projections covering labor, materials, equipment, and overhead to ensure your bids are competitive and profitable.</p>
-                <Link href="/services" className="text-brand-orange font-semibold hover:text-orange-700 flex items-center">
-                  Read More
-                  <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
+          
+          <div className="grid md:grid-cols-2 gap-10">
+            {/* General Contractors */}
+            <div className="group relative overflow-hidden rounded-xl shadow-lg h-[300px]">
+              <div className="absolute inset-0 bg-brand-navy/80 z-10 group-hover:bg-brand-navy/60 transition-colors duration-300"></div>
+              <div className="absolute inset-0 flex flex-col items-center justify-center z-20 p-8 text-center">
+                <svg className="w-16 h-16 text-brand-orange mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                <h3 className="text-2xl font-bold text-white mb-2">General Contractors</h3>
+                <p className="text-gray-200 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">
+                  Accurate and comprehensive estimates to help you win more bids and manage costs effectively.
+                </p>
               </div>
             </div>
 
-            {/* Service 2 */}
-            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
-              <div className="p-8">
-                <div className="w-14 h-14 bg-orange-100 text-brand-orange rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                  </svg>
-                </div>
-                <h4 className="text-xl font-bold text-brand-navy mb-3">Material Takeoffs</h4>
-                <p className="text-gray-600 mb-6">Precise quantification of all materials required for your project, extracted directly from your blueprints and plans using advanced software.</p>
-                <Link href="/services" className="text-brand-orange font-semibold hover:text-orange-700 flex items-center">
-                  Read More
-                  <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
+            {/* Sub Contractors */}
+            <div className="group relative overflow-hidden rounded-xl shadow-lg h-[300px]">
+              <div className="absolute inset-0 bg-brand-navy/80 z-10 group-hover:bg-brand-navy/60 transition-colors duration-300"></div>
+              <div className="absolute inset-0 flex flex-col items-center justify-center z-20 p-8 text-center">
+                <svg className="w-16 h-16 text-brand-orange mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+                </svg>
+                <h3 className="text-2xl font-bold text-white mb-2">Sub Contractors</h3>
+                <p className="text-gray-200 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">
+                  Trade-specific takeoffs allowing you to focus on the work while we handle the numbers.
+                </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Service 3 */}
-            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
-              <div className="p-8">
-                <div className="w-14 h-14 bg-orange-100 text-brand-orange rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      {/* 4. WHY CHOOSE US (Text Left, Image Right) */}
+      <section className="py-20 bg-gray-50 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="order-2 lg:order-1">
+              <div className="inline-block px-4 py-1 bg-brand-orange/10 text-brand-orange font-bold rounded-full mb-4 uppercase text-sm tracking-wider">
+                Why Choose Us
+              </div>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-6 leading-tight">
+                Get Accurate Construction Estimating Services for Your Project!
+              </h2>
+              <p className="text-gray-600 mb-6 text-lg leading-relaxed">
+                When you partner with our estimating company, you get access to a team of highly experienced estimators equipped with the latest software and deep industry knowledge. We ensure every cost is accounted for, eliminating guesswork and preventing budget overruns.
+              </p>
+              <ul className="space-y-4 mb-8">
+                {[
+                  'Extensive experience in all CSI divisions.',
+                  'Detailed and accurate material takeoffs.',
+                  'Fast turnaround times (24-48 hours).',
+                  'Affordable pricing for contractors of all sizes.'
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start">
+                    <svg className="w-6 h-6 text-brand-orange mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-gray-700 font-medium text-lg">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link 
+                href="/about" 
+                className="inline-block bg-brand-navy hover:bg-gray-800 text-white px-8 py-4 rounded font-bold transition shadow-md"
+              >
+                Learn More About Us
+              </Link>
+            </div>
+            
+            {/* Overlapping Images Container Placeholder */}
+            <div className="order-1 lg:order-2 relative h-[500px] w-full hidden md:block">
+              <div className="absolute top-0 right-0 w-3/4 h-[400px] bg-gray-200 rounded-lg shadow-xl border-4 border-white flex items-center justify-center">
+                <span className="text-gray-500 font-semibold">Main Image Placeholder</span>
+              </div>
+              <div className="absolute bottom-0 left-0 w-3/5 h-[300px] bg-gray-300 rounded-lg shadow-2xl border-4 border-white flex items-center justify-center">
+                <span className="text-gray-600 font-semibold">Overlap Image Placeholder</span>
+              </div>
+              
+              {/* Floating badge */}
+              <div className="absolute top-1/2 left-[-10%] transform -translate-y-1/2 bg-white p-6 rounded-lg shadow-xl flex items-center gap-4">
+                <div className="w-16 h-16 bg-brand-orange/20 rounded-full flex items-center justify-center">
+                  <svg className="w-8 h-8 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h4 className="text-xl font-bold text-brand-navy mb-3">Bid Preparation</h4>
-                <p className="text-gray-600 mb-6">End-to-end support in preparing, formatting, and submitting your bids, giving you the best chance to win lucrative contracts.</p>
-                <Link href="/services" className="text-brand-orange font-semibold hover:text-orange-700 flex items-center">
-                  Read More
-                  <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
+                <div>
+                  <div className="text-2xl font-black text-brand-navy">100%</div>
+                  <div className="text-gray-500 font-semibold text-sm uppercase">Accuracy</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-brand-navy relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-brand-orange opacity-20 blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-brand-orange opacity-20 blur-3xl"></div>
-        
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6">Ready to Win Your Next Project?</h2>
-          <p className="text-xl text-gray-300 mb-10">
-            Upload your plans today and let our expert estimators provide you with a fast, accurate quote.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <Link href="/contact" className="px-8 py-4 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-md shadow-xl transition transform hover:scale-105 w-full sm:w-auto">
-              Upload Plans Now
-            </Link>
-            <a href="tel:1-888-859-0222" className="px-8 py-4 bg-white hover:bg-gray-100 text-brand-navy font-bold rounded-md shadow-xl transition w-full sm:w-auto flex items-center justify-center">
-              <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-              Call 1-888-859-0222
-            </a>
+      {/* 5. PROCESS / STEP-BY-STEP */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-block px-4 py-1 bg-brand-orange/10 text-brand-orange font-bold rounded-full mb-4 uppercase text-sm tracking-wider">
+            Our Process
+          </div>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-16">How Our Construction Estimating Works</h2>
+          
+          <div className="grid md:grid-cols-4 gap-8 relative">
+            {/* Connecting line for desktop */}
+            <div className="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-gray-200 transform -translate-y-1/2 z-0"></div>
+            
+            {[
+              { num: '01', title: 'Upload Plans', desc: 'Send us your blueprints and specifications.' },
+              { num: '02', title: 'Review & Quote', desc: 'We analyze your files and provide a fixed quote.' },
+              { num: '03', title: 'Detailed Takeoff', desc: 'Our team performs a precise quantity takeoff.' },
+              { num: '04', title: 'Final Delivery', desc: 'Receive your detailed estimate ready for bidding.' }
+            ].map((step, i) => (
+              <div key={i} className="relative z-10 flex flex-col items-center bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-xl transition-shadow duration-300">
+                <div className="w-20 h-20 bg-brand-navy rounded-full text-white flex items-center justify-center text-2xl font-black mb-6 shadow-lg border-4 border-white outline outline-4 outline-gray-50">
+                  {step.num}
+                </div>
+                <h3 className="text-xl font-bold text-brand-navy mb-3">{step.title}</h3>
+                <p className="text-gray-600 font-medium">{step.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
-    </>
+
+      {/* 6. VIDEO MODAL & LIST */}
+      <section className="py-20 bg-brand-navy text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Video Placeholder */}
+            <div className="relative w-full aspect-video bg-gray-800 rounded-xl overflow-hidden shadow-2xl flex items-center justify-center border-4 border-gray-700">
+              <span className="text-gray-400 font-semibold mb-4 absolute">Video Thumbnail Placeholder</span>
+              <button className="relative z-10 w-20 h-20 bg-brand-orange rounded-full flex items-center justify-center shadow-[0_0_0_10px_rgba(232,106,51,0.3)] hover:scale-110 transition-transform">
+                <svg className="w-8 h-8 text-white ml-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </button>
+            </div>
+            
+            {/* Content List */}
+            <div>
+              <h2 className="text-3xl md:text-4xl font-extrabold mb-8 leading-tight">
+                Empowering Professionals with Precise Estimates
+              </h2>
+              <div className="space-y-6">
+                {[
+                  { title: 'ASPE Certified', desc: 'We strictly follow the American Society of Professional Estimators guidelines.' },
+                  { title: 'Zip-Code Pricing', desc: 'Using RSMeans and local vendor pricing for accurate material costs.' },
+                  { title: 'Dedicated Support', desc: 'Our estimators are available to discuss your project via phone or email.' },
+                  { title: 'Win More Bids', desc: 'Increase your bid-hit ratio with highly competitive and accurate estimates.' }
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-4">
+                    <div className="mt-1 flex-shrink-0">
+                      <div className="w-8 h-8 rounded-full bg-brand-orange/20 flex items-center justify-center">
+                        <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold mb-1">{item.title}</h4>
+                      <p className="text-gray-300 font-medium">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. SERVICES GRID */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-block px-4 py-1 bg-brand-orange/10 text-brand-orange font-bold rounded-full mb-4 uppercase text-sm tracking-wider">
+              Core Expertise
+            </div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy">Our Construction Services</h2>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4', title: 'Commercial Estimating' },
+              { icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6', title: 'Residential Estimating' },
+              { icon: 'M13 10V3L4 14h7v7l9-11h-7z', title: 'Industrial Estimating' },
+              { icon: 'M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z', title: 'Material Takeoffs' },
+              { icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', title: 'CPM Scheduling' },
+              { icon: 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z', title: 'Design Build Estimates' }
+            ].map((service, i) => (
+              <div key={i} className="bg-white p-8 rounded-xl shadow-md border border-gray-100 hover:border-brand-orange hover:shadow-xl transition-all duration-300 group">
+                <div className="w-16 h-16 bg-brand-navy/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-orange/10 transition-colors">
+                  <svg className="w-8 h-8 text-brand-navy group-hover:text-brand-orange transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={service.icon} />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-brand-navy mb-3">{service.title}</h3>
+                <p className="text-gray-600 mb-6 font-medium leading-relaxed">
+                  Detailed and highly accurate quantity takeoffs tailored to your specific trade and requirements.
+                </p>
+                <Link href="/services" className="text-brand-orange font-bold uppercase text-sm flex items-center hover:text-brand-navy transition-colors">
+                  Learn More
+                  <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 8. CTA SECTION (Matches competitor's .ccm-modern-cta style) */}
+      <section className="py-20 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-[#621215] rounded-[60px] p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-10 overflow-hidden relative shadow-2xl">
+            <div className="flex flex-col items-center justify-center max-w-[388px] text-center z-10">
+              <h2 className="text-white text-3xl font-bold leading-tight mb-4 font-sans">
+                Ready to Win More Bids?
+              </h2>
+              <p className="text-white/90 text-lg mb-6 leading-relaxed">
+                Send us your plans today and get a highly accurate estimate within 24-48 hours.
+              </p>
+              <a href="mailto:info@constructech.com" className="bg-[#E1AB4E] hover:bg-[#c89237] text-white font-bold py-3 px-8 rounded inline-flex items-center transition-transform hover:-translate-y-1">
+                Upload Plans Now
+              </a>
+            </div>
+            
+            <div className="z-10 w-full max-w-[350px] bg-white/10 rounded-2xl aspect-video flex items-center justify-center border border-white/20">
+              <span className="text-white/70 font-semibold">CTA Graphic Placeholder</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+    </div>
   );
 }
