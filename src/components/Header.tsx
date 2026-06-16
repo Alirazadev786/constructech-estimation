@@ -40,11 +40,11 @@ export default function Header() {
               </Link>
               
               <div 
-                className="relative group"
+                className="relative group h-full flex items-center"
                 onMouseEnter={() => setIsServicesOpen(true)}
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
-                <Link href="/services" className="text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide flex items-center gap-1">
+                <Link href="/services" className="text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide flex items-center gap-1 py-8">
                   Services
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -53,12 +53,11 @@ export default function Header() {
                 
                 {/* Services Dropdown */}
                 {isServicesOpen && (
-                  <div className="absolute left-0 mt-2 w-64 bg-white shadow-xl border-t-4 border-brand-orange py-2">
-                    <Link href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Construction Takeoff Services</Link>
-                    <Link href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Construction Estimating Services</Link>
-                    <Link href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Residential Estimating</Link>
-                    <Link href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Commercial Estimating</Link>
-                    <Link href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Industrial Estimating</Link>
+                  <div className="absolute left-0 top-[100%] w-64 bg-white shadow-xl border-t-4 border-brand-orange py-2 z-50">
+                    <Link href="/services#cost-estimation" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Construction Cost Estimation</Link>
+                    <Link href="/services#material-takeoffs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Material Takeoffs</Link>
+                    <Link href="/services#bid-preparation" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Bid Preparation & Support</Link>
+                    <Link href="/services#quantity-takeoffs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Quantity Takeoffs</Link>
                   </div>
                 )}
               </div>

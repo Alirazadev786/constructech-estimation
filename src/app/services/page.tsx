@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -12,25 +13,29 @@ export default function ServicesPage() {
       id: 'cost-estimation',
       title: 'Construction Cost Estimation',
       description: 'We provide highly accurate cost estimates for all construction phases. Our team breaks down labor, material, equipment, and overhead costs, ensuring your budget is realistic and your bids are competitive.',
-      icon: 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z'
+      icon: 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z',
+      image: '/images/hero_estimators.png'
     },
     {
       id: 'material-takeoffs',
       title: 'Material Takeoffs',
       description: 'Never over-order or run short on materials again. We use industry-leading software to extract precise quantities of concrete, lumber, drywall, framing, and more directly from your blueprints.',
-      icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
+      icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10',
+      image: '/images/general_contractors.png'
     },
     {
       id: 'bid-preparation',
       title: 'Bid Preparation & Support',
       description: 'Winning a bid requires more than just numbers. We help you format, prepare, and review your final bid proposals so you can present a professional, compelling offer to your clients.',
-      icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
+      icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
+      image: '/images/sub_contractors.png'
     },
     {
       id: 'quantity-takeoffs',
       title: 'Quantity Takeoffs',
       description: 'Detailed breakdowns of all project quantities. Perfect for general contractors and subcontractors looking to verify their own estimates or streamline their procurement process.',
-      icon: 'M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4'
+      icon: 'M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4',
+      image: '/images/why_choose_2.png'
     }
   ];
 
@@ -68,10 +73,13 @@ export default function ServicesPage() {
                   </div>
                 </div>
                 <div className="w-full md:w-1/2">
-                  {/* Placeholder for service image */}
-                  <div className="aspect-video bg-gray-200 rounded-2xl flex items-center justify-center shadow-inner relative overflow-hidden">
-                     <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/10 to-brand-orange/10"></div>
-                     <span className="text-gray-400 font-medium">Illustration for {service.title}</span>
+                  <div className="aspect-video bg-gray-200 rounded-2xl flex items-center justify-center shadow-2xl border-4 border-white relative overflow-hidden group">
+                     <Image 
+                       src={service.image} 
+                       alt={service.title} 
+                       fill 
+                       className="object-cover group-hover:scale-105 transition-transform duration-500" 
+                     />
                   </div>
                 </div>
               </div>
