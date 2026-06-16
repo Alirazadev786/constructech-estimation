@@ -46,7 +46,7 @@ export default function ContactPage() {
                   </div>
                   <div className="ml-4">
                     <h3 className="text-lg font-bold text-brand-navy">Email Us</h3>
-                    <p className="text-gray-600 mt-1">info@constructech.com<br/>estimates@constructech.com</p>
+                    <p className="text-gray-600 mt-1">info@constructechestimation.com<br/>estimates@constructechestimation.com</p>
                   </div>
                 </div>
 

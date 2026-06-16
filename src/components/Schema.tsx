@@ -8,7 +8,7 @@ export default function Schema() {
     "logo": "https://constructechestimation.com/logo.png",
     "description": "Constructech Estimation provides professional Construction Estimating Services in the United States, delivering accurate cost estimating, material takeoffs, quantity takeoffs, and bid preparation solutions for contractors and builders.",
     "telephone": "+1-888-859-0222",
-    "email": "info@constructech.com",
+    "email": "info@constructechestimation.com",
     "areaServed": {
       "@type": "Country",
       "name": "United States"

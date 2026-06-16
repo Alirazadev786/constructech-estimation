@@ -279,7 +279,7 @@ export default function Home() {
               <p className="text-white/90 text-lg mb-6 leading-relaxed">
                 Send us your plans today and get a highly accurate estimate within 24-48 hours.
               </p>
-              <a href="mailto:info@constructech.com" className="bg-brand-orange hover:bg-[#d65f29] text-white font-bold py-[7px] px-[10px] md:py-3 md:px-8 rounded inline-flex items-center transition-transform hover:-translate-y-1">
+              <a href="mailto:info@constructechestimation.com" className="bg-brand-orange hover:bg-[#d65f29] text-white font-bold py-[7px] px-[10px] md:py-3 md:px-8 rounded inline-flex items-center transition-transform hover:-translate-y-1">
                 Upload Plans Now
               </a>
             </div>
