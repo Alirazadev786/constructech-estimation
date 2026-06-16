@@ -29,7 +29,7 @@ export default function Header() {
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
               <Link href="/">
-                <img src="/logo.png" alt="Constructech Estimation" className="h-12 w-auto mix-blend-multiply object-contain" />
+                <img src="/logo.png" alt="Constructech Estimation" className="h-20 md:h-24 w-auto mix-blend-multiply object-contain" />
               </Link>
             </div>
 

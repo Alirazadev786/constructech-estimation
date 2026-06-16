@@ -1,13 +1,20 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Home() {
   return (
     <div className="w-full flex flex-col">
       {/* 1. HERO SECTION */}
-      <section className="relative w-full bg-brand-navy min-h-[600px] flex items-center pt-16 pb-32">
-        {/* Background Image Placeholder */}
+      <section className="relative w-full bg-brand-navy min-h-[600px] flex items-center pt-16 pb-16 md:pb-32">
+        {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <img src="/images/Construction-Takeoff-and-Cost-Estimation-12-1024x512.webp" alt="Hero Background" className="w-full h-full object-cover opacity-50" />
+          <Image 
+            src="/images/Construction-Takeoff-and-Cost-Estimation-12-1024x512.webp" 
+            alt="Hero Background" 
+            fill 
+            className="object-cover opacity-50"
+            priority
+          />
           <div className="absolute inset-0 bg-brand-navy/85"></div>
         </div>
         
@@ -30,30 +37,34 @@ export default function Home() {
                 >
                   Call Us
                 </a>
-                <a 
-                  href="#" 
+                <Link 
+                  href="/about" 
                   className="bg-white hover:bg-gray-100 text-brand-navy px-8 py-4 rounded font-bold text-lg text-center transition shadow-lg flex items-center justify-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                   Company Profile
-                </a>
+                </Link>
               </div>
             </div>
             
             {/* Right Image */}
-            <div className="hidden md:block">
-              <div className="w-full h-[400px] rounded-lg shadow-2xl overflow-hidden border-4 border-white/10">
-                <img src="/images/professional-construction-estimators.webp" alt="Professional Estimators" className="w-full h-full object-cover" />
-              </div>
+            <div className="relative w-full h-[300px] md:h-[400px] rounded-lg shadow-2xl overflow-hidden border-4 border-white/10 mt-10 md:mt-0">
+              <Image 
+                src="/images/professional-construction-estimators.webp" 
+                alt="Professional Estimators" 
+                fill 
+                className="object-cover"
+                priority
+              />
             </div>
           </div>
         </div>
         
-        {/* STATS OVERLAP - Overlaps Hero and Next Section exactly like competitor */}
-        <div className="absolute left-0 right-0 -bottom-16 z-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* STATS OVERLAP */}
+        <div className="relative md:absolute md:left-0 md:right-0 md:-bottom-16 z-20 mt-16 md:mt-0 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
                 { label: 'Customer Satisfaction', value: '98%' },
@@ -72,7 +83,7 @@ export default function Home() {
       </section>
 
       {/* 2. REVIEWS PLACEHOLDER */}
-      <section className="pt-32 pb-16 bg-gray-50">
+      <section className="pt-16 md:pt-32 pb-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-block px-4 py-1 bg-brand-orange/10 text-brand-orange font-bold rounded-full mb-4 uppercase text-sm tracking-wider">
             Testimonials
@@ -97,7 +108,9 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-10">
             {/* General Contractors */}
             <div className="group relative overflow-hidden rounded-xl shadow-lg h-[300px]">
-              <div className="absolute inset-0 bg-cover bg-center z-0" style={{ backgroundImage: "url('/images/Construction-Estimating-Company.webp')" }}></div>
+              <div className="absolute inset-0 z-0">
+                <Image src="/images/Construction-Estimating-Company.webp" alt="General Contractors" fill className="object-cover" />
+              </div>
               <div className="absolute inset-0 bg-brand-navy/80 z-10 group-hover:bg-brand-navy/60 transition-colors duration-300"></div>
               <div className="absolute inset-0 flex flex-col items-center justify-center z-20 p-8 text-center">
                 <svg className="w-16 h-16 text-brand-orange mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -112,7 +125,9 @@ export default function Home() {
 
             {/* Sub Contractors */}
             <div className="group relative overflow-hidden rounded-xl shadow-lg h-[300px]">
-              <div className="absolute inset-0 bg-cover bg-center z-0" style={{ backgroundImage: "url('/images/Construction-Takeoff-and-Cost-Estimation-12-1024x512.webp')" }}></div>
+              <div className="absolute inset-0 z-0">
+                <Image src="/images/Construction-Takeoff-and-Cost-Estimation-12-1024x512.webp" alt="Sub Contractors" fill className="object-cover" />
+              </div>
               <div className="absolute inset-0 bg-brand-navy/80 z-10 group-hover:bg-brand-navy/60 transition-colors duration-300"></div>
               <div className="absolute inset-0 flex flex-col items-center justify-center z-20 p-8 text-center">
                 <svg className="w-16 h-16 text-brand-orange mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -165,25 +180,25 @@ export default function Home() {
               </Link>
             </div>
             
-            {/* Overlapping Images Container Placeholder */}
-            <div className="order-1 lg:order-2 relative h-[500px] w-full hidden md:block">
-              <div className="absolute top-0 right-0 w-3/4 aspect-square bg-gray-200 rounded-lg shadow-xl overflow-hidden flex items-center justify-center border-4 border-white">
-                <img src="/images/professional-construction-estimating-company-1894x2048.webp" alt="Why Choose Us" className="w-full h-full object-cover" />
+            {/* Overlapping Images Container */}
+            <div className="order-1 lg:order-2 relative h-[350px] md:h-[500px] w-full mt-8 lg:mt-0">
+              <div className="absolute top-0 right-0 w-3/4 aspect-square bg-gray-200 rounded-lg shadow-xl overflow-hidden flex items-center justify-center border-4 border-white relative z-0">
+                <Image src="/images/professional-construction-estimating-company-1894x2048.webp" alt="Why Choose Us" fill className="object-cover" />
               </div>
-              <div className="absolute bottom-10 left-0 w-3/5 aspect-video bg-gray-300 rounded-lg shadow-2xl overflow-hidden flex items-center justify-center border-4 border-white">
-                <img src="/images/Construction-Estimating-Services-3-1-1024x470.webp" alt="Estimating Services" className="w-full h-full object-cover" />
+              <div className="absolute bottom-4 md:bottom-10 left-0 w-3/5 aspect-video bg-gray-300 rounded-lg shadow-2xl overflow-hidden flex items-center justify-center border-4 border-white relative z-10">
+                <Image src="/images/Construction-Estimating-Services-3-1-1024x470.webp" alt="Estimating Services" fill className="object-cover" />
               </div>
               
               {/* Floating badge */}
-              <div className="absolute top-1/2 left-[-10%] transform -translate-y-1/2 bg-white p-6 rounded-lg shadow-xl flex items-center gap-4">
-                <div className="w-16 h-16 bg-brand-orange/20 rounded-full flex items-center justify-center">
-                  <svg className="w-8 h-8 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="absolute top-1/2 left-[-5%] transform -translate-y-1/2 bg-white p-4 md:p-6 rounded-lg shadow-xl flex items-center gap-4 z-20">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-brand-orange/20 rounded-full flex items-center justify-center">
+                  <svg className="w-6 h-6 md:w-8 md:h-8 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <div>
-                  <div className="text-2xl font-black text-brand-navy">100%</div>
-                  <div className="text-gray-500 font-semibold text-sm uppercase">Accuracy</div>
+                  <div className="text-xl md:text-2xl font-black text-brand-navy">100%</div>
+                  <div className="text-gray-500 font-semibold text-xs md:text-sm uppercase">Accuracy</div>
                 </div>
               </div>
             </div>
@@ -227,9 +242,9 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Video Placeholder */}
             <div className="relative w-full aspect-video bg-gray-800 rounded-xl overflow-hidden shadow-2xl flex items-center justify-center border-4 border-gray-700">
-              <img src="/images/Top-5-Questions-to-Ask-a-Construction-Estimating-Company-768x384.webp" alt="Video Thumbnail" className="absolute inset-0 w-full h-full object-cover opacity-60" />
-              <button className="relative z-10 w-20 h-20 bg-brand-orange rounded-full flex items-center justify-center shadow-[0_0_0_10px_rgba(232,106,51,0.3)] hover:scale-110 transition-transform">
-                <svg className="w-8 h-8 text-white ml-2" fill="currentColor" viewBox="0 0 24 24">
+              <Image src="/images/Top-5-Questions-to-Ask-a-Construction-Estimating-Company-768x384.webp" alt="Video Thumbnail" fill className="object-cover opacity-60" />
+              <button className="relative z-10 w-16 h-16 md:w-20 md:h-20 bg-brand-orange rounded-full flex items-center justify-center shadow-[0_0_0_10px_rgba(232,106,51,0.3)] hover:scale-110 transition-transform">
+                <svg className="w-6 h-6 md:w-8 md:h-8 text-white ml-1 md:ml-2" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </button>
@@ -308,11 +323,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8. CTA SECTION (Matches competitor's .ccm-modern-cta style) */}
+      {/* 8. CTA SECTION */}
       <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-[#621215] rounded-[60px] p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-10 overflow-hidden relative shadow-2xl">
-            <div className="flex flex-col items-center justify-center max-w-[388px] text-center z-10">
+          <div className="bg-[#621215] rounded-[40px] md:rounded-[60px] p-8 md:p-14 flex flex-col md:flex-row items-center justify-between gap-10 overflow-hidden relative shadow-2xl">
+            <div className="flex flex-col items-center justify-center max-w-[388px] text-center z-10 w-full">
               <h2 className="text-white text-3xl font-bold leading-tight mb-4 font-sans">
                 Ready to Win More Bids?
               </h2>
@@ -324,8 +339,8 @@ export default function Home() {
               </a>
             </div>
             
-            <div className="z-10 w-full max-w-[350px] bg-white/10 rounded-2xl aspect-video flex items-center justify-center border border-white/20 overflow-hidden">
-              <img src="/images/Top-5-Questions-to-Ask-a-Construction-Estimating-Company.webp" alt="CTA Graphic" className="w-full h-full object-cover" />
+            <div className="z-10 w-full max-w-[350px] bg-white/10 rounded-2xl aspect-video flex items-center justify-center border border-white/20 overflow-hidden relative">
+              <Image src="/images/Top-5-Questions-to-Ask-a-Construction-Estimating-Company.webp" alt="CTA Graphic" fill className="object-cover" />
             </div>
           </div>
         </div>
