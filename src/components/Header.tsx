@@ -64,11 +64,11 @@ export default function Header() {
                       <div>
                         <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">General Contractor</h3>
                         <ul className="space-y-3">
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Public Projects Estimating Services</Link></li>
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Commercial Estimating Services</Link></li>
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Residential Estimating Services</Link></li>
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">MultiFamily Apartments Estimating Services</Link></li>
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Industrial Estimating</Link></li>
+                          <li><Link href="/general-contractor-services/public-projects-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Public Projects Estimating Services</Link></li>
+                          <li><Link href="/general-contractor-services/commercial-estimating" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Commercial Estimating Services</Link></li>
+                          <li><Link href="/general-contractor-services/residential-estimating" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Residential Estimating Services</Link></li>
+                          <li><Link href="/general-contractor-services/multi-family-apartments" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">MultiFamily Apartments Estimating Services</Link></li>
+                          <li><Link href="/general-contractor-services/industrial-estimating" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Industrial Estimating</Link></li>
                         </ul>
                       </div>
 
@@ -76,12 +76,12 @@ export default function Header() {
                       <div>
                         <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">Sub Contractors Estimating</h3>
                         <ul className="space-y-3">
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Metals Takeoffs Estimates</Link></li>
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Insulation Estimating Services</Link></li>
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Drywall Takeoff Estimating</Link></li>
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Concrete Estimating</Link></li>
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Masonry Estimates</Link></li>
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Painting Estimating Takeoff</Link></li>
+                          <li><Link href="/sub-contractors-estimates/metals-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Metals Takeoffs Estimates</Link></li>
+                          <li><Link href="/sub-contractors-estimates/insulation-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Insulation Estimating Services</Link></li>
+                          <li><Link href="/sub-contractors-estimates/dry-wall-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Drywall Takeoff Estimating</Link></li>
+                          <li><Link href="/sub-contractors-estimates/concrete-estimating-services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Concrete Estimating</Link></li>
+                          <li><Link href="/sub-contractors-estimates/masonry-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Masonry Estimates</Link></li>
+                          <li><Link href="/sub-contractors-estimates/painting-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Painting Estimating Takeoff</Link></li>
                         </ul>
                       </div>
 
@@ -89,11 +89,11 @@ export default function Header() {
                       <div>
                         <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">Sub Contractors Estimating</h3>
                         <ul className="space-y-3">
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Electrical Work Estimating</Link></li>
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Flooring Estimating Services</Link></li>
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Plumbing Estimating Takeoff Services</Link></li>
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Interior Exterior Finishes Estimating Takeoff Services</Link></li>
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Sitework Earthwork Estimating Services</Link></li>
+                          <li><Link href="/sub-contractors-estimates/electrical-work-estimating-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Electrical Work Estimating</Link></li>
+                          <li><Link href="/sub-contractors-estimates/flooring-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Flooring Estimating Services</Link></li>
+                          <li><Link href="/sub-contractors-estimates/plumbing-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Plumbing Estimating Takeoff Services</Link></li>
+                          <li><Link href="/sub-contractors-estimates/exterior-finishes-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Interior Exterior Finishes Estimating Takeoff Services</Link></li>
+                          <li><Link href="/sub-contractors-estimates/site-works" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Sitework Earthwork Estimating Services</Link></li>
                         </ul>
                       </div>
 
@@ -101,11 +101,11 @@ export default function Header() {
                       <div>
                         <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">Supplier Estimating Takeoff</h3>
                         <ul className="space-y-3">
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Rebar Estimating Detailing Takeoff Services</Link></li>
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Lumber Takeoff and Estimating Services</Link></li>
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Supplier Estimating Takeoff</Link></li>
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Steel Cost Estimating Takeoff Services</Link></li>
-                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Flooring Tiles Takeoff Services</Link></li>
+                          <li><Link href="/supplier-estimates/rebar-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Rebar Estimating Detailing Takeoff Services</Link></li>
+                          <li><Link href="/supplier-estimates/lumber-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Lumber Takeoff and Estimating Services</Link></li>
+                          <li><Link href="/supplier-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Supplier Estimating Takeoff</Link></li>
+                          <li><Link href="/supplier-estimates/steel-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Steel Cost Estimating Takeoff Services</Link></li>
+                          <li><Link href="/supplier-estimates/flooring-tiles-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Flooring Tiles Takeoff Services</Link></li>
                         </ul>
                       </div>
 
@@ -135,7 +135,7 @@ export default function Header() {
                       {/* Left Highlighted Column */}
                       <div className="w-[30%] bg-[#761A1D] text-white p-8">
                         <div className="space-y-6">
-                          <Link href="/services#cost-estimation" className="block group/link">
+                          <Link href="/services/cost-estimating" className="block group/link">
                             <div className="flex items-start gap-3">
                               <div className="bg-white/10 p-2 rounded shrink-0">
                                 <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -149,7 +149,7 @@ export default function Header() {
                             </div>
                           </Link>
 
-                          <Link href="/services#material-takeoffs" className="block group/link">
+                          <Link href="/services/construction-takeoff" className="block group/link">
                             <div className="flex items-start gap-3">
                               <div className="bg-white/10 p-2 rounded shrink-0">
                                 <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -163,7 +163,7 @@ export default function Header() {
                             </div>
                           </Link>
 
-                          <Link href="/services#design-build" className="block group/link">
+                          <Link href="/services/design-build-services" className="block group/link">
                             <div className="flex items-start gap-3">
                               <div className="bg-white/10 p-2 rounded shrink-0">
                                 <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -192,10 +192,10 @@ export default function Header() {
                           </div>
                           <p className="text-xs text-gray-500 italic mb-4">Creating and detailing project plans.</p>
                           <ul className="space-y-3">
-                            <li><Link href="/services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Structural drawings and calculations</Link></li>
-                            <li><Link href="/services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">MEP Drawings With Title 24</Link></li>
-                            <li><Link href="/services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Architectural Drawings Services</Link></li>
-                            <li><Link href="/services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">3D Rendering & Modeling Services</Link></li>
+                            <li><Link href="/services/design-drawing-engineering/structural-calculations" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Structural drawings and calculations</Link></li>
+                            <li><Link href="/services/design-drawing-engineering/mep-with-title-24" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">MEP Drawings With Title 24</Link></li>
+                            <li><Link href="/services/design-drawing-engineering/architectural-drawings" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Architectural Drawings Services</Link></li>
+                            <li><Link href="/services/design-drawing-engineering/3d-rendering-modeling" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">3D Rendering & Modeling Services</Link></li>
                           </ul>
                         </div>
 
@@ -210,8 +210,8 @@ export default function Header() {
                           </div>
                           <p className="text-xs text-gray-500 italic mb-4">Creating and detailing project plans.</p>
                           <ul className="space-y-3">
-                            <li><Link href="/services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Construction Cost Estimating Services in California</Link></li>
-                            <li><Link href="/services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Construction Cost Estimating Services in New york</Link></li>
+                            <li><Link href="/construction-cost-estimating-services-california" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Construction Cost Estimating Services in California</Link></li>
+                            <li><Link href="/construction-cost-estimating-services-newyork" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Construction Cost Estimating Services in New york</Link></li>
                           </ul>
                         </div>
 
@@ -225,8 +225,8 @@ export default function Header() {
                           </div>
                           <p className="text-xs text-gray-500 italic mb-4">Creating and detailing project plans.</p>
                           <ul className="space-y-3">
-                            <li><Link href="/services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Shop Drawings</Link></li>
-                            <li><Link href="/services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Scheduling Services</Link></li>
+                            <li><Link href="/services/pre-construction/shop-drawings" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Shop Drawings</Link></li>
+                            <li><Link href="/services/pre-construction/scheduling-services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Scheduling Services</Link></li>
                           </ul>
                         </div>
 

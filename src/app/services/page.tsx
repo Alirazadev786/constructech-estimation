@@ -13,11 +13,11 @@ export default function ServicesPage() {
       title: "General Contractor Estimating",
       description: "Comprehensive estimating services tailored for general contractors managing large-scale public, commercial, and residential projects.",
       items: [
-        "Public Projects Estimates",
-        "Commercial Estimating",
-        "Residential Estimating",
-        "Multi-Family Apartments",
-        "Industrial Estimating"
+        { name: "Public Projects Estimates", href: "/general-contractor-services/public-projects-estimates" },
+        { name: "Commercial Estimating", href: "/general-contractor-services/commercial-estimating" },
+        { name: "Residential Estimating", href: "/general-contractor-services/residential-estimating" },
+        { name: "Multi-Family Apartments", href: "/general-contractor-services/multi-family-apartments" },
+        { name: "Industrial Estimating", href: "/general-contractor-services/industrial-estimating" }
       ],
       icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4",
       image: "/images/hero_estimators.png"
@@ -26,14 +26,14 @@ export default function ServicesPage() {
       title: "Subcontractor Estimating",
       description: "Highly detailed trade-specific takeoffs designed to help subcontractors bid accurately and win more contracts.",
       items: [
-        "Metals Takeoffs",
-        "Insulation Estimates",
-        "Drywall Takeoffs",
-        "Concrete Estimating",
-        "Masonry Estimates",
-        "Painting Estimates",
-        "Electrical Takeoffs",
-        "Plumbing & HVAC"
+        { name: "Metals Takeoffs", href: "/sub-contractors-estimates/metals-takeoffs" },
+        { name: "Insulation Estimates", href: "/sub-contractors-estimates/insulation-estimates" },
+        { name: "Drywall Takeoffs", href: "/sub-contractors-estimates/dry-wall-takeoffs" },
+        { name: "Concrete Estimating", href: "/sub-contractors-estimates/concrete-estimating-services" },
+        { name: "Masonry Estimates", href: "/sub-contractors-estimates/masonry-estimates" },
+        { name: "Painting Estimates", href: "/sub-contractors-estimates/painting-estimates" },
+        { name: "Electrical Takeoffs", href: "/sub-contractors-estimates/electrical-work-estimating-takeoffs" },
+        { name: "Plumbing & HVAC", href: "/sub-contractors-estimates/plumbing-estimates" }
       ],
       icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
       image: "/images/sub_contractors.png"
@@ -42,10 +42,10 @@ export default function ServicesPage() {
       title: "Design & Engineering",
       description: "Professional structural calculations, MEP drawings, and 3D modeling services to streamline your pre-construction phase.",
       items: [
-        "Structural Drawings & Calculations",
-        "MEP Drawings With Title 24",
-        "Architectural Drawings",
-        "3D Rendering & Modeling"
+        { name: "Structural Drawings & Calculations", href: "/services/design-drawing-engineering/structural-calculations" },
+        { name: "MEP Drawings With Title 24", href: "/services/design-drawing-engineering/mep-with-title-24" },
+        { name: "Architectural Drawings", href: "/services/design-drawing-engineering/architectural-drawings" },
+        { name: "3D Rendering & Modeling", href: "/services/design-drawing-engineering/3d-rendering-modeling" }
       ],
       icon: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z",
       image: "/images/why_choose_2.png"
@@ -54,10 +54,10 @@ export default function ServicesPage() {
       title: "Supplier Estimating",
       description: "Precise material breakdowns allowing suppliers to provide rapid quotes to their contractor clients.",
       items: [
-        "Rebar Takeoffs",
-        "Lumber Takeoffs",
-        "Steel Takeoffs",
-        "Flooring & Tiles Takeoffs"
+        { name: "Rebar Takeoffs", href: "/supplier-estimates/rebar-takeoffs" },
+        { name: "Lumber Takeoffs", href: "/supplier-estimates/lumber-takeoffs" },
+        { name: "Steel Takeoffs", href: "/supplier-estimates/steel-takeoffs" },
+        { name: "Flooring & Tiles Takeoffs", href: "/supplier-estimates/flooring-tiles-takeoffs" }
       ],
       icon: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4",
       image: "/images/general_contractors.png"
@@ -141,11 +141,13 @@ export default function ServicesPage() {
                     </p>
                     <ul className="space-y-2 mb-8">
                       {category.items.map((item, itemIdx) => (
-                        <li key={itemIdx} className="flex items-start text-sm text-gray-700 font-medium">
+                        <li key={itemIdx} className="flex items-start text-sm text-gray-700 font-medium group/item hover:bg-gray-50 rounded p-1 transition-colors">
                           <svg className="w-5 h-5 text-brand-orange mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
-                          {item}
+                          <Link href={item.href} className="hover:text-brand-orange hover:underline transition-colors block w-full">
+                            {item.name}
+                          </Link>
                         </li>
                       ))}
                     </ul>

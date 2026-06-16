@@ -4,7 +4,8 @@ import HeroSlider from '@/components/HeroSlider';
 
 export default function Home() {
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full flex flex-col font-sans">
+      
       {/* 1. HERO SLIDER */}
       <HeroSlider />
 
@@ -16,7 +17,7 @@ export default function Home() {
               { label: 'Customer Satisfaction', value: '98%' },
               { label: 'Industry Awards', value: '20+' },
               { label: 'Years Experience', value: '15+' },
-              { label: 'Projects Completed', value: '5000+' }
+              { label: 'Successful Projects', value: '1000+' }
             ].map((stat, i) => (
               <div key={i} className="bg-white rounded-[20px] shadow-[0px_10px_30px_0px_rgba(0,0,0,0.1)] p-6 text-center border-b-[5px] border-brand-orange transform hover:-translate-y-2 transition-transform duration-300">
                 <div className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-2">{stat.value}</div>
@@ -27,266 +28,167 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. REVIEWS PLACEHOLDER */}
-      <section className="pt-16 md:pt-32 pb-16 bg-gray-50">
+      {/* INTRODUCTION SECTION */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-block px-4 py-1 bg-brand-orange/10 text-brand-orange font-bold rounded-full mb-4 uppercase text-sm tracking-wider">
-            Testimonials
+          <h2 className="text-brand-orange font-bold text-lg mb-2 tracking-widest uppercase">Overview</h2>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-brand-navy mb-8">Construction Estimating & Design Engineering Services</h1>
+          <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed mb-6">
+            Constructech Estimation provides comprehensive, highly accurate construction cost estimating and material takeoff services. With over 15 years in the industry, our expert team utilizes cutting-edge software and a profound understanding of the construction lifecycle to deliver bids that win.
+          </p>
+          <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            From residential renovations to massive commercial high-rises, our tailored approach ensures that general contractors, subcontractors, architects, and developers stay within budget and ahead of schedule.
+          </p>
+        </div>
+      </section>
+
+      {/* ESTIMATING SERVICES WE PROVIDE */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-4">Estimating Services We Provide</h2>
+            <div className="w-24 h-1.5 bg-brand-orange mx-auto rounded-full"></div>
           </div>
-          <h2 className="text-3xl font-extrabold text-brand-navy mb-10">See What Our Clients Say</h2>
-          <div className="w-full max-w-4xl mx-auto h-[120px] bg-white border border-gray-200 rounded flex items-center justify-center shadow-sm">
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-brand-orange hover:-translate-y-2 transition-transform">
+              <h3 className="text-xl font-bold text-brand-navy mb-4">Cost Estimating</h3>
+              <p className="text-gray-600 mb-6">Comprehensive breakdown of labor, materials, equipment, and overhead for accurate project budgeting.</p>
+              <Link href="/services/cost-estimating" className="text-brand-orange font-bold hover:underline">Learn more →</Link>
+            </div>
+            <div className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-brand-navy hover:-translate-y-2 transition-transform">
+              <h3 className="text-xl font-bold text-brand-navy mb-4">Construction Takeoff</h3>
+              <p className="text-gray-600 mb-6">Precise material quantification from digital blueprints ensuring you never over-order or run short.</p>
+              <Link href="/services/construction-takeoff" className="text-brand-orange font-bold hover:underline">Learn more →</Link>
+            </div>
+            <div className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-brand-orange hover:-translate-y-2 transition-transform">
+              <h3 className="text-xl font-bold text-brand-navy mb-4">Design & Engineering</h3>
+              <p className="text-gray-600 mb-6">Structural calculations, MEP drawings with Title 24, and full 3D rendering and modeling services.</p>
+              <Link href="/services/design-drawing-engineering" className="text-brand-orange font-bold hover:underline">Learn more →</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WHO DO WE HELP? */}
+      <section className="py-20 bg-brand-navy text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Who Do We Help?</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">Our estimating solutions are customized for every tier of the construction industry.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {['General Contractors', 'Subcontractors', 'Architects & Designers', 'Developers & Builders'].map((audience, i) => (
+              <div key={i} className="bg-white/10 p-6 rounded-xl border border-white/20 text-center hover:bg-brand-orange hover:border-brand-orange transition-colors cursor-default">
+                <h3 className="text-lg font-bold">{audience}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* WHY CHOOSE US */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-6">Why Choose Us?</h2>
+              <ul className="space-y-6">
+                <li className="flex">
+                  <div className="flex-shrink-0">
+                    <svg className="w-6 h-6 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-xl font-bold text-brand-navy">Fast Turnaround Times</h4>
+                    <p className="text-gray-600 mt-1">Get your complete estimate within 24 to 48 hours.</p>
+                  </div>
+                </li>
+                <li className="flex">
+                  <div className="flex-shrink-0">
+                    <svg className="w-6 h-6 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-xl font-bold text-brand-navy">Highly Accurate Takeoffs</h4>
+                    <p className="text-gray-600 mt-1">We utilize Planswift, Bluebeam, and OST for precise measurements.</p>
+                  </div>
+                </li>
+                <li className="flex">
+                  <div className="flex-shrink-0">
+                    <svg className="w-6 h-6 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-xl font-bold text-brand-navy">Affordable Pricing</h4>
+                    <p className="text-gray-600 mt-1">Competitive rates without compromising on quality or detail.</p>
+                  </div>
+                </li>
+                <li className="flex">
+                  <div className="flex-shrink-0">
+                    <svg className="w-6 h-6 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-xl font-bold text-brand-navy">24/7 Customer Support</h4>
+                    <p className="text-gray-600 mt-1">Our team is always available to answer your questions.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+              <Image src="/images/why_choose_1.png" alt="Why Choose Constructech" fill className="object-cover" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* OUR PROCESS */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-16">Our Process</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div className="relative">
+              <div className="w-20 h-20 mx-auto bg-brand-orange text-white rounded-full flex items-center justify-center text-3xl font-extrabold mb-6 shadow-lg z-10 relative">1</div>
+              <h3 className="text-xl font-bold text-brand-navy mb-4">Upload Your Plans</h3>
+              <p className="text-gray-600">Send us your digital blueprints and project specifications through our secure portal or via email.</p>
+            </div>
+            <div className="relative">
+              <div className="w-20 h-20 mx-auto bg-brand-navy text-white rounded-full flex items-center justify-center text-3xl font-extrabold mb-6 shadow-lg z-10 relative">2</div>
+              <h3 className="text-xl font-bold text-brand-navy mb-4">Get a Quote</h3>
+              <p className="text-gray-600">We review your plans and provide a fast, affordable quote and timeframe for the takeoff.</p>
+            </div>
+            <div className="relative">
+              <div className="w-20 h-20 mx-auto bg-brand-orange text-white rounded-full flex items-center justify-center text-3xl font-extrabold mb-6 shadow-lg z-10 relative">3</div>
+              <h3 className="text-xl font-bold text-brand-navy mb-4">Receive Your Estimate</h3>
+              <p className="text-gray-600">You receive a highly detailed, formatted estimate ready for you to submit and win the bid.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-10">See What Our Clients Say</h2>
+          <div className="w-full max-w-4xl mx-auto h-[150px] bg-gray-50 border border-gray-200 rounded-xl flex flex-col items-center justify-center shadow-sm">
+            <div className="flex text-brand-orange mb-2">
+              {[1,2,3,4,5].map(i => <svg key={i} className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>)}
+            </div>
             <p className="text-gray-400 font-medium">Trustindex Google Reviews Widget Placeholder</p>
           </div>
         </div>
       </section>
 
-      {/* 3. OUR TRADES */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-block px-4 py-1 bg-brand-orange/10 text-brand-orange font-bold rounded-full mb-4 uppercase text-sm tracking-wider">
-              Our Trades
-            </div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy">Who Do We Help?</h2>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-10">
-            {/* General Contractors */}
-            <div className="group relative overflow-hidden rounded-xl shadow-lg h-[300px]">
-              <div className="absolute inset-0 z-0">
-                <Image src="/images/general_contractors.png" alt="General Contractors" fill className="object-cover" />
-              </div>
-              <div className="absolute inset-0 bg-brand-navy/80 z-10 group-hover:bg-brand-navy/60 transition-colors duration-300"></div>
-              <div className="absolute inset-0 flex flex-col items-center justify-center z-20 p-8 text-center">
-                <svg className="w-16 h-16 text-brand-orange mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-                <h3 className="text-2xl font-bold text-white mb-2">General Contractors</h3>
-                <p className="text-gray-200 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">
-                  Accurate and comprehensive estimates to help you win more bids and manage costs effectively.
-                </p>
-              </div>
-            </div>
-
-            {/* Sub Contractors */}
-            <div className="group relative overflow-hidden rounded-xl shadow-lg h-[300px]">
-              <div className="absolute inset-0 z-0">
-                <Image src="/images/sub_contractors.png" alt="Sub Contractors" fill className="object-cover" />
-              </div>
-              <div className="absolute inset-0 bg-brand-navy/80 z-10 group-hover:bg-brand-navy/60 transition-colors duration-300"></div>
-              <div className="absolute inset-0 flex flex-col items-center justify-center z-20 p-8 text-center">
-                <svg className="w-16 h-16 text-brand-orange mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
-                </svg>
-                <h3 className="text-2xl font-bold text-white mb-2">Sub Contractors</h3>
-                <p className="text-gray-200 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">
-                  Trade-specific takeoffs allowing you to focus on the work while we handle the numbers.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. WHY CHOOSE US (Text Left, Image Right) */}
-      <section className="py-20 bg-gray-50 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="order-2 lg:order-1">
-              <div className="inline-block px-4 py-1 bg-brand-orange/10 text-brand-orange font-bold rounded-full mb-4 uppercase text-sm tracking-wider">
-                Why Choose Us
-              </div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-6 leading-tight">
-                Get Accurate Construction Estimating Services for Your Project!
-              </h2>
-              <p className="text-gray-600 mb-6 text-lg leading-relaxed">
-                When you partner with our estimating company, you get access to a team of highly experienced estimators equipped with the latest software and deep industry knowledge. We ensure every cost is accounted for, eliminating guesswork and preventing budget overruns.
-              </p>
-              <ul className="space-y-4 mb-8">
-                {[
-                  'Extensive experience in all CSI divisions.',
-                  'Detailed and accurate material takeoffs.',
-                  'Fast turnaround times (24-48 hours).',
-                  'Affordable pricing for contractors of all sizes.'
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start">
-                    <svg className="w-6 h-6 text-brand-orange mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-700 font-medium text-lg">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link 
-                href="/about" 
-                className="inline-block bg-brand-navy hover:bg-gray-800 text-white px-8 py-4 rounded font-bold transition shadow-md"
-              >
-                Learn More About Us
-              </Link>
-            </div>
-            
-            {/* Overlapping Images Container */}
-            <div className="order-1 lg:order-2 relative h-[350px] md:h-[500px] w-full mt-8 lg:mt-0">
-              <div className="absolute top-0 right-0 w-3/4 aspect-square bg-gray-200 rounded-lg shadow-xl overflow-hidden flex items-center justify-center border-4 border-white relative z-0">
-                <Image src="/images/why_choose_1.png" alt="Why Choose Us" fill className="object-cover" />
-              </div>
-              <div className="absolute bottom-4 md:bottom-10 left-0 w-3/5 aspect-video bg-gray-300 rounded-lg shadow-2xl overflow-hidden flex items-center justify-center border-4 border-white relative z-10">
-                <Image src="/images/why_choose_2.png" alt="Estimating Services" fill className="object-cover" />
-              </div>
-              
-              {/* Floating badge */}
-              <div className="absolute top-1/2 left-[-5%] transform -translate-y-1/2 bg-white p-4 md:p-6 rounded-lg shadow-xl flex items-center gap-4 z-20">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-brand-orange/20 rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6 md:w-8 md:h-8 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-xl md:text-2xl font-black text-brand-navy">100%</div>
-                  <div className="text-gray-500 font-semibold text-xs md:text-sm uppercase">Accuracy</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. PROCESS / STEP-BY-STEP */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-block px-4 py-1 bg-brand-orange/10 text-brand-orange font-bold rounded-full mb-4 uppercase text-sm tracking-wider">
-            Our Process
-          </div>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-16">How Our Construction Estimating Works</h2>
-          
-          <div className="grid md:grid-cols-4 gap-8 relative">
-            {/* Connecting line for desktop */}
-            <div className="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-gray-200 transform -translate-y-1/2 z-0"></div>
-            
-            {[
-              { num: '01', title: 'Upload Plans', desc: 'Send us your blueprints and specifications.' },
-              { num: '02', title: 'Review & Quote', desc: 'We analyze your files and provide a fixed quote.' },
-              { num: '03', title: 'Detailed Takeoff', desc: 'Our team performs a precise quantity takeoff.' },
-              { num: '04', title: 'Final Delivery', desc: 'Receive your detailed estimate ready for bidding.' }
-            ].map((step, i) => (
-              <div key={i} className="relative z-10 flex flex-col items-center bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-xl transition-shadow duration-300">
-                <div className="w-20 h-20 bg-brand-navy rounded-full text-white flex items-center justify-center text-2xl font-black mb-6 shadow-lg border-4 border-white outline outline-4 outline-gray-50">
-                  {step.num}
-                </div>
-                <h3 className="text-xl font-bold text-brand-navy mb-3">{step.title}</h3>
-                <p className="text-gray-600 font-medium">{step.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. VIDEO MODAL & LIST */}
-      <section className="py-20 bg-brand-navy text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Image Block */}
-            <div className="relative w-full aspect-video bg-gray-800 rounded-xl overflow-hidden shadow-2xl flex items-center justify-center border-4 border-gray-700 group">
-              <Image 
-                src="/images/video_thumbnail.png" 
-                alt="Construction Estimators" 
-                fill 
-                className="object-cover opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700 ease-in-out" 
-              />
-            </div>
-            
-            {/* Content List */}
-            <div>
-              <h2 className="text-3xl md:text-4xl font-extrabold mb-8 leading-tight">
-                Empowering Professionals with Precise Estimates
-              </h2>
-              <div className="space-y-6">
-                {[
-                  { title: 'ASPE Certified', desc: 'We strictly follow the American Society of Professional Estimators guidelines.' },
-                  { title: 'Zip-Code Pricing', desc: 'Using RSMeans and local vendor pricing for accurate material costs.' },
-                  { title: 'Dedicated Support', desc: 'Our estimators are available to discuss your project via phone or email.' },
-                  { title: 'Win More Bids', desc: 'Increase your bid-hit ratio with highly competitive and accurate estimates.' }
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-4">
-                    <div className="mt-1 flex-shrink-0">
-                      <div className="w-8 h-8 rounded-full bg-brand-orange/20 flex items-center justify-center">
-                        <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-bold mb-1">{item.title}</h4>
-                      <p className="text-gray-300 font-medium">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. SERVICES GRID */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-block px-4 py-1 bg-brand-orange/10 text-brand-orange font-bold rounded-full mb-4 uppercase text-sm tracking-wider">
-              Core Expertise
-            </div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy">Our Construction Services</h2>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4', title: 'Commercial Estimating' },
-              { icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6', title: 'Residential Estimating' },
-              { icon: 'M13 10V3L4 14h7v7l9-11h-7z', title: 'Industrial Estimating' },
-              { icon: 'M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z', title: 'Material Takeoffs' },
-              { icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', title: 'CPM Scheduling' },
-              { icon: 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z', title: 'Design Build Estimates' }
-            ].map((service, i) => (
-              <div key={i} className="bg-white p-8 rounded-xl shadow-md border border-gray-100 hover:border-brand-orange hover:shadow-xl transition-all duration-300 group">
-                <div className="w-16 h-16 bg-brand-navy/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-orange/10 transition-colors">
-                  <svg className="w-8 h-8 text-brand-navy group-hover:text-brand-orange transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={service.icon} />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-brand-navy mb-3">{service.title}</h3>
-                <p className="text-gray-600 mb-6 font-medium leading-relaxed">
-                  Detailed and highly accurate quantity takeoffs tailored to your specific trade and requirements.
-                </p>
-                <Link href="/services" className="text-brand-orange font-bold uppercase text-sm flex items-center hover:text-brand-navy transition-colors">
-                  Learn More
-                  <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 8. CTA SECTION */}
-      <section className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-brand-navy rounded-[60px] p-10 md:p-[40px_88px] flex flex-col md:flex-row items-center justify-between gap-10 overflow-hidden relative shadow-2xl">
-            <div className="flex flex-col items-center justify-center max-w-[388px] text-center z-10 w-full">
-              <h2 className="text-white text-3xl font-bold leading-tight mb-4 font-sans">
-                Ready to Win More Bids?
-              </h2>
-              <p className="text-white/90 text-lg mb-6 leading-relaxed">
-                Send us your plans today and get a highly accurate estimate within 24-48 hours.
-              </p>
-              <a href="mailto:info@constructechestimation.com" className="bg-brand-orange hover:bg-[#d65f29] text-white font-bold py-[7px] px-[10px] md:py-3 md:px-8 rounded inline-flex items-center transition-transform hover:-translate-y-1">
-                Upload Plans Now
-              </a>
-            </div>
-            
-            <div className="z-10 w-full max-w-[350px] bg-white/10 rounded-2xl aspect-video flex items-center justify-center border border-white/20 overflow-hidden relative">
-              <Image src="/images/cta_image.png" alt="CTA Graphic" fill className="object-cover" />
-            </div>
+      {/* CTA SECTION */}
+      <section className="bg-brand-orange py-20">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">Let's Get Started!</h2>
+          <p className="text-xl text-white/90 mb-10">Upload your plans today to get an accurate estimate in 24 hours.</p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link href="/contact" className="bg-white text-brand-orange font-bold py-4 px-10 rounded-lg text-lg hover:bg-gray-100 transition-colors shadow-xl">
+              Upload Plans
+            </Link>
+            <a href="tel:1-718-719-2009" className="bg-brand-navy text-white font-bold py-4 px-10 rounded-lg text-lg hover:bg-gray-800 transition-colors shadow-xl border border-brand-navy">
+              Call (718) 719-2009
+            </a>
           </div>
         </div>
       </section>
