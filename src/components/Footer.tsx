@@ -39,7 +39,6 @@ export default function Footer() {
               <li><Link href="/" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Home</Link></li>
               <li><Link href="/about" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">About Us</Link></li>
               <li><Link href="/services" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Our Services</Link></li>
-              <li><Link href="/services" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Labor Recruitment</Link></li>
               <li><Link href="/contact" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Contact Us</Link></li>
             </ul>
           </div>
@@ -50,12 +49,10 @@ export default function Footer() {
               Our Services
             </h3>
             <ul className="space-y-3">
-              <li><Link href="/services" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Construction Takeoffs</Link></li>
-              <li><Link href="/services" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Residential Estimating</Link></li>
-              <li><Link href="/services" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Commercial Estimating</Link></li>
-              <li><Link href="/services" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Industrial Estimating</Link></li>
-              <li><Link href="/services" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Lumber Takeoffs</Link></li>
-              <li><Link href="/services" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Concrete Takeoffs</Link></li>
+              <li><Link href="/services#cost-estimation" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Construction Cost Estimation</Link></li>
+              <li><Link href="/services#material-takeoffs" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Material Takeoffs</Link></li>
+              <li><Link href="/services#bid-preparation" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Bid Preparation & Support</Link></li>
+              <li><Link href="/services#quantity-takeoffs" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Quantity Takeoffs</Link></li>
             </ul>
           </div>
 
