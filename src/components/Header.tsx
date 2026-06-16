@@ -24,14 +24,14 @@ export default function Header() {
       {/* Main Header */}
       <header className="bg-white sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-28 md:h-32">
-            
-            {/* Logo */}
-            <div className="flex-shrink-0 flex items-center">
-              <Link href="/">
-                <img src="/logo.png" alt="Constructech Estimation" className="h-24 md:h-28 w-auto mix-blend-multiply object-contain transform scale-110 md:scale-125 origin-left" />
-              </Link>
-            </div>
+            <div className="flex justify-between items-center h-20 md:h-24">
+              
+              {/* Logo */}
+              <div className="flex-shrink-0 flex items-center">
+                <Link href="/">
+                  <img src="/logo.png" alt="Constructech Estimation" className="h-14 md:h-16 w-auto mix-blend-multiply object-contain origin-left" />
+                </Link>
+              </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-8 items-center">
@@ -44,12 +44,12 @@ export default function Header() {
                 onMouseEnter={() => setIsServicesOpen(true)}
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
-                <button className="text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide flex items-center gap-1">
+                <Link href="/services" className="text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide flex items-center gap-1">
                   Services
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
-                </button>
+                </Link>
                 
                 {/* Services Dropdown */}
                 {isServicesOpen && (
