@@ -6,6 +6,7 @@ import Link from 'next/link';
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isTradesOpen, setIsTradesOpen] = useState(false);
 
   return (
     <>
@@ -34,35 +35,210 @@ export default function Header() {
               </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8 items-center">
+            <nav className="hidden md:flex space-x-8 items-center relative">
               <Link href="/" className="text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide">
                 Home
               </Link>
-              
+              <Link href="/about" className="text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide">
+                About Us
+              </Link>
+
+              {/* Our Trades Mega Menu */}
               <div 
-                className="relative group h-full flex items-center"
+                className="group h-full flex items-center"
+                onMouseEnter={() => setIsTradesOpen(true)}
+                onMouseLeave={() => setIsTradesOpen(false)}
+              >
+                <Link href="/our-trades" className={`text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide flex items-center gap-1 py-8 ${isTradesOpen ? 'text-brand-orange border-b-2 border-brand-orange' : ''}`}>
+                  Our Trades
+                  <svg className={`w-4 h-4 transition-transform ${isTradesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </Link>
+                
+                {isTradesOpen && (
+                  <div className="absolute left-1/2 -translate-x-1/2 top-[100%] w-[1100px] z-50 shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
+                    <div className="bg-white border-t-2 border-brand-orange p-8 grid grid-cols-4 gap-8 rounded-b-lg">
+                      
+                      {/* Column 1 */}
+                      <div>
+                        <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">General Contractor</h3>
+                        <ul className="space-y-3">
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Public Projects Estimating Services</Link></li>
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Commercial Estimating Services</Link></li>
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Residential Estimating Services</Link></li>
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">MultiFamily Apartments Estimating Services</Link></li>
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Industrial Estimating</Link></li>
+                        </ul>
+                      </div>
+
+                      {/* Column 2 */}
+                      <div>
+                        <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">Sub Contractors Estimating</h3>
+                        <ul className="space-y-3">
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Metals Takeoffs Estimates</Link></li>
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Insulation Estimating Services</Link></li>
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Drywall Takeoff Estimating</Link></li>
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Concrete Estimating</Link></li>
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Masonry Estimates</Link></li>
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Painting Estimating Takeoff</Link></li>
+                        </ul>
+                      </div>
+
+                      {/* Column 3 */}
+                      <div>
+                        <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">Sub Contractors Estimating</h3>
+                        <ul className="space-y-3">
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Electrical Work Estimating</Link></li>
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Flooring Estimating Services</Link></li>
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Plumbing Estimating Takeoff Services</Link></li>
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Interior Exterior Finishes Estimating Takeoff Services</Link></li>
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Sitework Earthwork Estimating Services</Link></li>
+                        </ul>
+                      </div>
+
+                      {/* Column 4 */}
+                      <div>
+                        <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">Supplier Estimating Takeoff</h3>
+                        <ul className="space-y-3">
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Rebar Estimating Detailing Takeoff Services</Link></li>
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Lumber Takeoff and Estimating Services</Link></li>
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Supplier Estimating Takeoff</Link></li>
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Steel Cost Estimating Takeoff Services</Link></li>
+                          <li><Link href="/our-trades" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Flooring Tiles Takeoff Services</Link></li>
+                        </ul>
+                      </div>
+
+                    </div>
+                  </div>
+                )}
+              </div>
+              
+              {/* Services Mega Menu */}
+              <div 
+                className="group h-full flex items-center"
                 onMouseEnter={() => setIsServicesOpen(true)}
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
-                <Link href="/services" className="text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide flex items-center gap-1 py-8">
+                <Link href="/services" className={`text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide flex items-center gap-1 py-8 ${isServicesOpen ? 'text-brand-orange border-b-2 border-brand-orange' : ''}`}>
                   Services
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className={`w-4 h-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </Link>
                 
                 {/* Services Dropdown */}
                 {isServicesOpen && (
-                  <div className="absolute left-0 top-[100%] w-64 pt-6 z-50">
-                    <div className="bg-white shadow-xl border-t-4 border-brand-orange py-2">
-                      <Link href="/services#cost-estimation" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Construction Cost Estimation</Link>
-                      <Link href="/services#material-takeoffs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Material Takeoffs</Link>
-                      <Link href="/services#bid-preparation" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Bid Preparation & Support</Link>
-                      <Link href="/services#quantity-takeoffs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange">Quantity Takeoffs</Link>
+                  <div className="absolute left-1/2 -translate-x-1/2 top-[100%] w-[1000px] z-50 shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
+                    <div className="bg-white border-t-2 border-brand-orange rounded-b-lg flex overflow-hidden min-h-[300px]">
+                      
+                      {/* Left Highlighted Column */}
+                      <div className="w-[30%] bg-[#761A1D] text-white p-8">
+                        <div className="space-y-6">
+                          <Link href="/services#cost-estimation" className="block group/link">
+                            <div className="flex items-start gap-3">
+                              <div className="bg-white/10 p-2 rounded shrink-0">
+                                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                              </div>
+                              <div>
+                                <h4 className="font-bold text-[15px] group-hover/link:text-brand-orange transition-colors">Cost Estimating</h4>
+                                <p className="text-white/70 text-xs mt-1 italic">Predicting project costs.</p>
+                              </div>
+                            </div>
+                          </Link>
+
+                          <Link href="/services#material-takeoffs" className="block group/link">
+                            <div className="flex items-start gap-3">
+                              <div className="bg-white/10 p-2 rounded shrink-0">
+                                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                </svg>
+                              </div>
+                              <div>
+                                <h4 className="font-bold text-[15px] group-hover/link:text-brand-orange transition-colors">Construction Takeoff</h4>
+                                <p className="text-white/70 text-xs mt-1 italic">Measuring materials and quantities.</p>
+                              </div>
+                            </div>
+                          </Link>
+
+                          <Link href="/services#design-build" className="block group/link">
+                            <div className="flex items-start gap-3">
+                              <div className="bg-white/10 p-2 rounded shrink-0">
+                                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                </svg>
+                              </div>
+                              <div>
+                                <h4 className="font-bold text-[15px] group-hover/link:text-brand-orange transition-colors">Design Build Services</h4>
+                                <p className="text-white/70 text-xs mt-1 italic">Single-source design and construction.</p>
+                              </div>
+                            </div>
+                          </Link>
+                        </div>
+                      </div>
+
+                      {/* Right 3 Columns */}
+                      <div className="w-[70%] p-8 grid grid-cols-3 gap-6">
+                        
+                        {/* Col 1 */}
+                        <div>
+                          <div className="flex items-center gap-2 mb-2">
+                            <svg className="w-5 h-5 text-[#761A1D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                            <h3 className="text-[#761A1D] font-bold text-sm uppercase">Design Drawing & Engineering</h3>
+                          </div>
+                          <p className="text-xs text-gray-500 italic mb-4">Creating and detailing project plans.</p>
+                          <ul className="space-y-3">
+                            <li><Link href="/services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Structural drawings and calculations</Link></li>
+                            <li><Link href="/services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">MEP Drawings With Title 24</Link></li>
+                            <li><Link href="/services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Architectural Drawings Services</Link></li>
+                            <li><Link href="/services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">3D Rendering & Modeling Services</Link></li>
+                          </ul>
+                        </div>
+
+                        {/* Col 2 */}
+                        <div>
+                          <div className="flex items-center gap-2 mb-2">
+                            <svg className="w-5 h-5 text-[#761A1D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <h3 className="text-[#761A1D] font-bold text-sm uppercase">Region</h3>
+                          </div>
+                          <p className="text-xs text-gray-500 italic mb-4">Creating and detailing project plans.</p>
+                          <ul className="space-y-3">
+                            <li><Link href="/services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Construction Cost Estimating Services in California</Link></li>
+                            <li><Link href="/services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Construction Cost Estimating Services in New york</Link></li>
+                          </ul>
+                        </div>
+
+                        {/* Col 3 */}
+                        <div>
+                          <div className="flex items-center gap-2 mb-2">
+                            <svg className="w-5 h-5 text-[#761A1D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                            </svg>
+                            <h3 className="text-[#761A1D] font-bold text-sm uppercase">Pre-Construction Services</h3>
+                          </div>
+                          <p className="text-xs text-gray-500 italic mb-4">Creating and detailing project plans.</p>
+                          <ul className="space-y-3">
+                            <li><Link href="/services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Shop Drawings</Link></li>
+                            <li><Link href="/services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Scheduling Services</Link></li>
+                          </ul>
+                        </div>
+
+                      </div>
                     </div>
                   </div>
                 )}
               </div>
+
+              <Link href="/labor-recruitment" className="text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide">
+                Labor Recruitment
+              </Link>
 
 
               <Link href="/contact" className="text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide">
