@@ -25,7 +25,7 @@ export default function HeroSlider() {
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image 
-              src="/images/Construction-Takeoff-and-Cost-Estimation-12-1024x512.webp" 
+              src="/images/hero_bg.png" 
               alt="Hero Background" 
               fill 
               className="object-cover opacity-50"
@@ -65,7 +65,7 @@ export default function HeroSlider() {
               {/* Right Image */}
               <div className="relative w-full h-[300px] md:h-[400px] rounded-[20px] shadow-2xl overflow-hidden border-4 border-white/10 mt-10 md:mt-0">
                 <Image 
-                  src="/images/professional-construction-estimators.webp" 
+                  src="/images/hero_estimators.png" 
                   alt="Professional Estimators" 
                   fill 
                   className="object-cover"
@@ -81,7 +81,7 @@ export default function HeroSlider() {
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image 
-              src="/images/Construction-Estimating-Company.webp" 
+              src="/images/general_contractors.png" 
               alt="Update Background" 
               fill 
               className="object-cover opacity-50"
@@ -91,20 +91,18 @@ export default function HeroSlider() {
           
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-white">
-              Important Update: <br />
-              <span className="text-brand-orange">Our WhatsApp Number Changed</span>
+              Residential & Commercial <br />
+              <span className="text-brand-orange">Estimating Services</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 leading-relaxed font-medium text-white max-w-3xl mx-auto">
-              Please reach us on our new number only for immediate assistance and quotes.
+              Send us your plans for a quick and highly accurate quote.
             </p>
-            <a 
-              href="https://wa.me/18089985083" 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <Link 
+              href="/contact" 
               className="inline-block bg-brand-orange hover:bg-[#d65f29] text-white px-8 py-4 rounded-[40px] font-bold text-xl text-center transition shadow-[0px_4px_20px_0px_rgba(232,106,51,0.5)]"
             >
-              +1 (808) 998-5083
-            </a>
+              Get Started Today
+            </Link>
           </div>
         </div>
       </div>

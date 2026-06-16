@@ -54,7 +54,7 @@ export default function Home() {
             {/* General Contractors */}
             <div className="group relative overflow-hidden rounded-xl shadow-lg h-[300px]">
               <div className="absolute inset-0 z-0">
-                <Image src="/images/Construction-Estimating-Company.webp" alt="General Contractors" fill className="object-cover" />
+                <Image src="/images/general_contractors.png" alt="General Contractors" fill className="object-cover" />
               </div>
               <div className="absolute inset-0 bg-brand-navy/80 z-10 group-hover:bg-brand-navy/60 transition-colors duration-300"></div>
               <div className="absolute inset-0 flex flex-col items-center justify-center z-20 p-8 text-center">
@@ -71,7 +71,7 @@ export default function Home() {
             {/* Sub Contractors */}
             <div className="group relative overflow-hidden rounded-xl shadow-lg h-[300px]">
               <div className="absolute inset-0 z-0">
-                <Image src="/images/Construction-Takeoff-and-Cost-Estimation-12-1024x512.webp" alt="Sub Contractors" fill className="object-cover" />
+                <Image src="/images/sub_contractors.png" alt="Sub Contractors" fill className="object-cover" />
               </div>
               <div className="absolute inset-0 bg-brand-navy/80 z-10 group-hover:bg-brand-navy/60 transition-colors duration-300"></div>
               <div className="absolute inset-0 flex flex-col items-center justify-center z-20 p-8 text-center">
@@ -128,10 +128,10 @@ export default function Home() {
             {/* Overlapping Images Container */}
             <div className="order-1 lg:order-2 relative h-[350px] md:h-[500px] w-full mt-8 lg:mt-0">
               <div className="absolute top-0 right-0 w-3/4 aspect-square bg-gray-200 rounded-lg shadow-xl overflow-hidden flex items-center justify-center border-4 border-white relative z-0">
-                <Image src="/images/professional-construction-estimating-company-1894x2048.webp" alt="Why Choose Us" fill className="object-cover" />
+                <Image src="/images/why_choose_1.png" alt="Why Choose Us" fill className="object-cover" />
               </div>
               <div className="absolute bottom-4 md:bottom-10 left-0 w-3/5 aspect-video bg-gray-300 rounded-lg shadow-2xl overflow-hidden flex items-center justify-center border-4 border-white relative z-10">
-                <Image src="/images/Construction-Estimating-Services-3-1-1024x470.webp" alt="Estimating Services" fill className="object-cover" />
+                <Image src="/images/why_choose_2.png" alt="Estimating Services" fill className="object-cover" />
               </div>
               
               {/* Floating badge */}
@@ -187,7 +187,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Video Placeholder */}
             <div className="relative w-full aspect-video bg-gray-800 rounded-xl overflow-hidden shadow-2xl flex items-center justify-center border-4 border-gray-700">
-              <Image src="/images/Top-5-Questions-to-Ask-a-Construction-Estimating-Company-768x384.webp" alt="Video Thumbnail" fill className="object-cover opacity-60" />
+              <Image src="/images/video_thumbnail.png" alt="Video Thumbnail" fill className="object-cover opacity-60" />
               <button className="relative z-10 w-16 h-16 md:w-20 md:h-20 bg-brand-orange rounded-full flex items-center justify-center shadow-[0_0_0_10px_rgba(232,106,51,0.3)] hover:scale-110 transition-transform">
                 <svg className="w-6 h-6 md:w-8 md:h-8 text-white ml-1 md:ml-2" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
@@ -285,7 +285,7 @@ export default function Home() {
             </div>
             
             <div className="z-10 w-full max-w-[350px] bg-white/10 rounded-2xl aspect-video flex items-center justify-center border border-white/20 overflow-hidden relative">
-              <Image src="/images/Top-5-Questions-to-Ask-a-Construction-Estimating-Company.webp" alt="CTA Graphic" fill className="object-cover" />
+              <Image src="/images/cta_image.png" alt="CTA Graphic" fill className="object-cover" />
             </div>
           </div>
         </div>
