@@ -29,7 +29,7 @@ export default function Header() {
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
               <Link href="/">
-                <span className="text-2xl font-extrabold text-brand-navy tracking-tight uppercase">Constructech</span>
+                <img src="/logo.png" alt="Constructech Estimation" className="h-12 w-auto mix-blend-multiply object-contain" />
               </Link>
             </div>
 
