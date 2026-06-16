@@ -24,12 +24,12 @@ export default function Header() {
       {/* Main Header */}
       <header className="bg-white sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-24">
+          <div className="flex justify-between items-center h-28 md:h-32">
             
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
               <Link href="/">
-                <img src="/logo.png" alt="Constructech Estimation" className="h-20 md:h-24 w-auto mix-blend-multiply object-contain" />
+                <img src="/logo.png" alt="Constructech Estimation" className="h-24 md:h-28 w-auto mix-blend-multiply object-contain transform scale-110 md:scale-125 origin-left" />
               </Link>
             </div>
 

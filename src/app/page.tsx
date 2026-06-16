@@ -1,83 +1,28 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import HeroSlider from '@/components/HeroSlider';
 
 export default function Home() {
   return (
     <div className="w-full flex flex-col">
-      {/* 1. HERO SECTION */}
-      <section className="relative w-full bg-brand-navy min-h-[600px] flex items-center pt-16 pb-16 md:pb-32">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image 
-            src="/images/Construction-Takeoff-and-Cost-Estimation-12-1024x512.webp" 
-            alt="Hero Background" 
-            fill 
-            className="object-cover opacity-50"
-            priority
-          />
-          <div className="absolute inset-0 bg-brand-navy/85"></div>
-        </div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="text-left text-white max-w-2xl">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
-                Construction Estimating &amp;<br />
-                <span className="text-brand-orange">Design Engineering Services</span>
-              </h1>
-              <p className="text-lg md:text-xl mb-8 leading-relaxed font-medium">
-                Our building estimating company expert in design and construction estimates. Enhance your project management with the support of our professional estimators.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a 
-                  href="tel:1-888-859-0222" 
-                  className="bg-brand-orange hover:bg-[#d65f29] text-white px-8 py-4 rounded font-bold text-lg text-center transition shadow-lg"
-                >
-                  Call Us
-                </a>
-                <Link 
-                  href="/about" 
-                  className="bg-white hover:bg-gray-100 text-brand-navy px-8 py-4 rounded font-bold text-lg text-center transition shadow-lg flex items-center justify-center gap-2"
-                >
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  Company Profile
-                </Link>
+      {/* 1. HERO SLIDER */}
+      <HeroSlider />
+
+      {/* STATS OVERLAP */}
+      <section className="relative z-20 md:-mt-16 px-4 sm:px-6 lg:px-8 bg-brand-navy md:bg-transparent pb-10 md:pb-0">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {[
+              { label: 'Customer Satisfaction', value: '98%' },
+              { label: 'Industry Awards', value: '20+' },
+              { label: 'Years Experience', value: '15+' },
+              { label: 'Projects Completed', value: '5000+' }
+            ].map((stat, i) => (
+              <div key={i} className="bg-white rounded-[20px] shadow-[0px_10px_30px_0px_rgba(0,0,0,0.1)] p-6 text-center border-b-[5px] border-brand-orange transform hover:-translate-y-2 transition-transform duration-300">
+                <div className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-2">{stat.value}</div>
+                <div className="text-sm md:text-base font-semibold text-gray-600 uppercase tracking-wide">{stat.label}</div>
               </div>
-            </div>
-            
-            {/* Right Image */}
-            <div className="relative w-full h-[300px] md:h-[400px] rounded-lg shadow-2xl overflow-hidden border-4 border-white/10 mt-10 md:mt-0">
-              <Image 
-                src="/images/professional-construction-estimators.webp" 
-                alt="Professional Estimators" 
-                fill 
-                className="object-cover"
-                priority
-              />
-            </div>
-          </div>
-        </div>
-        
-        {/* STATS OVERLAP */}
-        <div className="relative md:absolute md:left-0 md:right-0 md:-bottom-16 z-20 mt-16 md:mt-0 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-              {[
-                { label: 'Customer Satisfaction', value: '98%' },
-                { label: 'Industry Awards', value: '20+' },
-                { label: 'Years Experience', value: '15+' },
-                { label: 'Projects Completed', value: '5000+' }
-              ].map((stat, i) => (
-                <div key={i} className="bg-white rounded-lg shadow-xl p-6 text-center border-b-4 border-brand-orange transform hover:-translate-y-1 transition-transform duration-300">
-                  <div className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-2">{stat.value}</div>
-                  <div className="text-sm md:text-base font-semibold text-gray-600 uppercase tracking-wide">{stat.label}</div>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -326,7 +271,7 @@ export default function Home() {
       {/* 8. CTA SECTION */}
       <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-[#621215] rounded-[40px] md:rounded-[60px] p-8 md:p-14 flex flex-col md:flex-row items-center justify-between gap-10 overflow-hidden relative shadow-2xl">
+          <div className="bg-brand-navy rounded-[60px] p-10 md:p-[40px_88px] flex flex-col md:flex-row items-center justify-between gap-10 overflow-hidden relative shadow-2xl">
             <div className="flex flex-col items-center justify-center max-w-[388px] text-center z-10 w-full">
               <h2 className="text-white text-3xl font-bold leading-tight mb-4 font-sans">
                 Ready to Win More Bids?
@@ -334,7 +279,7 @@ export default function Home() {
               <p className="text-white/90 text-lg mb-6 leading-relaxed">
                 Send us your plans today and get a highly accurate estimate within 24-48 hours.
               </p>
-              <a href="mailto:info@constructech.com" className="bg-[#E1AB4E] hover:bg-[#c89237] text-white font-bold py-3 px-8 rounded inline-flex items-center transition-transform hover:-translate-y-1">
+              <a href="mailto:info@constructech.com" className="bg-brand-orange hover:bg-[#d65f29] text-white font-bold py-[7px] px-[10px] md:py-3 md:px-8 rounded inline-flex items-center transition-transform hover:-translate-y-1">
                 Upload Plans Now
               </a>
             </div>
