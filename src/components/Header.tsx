@@ -133,46 +133,46 @@ export default function Header() {
                     <div className="bg-white border-t-2 border-brand-orange rounded-b-lg flex overflow-hidden min-h-[300px]">
                       
                       {/* Left Highlighted Column */}
-                      <div className="w-[30%] bg-[#761A1D] text-white p-8">
+                      <div className="w-[30%] bg-brand-orange text-white p-8">
                         <div className="space-y-6">
                           <Link href="/services/cost-estimating" className="block group/link">
                             <div className="flex items-start gap-3">
-                              <div className="bg-white/10 p-2 rounded shrink-0">
+                              <div className="bg-white/20 p-2 rounded shrink-0">
                                 <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                               </div>
                               <div>
-                                <h4 className="font-bold text-[15px] group-hover/link:text-brand-orange transition-colors">Cost Estimating</h4>
-                                <p className="text-white/70 text-xs mt-1 italic">Predicting project costs.</p>
+                                <h4 className="font-bold text-[15px] group-hover/link:text-brand-navy transition-colors">Cost Estimating</h4>
+                                <p className="text-white/80 text-xs mt-1 italic">Predicting project costs.</p>
                               </div>
                             </div>
                           </Link>
 
                           <Link href="/services/construction-takeoff" className="block group/link">
                             <div className="flex items-start gap-3">
-                              <div className="bg-white/10 p-2 rounded shrink-0">
+                              <div className="bg-white/20 p-2 rounded shrink-0">
                                 <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                                 </svg>
                               </div>
                               <div>
-                                <h4 className="font-bold text-[15px] group-hover/link:text-brand-orange transition-colors">Construction Takeoff</h4>
-                                <p className="text-white/70 text-xs mt-1 italic">Measuring materials and quantities.</p>
+                                <h4 className="font-bold text-[15px] group-hover/link:text-brand-navy transition-colors">Construction Takeoff</h4>
+                                <p className="text-white/80 text-xs mt-1 italic">Measuring materials and quantities.</p>
                               </div>
                             </div>
                           </Link>
 
                           <Link href="/services/design-build-services" className="block group/link">
                             <div className="flex items-start gap-3">
-                              <div className="bg-white/10 p-2 rounded shrink-0">
+                              <div className="bg-white/20 p-2 rounded shrink-0">
                                 <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                                 </svg>
                               </div>
                               <div>
-                                <h4 className="font-bold text-[15px] group-hover/link:text-brand-orange transition-colors">Design Build Services</h4>
-                                <p className="text-white/70 text-xs mt-1 italic">Single-source design and construction.</p>
+                                <h4 className="font-bold text-[15px] group-hover/link:text-brand-navy transition-colors">Design Build Services</h4>
+                                <p className="text-white/80 text-xs mt-1 italic">Single-source design and construction.</p>
                               </div>
                             </div>
                           </Link>
@@ -185,10 +185,10 @@ export default function Header() {
                         {/* Col 1 */}
                         <div>
                           <div className="flex items-center gap-2 mb-2">
-                            <svg className="w-5 h-5 text-[#761A1D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                             </svg>
-                            <h3 className="text-[#761A1D] font-bold text-sm uppercase">Design Drawing & Engineering</h3>
+                            <h3 className="text-brand-orange font-bold text-sm uppercase">Design Drawing & Engineering</h3>
                           </div>
                           <p className="text-xs text-gray-500 italic mb-4">Creating and detailing project plans.</p>
                           <ul className="space-y-3">
@@ -202,11 +202,11 @@ export default function Header() {
                         {/* Col 2 */}
                         <div>
                           <div className="flex items-center gap-2 mb-2">
-                            <svg className="w-5 h-5 text-[#761A1D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
-                            <h3 className="text-[#761A1D] font-bold text-sm uppercase">Region</h3>
+                            <h3 className="text-brand-orange font-bold text-sm uppercase">Region</h3>
                           </div>
                           <p className="text-xs text-gray-500 italic mb-4">Creating and detailing project plans.</p>
                           <ul className="space-y-3">
@@ -218,10 +218,10 @@ export default function Header() {
                         {/* Col 3 */}
                         <div>
                           <div className="flex items-center gap-2 mb-2">
-                            <svg className="w-5 h-5 text-[#761A1D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                             </svg>
-                            <h3 className="text-[#761A1D] font-bold text-sm uppercase">Pre-Construction Services</h3>
+                            <h3 className="text-brand-orange font-bold text-sm uppercase">Pre-Construction Services</h3>
                           </div>
                           <p className="text-xs text-gray-500 italic mb-4">Creating and detailing project plans.</p>
                           <ul className="space-y-3">
