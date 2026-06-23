@@ -9,7 +9,7 @@ export default function Footer() {
           {/* Logo & Contact */}
           <div>
             <Link href="/" className="inline-block mb-6 bg-white p-2 rounded-lg">
-              <img src="/logo.png" alt="Constructech Estimation" className="h-16 md:h-20 w-auto object-contain" />
+              <img src="/logo-transparent.png" alt="Constructech Estimation" className="h-16 md:h-20 w-auto object-contain" />
             </Link>
             <p className="text-gray-300 text-[15px] mb-6 leading-relaxed">
               Constructech Estimation is a reliable and accurate construction estimating firm in the US, providing takeoff services to builders, contractors, and owners.
@@ -64,9 +64,16 @@ export default function Footer() {
             <p className="text-gray-300 mb-4">
               Providing expert estimating services across all 50 states in the USA.
             </p>
-            {/* Placeholder for Map Image */}
-            <div className="w-full h-32 bg-gray-800 rounded-lg flex items-center justify-center border border-gray-700">
-               <span className="text-gray-500 font-medium">USA Map Placeholder</span>
+            <div className="w-full h-48 bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
+               <iframe 
+                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13149594.137817454!2d-109.11714241696515!3d36.31500693527771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited%20States!5e0!3m2!1sen!2sus!4v1718641234567!5m2!1sen!2sus" 
+                 width="100%" 
+                 height="100%" 
+                 style={{border:0}} 
+                 allowFullScreen={false} 
+                 loading="lazy" 
+                 referrerPolicy="no-referrer-when-downgrade"
+               ></iframe>
             </div>
           </div>
         </div>
