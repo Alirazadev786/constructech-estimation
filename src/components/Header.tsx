@@ -236,10 +236,6 @@ export default function Header() {
                 )}
               </div>
 
-              <Link href="/labor-recruitment" className="text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide">
-                Labor Recruitment
-              </Link>
-
 
               <Link href="/contact" className="text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide">
                 Contact Us
