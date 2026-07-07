@@ -37,18 +37,7 @@ export default function ServicesPage() {
       ],
       icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
       image: "/images/sub_contractors.png"
-    },
-    {
-      title: "Design & Engineering",
-      description: "Professional structural calculations, MEP drawings, and 3D modeling services to streamline your pre-construction phase.",
-      items: [
-        { name: "Structural Drawings & Calculations", href: "/services/design-drawing-engineering/structural-calculations" },
-        { name: "MEP Drawings With Title 24", href: "/services/design-drawing-engineering/mep-with-title-24" },
-        { name: "Architectural Drawings", href: "/services/design-drawing-engineering/architectural-drawings" },
-        { name: "3D Rendering & Modeling", href: "/services/design-drawing-engineering/3d-rendering-modeling" }
-      ],
-      icon: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z",
-      image: "/images/why_choose_2.png"
+
     },
     {
       title: "Supplier Estimating",

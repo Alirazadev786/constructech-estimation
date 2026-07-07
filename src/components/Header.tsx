@@ -179,25 +179,8 @@ export default function Header() {
                         </div>
                       </div>
 
-                      {/* Right 3 Columns */}
-                      <div className="w-[70%] p-8 grid grid-cols-3 gap-6">
-                        
-                        {/* Col 1 */}
-                        <div>
-                          <div className="flex items-center gap-2 mb-2">
-                            <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                            </svg>
-                            <h3 className="text-brand-orange font-bold text-sm uppercase">Design Drawing & Engineering</h3>
-                          </div>
-                          <p className="text-xs text-gray-500 italic mb-4">Creating and detailing project plans.</p>
-                          <ul className="space-y-3">
-                            <li><Link href="/services/design-drawing-engineering/structural-calculations" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Structural drawings and calculations</Link></li>
-                            <li><Link href="/services/design-drawing-engineering/mep-with-title-24" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">MEP Drawings With Title 24</Link></li>
-                            <li><Link href="/services/design-drawing-engineering/architectural-drawings" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Architectural Drawings Services</Link></li>
-                            <li><Link href="/services/design-drawing-engineering/3d-rendering-modeling" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">3D Rendering & Modeling Services</Link></li>
-                          </ul>
-                        </div>
+                      {/* Right 2 Columns */}
+                      <div className="w-[70%] p-8 grid grid-cols-2 gap-6">
 
                         {/* Col 2 */}
                         <div>
