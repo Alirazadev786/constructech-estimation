@@ -68,20 +68,30 @@ export default function CompetitorPageLayout({ data }: { data: any }) {
             </div>
 
             {/* Bottom CTA Banner */}
-            <div className="mt-16 bg-brand-navy rounded-2xl p-10 text-center relative overflow-hidden shadow-2xl">
-               <div className="absolute inset-0 bg-[url('/images/cta_image.png')] opacity-20 bg-cover bg-center mix-blend-overlay"></div>
+            {/* Bottom CTA Banner */}
+            <div className="mt-16 group relative bg-white border border-gray-100 rounded-2xl p-10 text-center overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-orange to-yellow-400"></div>
+               <div className="absolute inset-0 bg-[url('/images/cta_image.png')] opacity-5 group-hover:opacity-10 bg-cover bg-center mix-blend-multiply transition-opacity duration-500"></div>
+               
                <div className="relative z-10">
-                 <h3 className="text-3xl font-extrabold text-white mb-4">Ready to Win More Bids?</h3>
-                 <p className="text-gray-300 mb-8 text-lg max-w-2xl mx-auto">Get highly accurate construction takeoffs & estimates! Contact us today for a free quote.</p>
-                 <div className="flex flex-col sm:flex-row justify-center gap-4">
-                   <a href="tel:718-719-2009" className="bg-brand-orange text-white font-bold py-4 px-8 rounded flex items-center justify-center gap-2 hover:bg-orange-600 transition text-lg shadow-lg">
-                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 <h3 className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-4 transition-transform duration-300 group-hover:scale-105">
+                   Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-orange-500">Win More Bids?</span>
+                 </h3>
+                 <p className="text-gray-600 mb-8 text-lg max-w-2xl mx-auto">
+                   Get highly accurate <span className="text-brand-navy font-bold">construction takeoffs & estimates</span>! Contact us today for a free quote.
+                 </p>
+                 <div className="flex flex-col sm:flex-row justify-center gap-6">
+                   <a href="tel:718-719-2009" className="bg-brand-orange text-white font-bold py-4 px-8 rounded flex items-center justify-center gap-2 hover:bg-orange-600 transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_20px_rgba(249,115,22,0.3)] text-lg">
+                     <svg className="w-6 h-6 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                      </svg>
                      (718) 719-2009
                    </a>
-                   <Link href="/contact" className="bg-white text-brand-navy font-bold py-4 px-8 rounded hover:bg-gray-100 transition text-lg shadow-lg text-center">
+                   <Link href="/contact" className="group/btn bg-brand-navy text-white font-bold py-4 px-8 rounded hover:bg-gray-800 transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_20px_rgba(11,28,46,0.3)] text-lg flex items-center justify-center gap-2">
                      Request a Quote
+                     <svg className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                     </svg>
                    </Link>
                  </div>
                </div>
