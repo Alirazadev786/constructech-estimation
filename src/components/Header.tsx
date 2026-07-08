@@ -163,7 +163,33 @@ export default function Header() {
                             </div>
                           </Link>
 
+                          <Link href="/services/mep-estimating" className="block group/link">
+                            <div className="flex items-start gap-3">
+                              <div className="bg-white/20 p-2 rounded shrink-0">
+                                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                              </div>
+                              <div>
+                                <h4 className="font-bold text-[15px] group-hover/link:text-brand-navy transition-colors">MEP Estimating</h4>
+                                <p className="text-white/80 text-xs mt-1 italic">Mechanical, electrical, plumbing.</p>
+                              </div>
+                            </div>
+                          </Link>
 
+                          <Link href="/services/cpm-scheduling" className="block group/link">
+                            <div className="flex items-start gap-3">
+                              <div className="bg-white/20 p-2 rounded shrink-0">
+                                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                              </div>
+                              <div>
+                                <h4 className="font-bold text-[15px] group-hover/link:text-brand-navy transition-colors">CPM Scheduling</h4>
+                                <p className="text-white/80 text-xs mt-1 italic">Project timeline management.</p>
+                              </div>
+                            </div>
+                          </Link>
                         </div>
                       </div>
 
