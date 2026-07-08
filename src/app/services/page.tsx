@@ -29,7 +29,7 @@ export default function ServicesPage() {
         { name: "Metals Takeoffs", href: "/sub-contractors-estimates/metals-takeoffs" },
         { name: "Insulation Estimates", href: "/sub-contractors-estimates/insulation-estimates" },
         { name: "Drywall Takeoffs", href: "/sub-contractors-estimates/dry-wall-takeoffs" },
-        { name: "Concrete Estimating", href: "/sub-contractors-estimates/concrete-estimating-services" },
+        { name: "Concrete Estimates", href: "/sub-contractors-estimates/concrete-estimating-services" },
         { name: "Masonry Estimates", href: "/sub-contractors-estimates/masonry-estimates" },
         { name: "Painting Estimates", href: "/sub-contractors-estimates/painting-estimates" },
         { name: "Electrical Takeoffs", href: "/sub-contractors-estimates/electrical-work-estimating-takeoffs" },

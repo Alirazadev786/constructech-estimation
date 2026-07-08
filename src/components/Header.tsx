@@ -79,7 +79,7 @@ export default function Header() {
                           <li><Link href="/sub-contractors-estimates/metals-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Metals Takeoffs Estimates</Link></li>
                           <li><Link href="/sub-contractors-estimates/insulation-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Insulation Estimating Services</Link></li>
                           <li><Link href="/sub-contractors-estimates/dry-wall-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Drywall Takeoff Estimating</Link></li>
-                          <li><Link href="/sub-contractors-estimates/concrete-estimating-services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Concrete Estimating</Link></li>
+                          <li><Link href="/sub-contractors-estimates/concrete-estimating-services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Concrete Estimates</Link></li>
                           <li><Link href="/sub-contractors-estimates/masonry-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Masonry Estimates</Link></li>
                           <li><Link href="/sub-contractors-estimates/painting-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Painting Estimating Takeoff</Link></li>
                         </ul>
