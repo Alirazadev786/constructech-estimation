@@ -74,7 +74,7 @@ export default function ServicesPage() {
             Comprehensive Estimating <br/> <span className="text-brand-orange">Services</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-            From initial design drawings to final bid preparation, our expert estimators provide the precision you need to win projects and maximize profitability.
+            From initial blueprints to final bid preparation, our expert estimators provide the precision you need to win projects and maximize profitability.
           </p>
           <div className="flex flex-wrap justify-center gap-4 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
             <Link href="/contact" className="bg-brand-orange hover:bg-orange-600 text-white px-8 py-4 rounded-md font-bold text-lg transition-transform hover:-translate-y-1 shadow-lg flex items-center">

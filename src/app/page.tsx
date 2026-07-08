@@ -50,7 +50,7 @@ export default function Home() {
             <div className="w-24 h-1.5 bg-brand-orange mx-auto rounded-full"></div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-brand-orange hover:-translate-y-2 transition-transform">
               <h3 className="text-xl font-bold text-brand-navy mb-4">Cost Estimating</h3>
               <p className="text-gray-600 mb-6">Comprehensive breakdown of labor, materials, equipment, and overhead for accurate project budgeting.</p>
@@ -60,11 +60,6 @@ export default function Home() {
               <h3 className="text-xl font-bold text-brand-navy mb-4">Construction Takeoff</h3>
               <p className="text-gray-600 mb-6">Precise material quantification from digital blueprints ensuring you never over-order or run short.</p>
               <Link href="/services/construction-takeoff" className="text-brand-orange font-bold hover:underline">Learn more →</Link>
-            </div>
-            <div className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-brand-orange hover:-translate-y-2 transition-transform">
-              <h3 className="text-xl font-bold text-brand-navy mb-4">Design & Engineering</h3>
-              <p className="text-gray-600 mb-6">Structural calculations, MEP drawings with Title 24, and full 3D rendering and modeling services.</p>
-              <Link href="/services/design-drawing-engineering" className="text-brand-orange font-bold hover:underline">Learn more →</Link>
             </div>
           </div>
         </div>
@@ -79,7 +74,7 @@ export default function Home() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {['General Contractors', 'Subcontractors', 'Architects & Designers', 'Developers & Builders'].map((audience, i) => (
+            {['General Contractors', 'Subcontractors', 'Suppliers & Vendors', 'Developers & Builders'].map((audience, i) => (
               <div key={i} className="bg-white/10 p-6 rounded-xl border border-white/20 text-center hover:bg-brand-orange hover:border-brand-orange transition-colors cursor-default">
                 <h3 className="text-lg font-bold">{audience}</h3>
               </div>

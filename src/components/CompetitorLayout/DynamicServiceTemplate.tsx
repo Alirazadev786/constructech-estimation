@@ -112,14 +112,7 @@ export default function CompetitorPageLayout({ data }: { data: any }) {
                       </svg>
                     </Link>
                   </li>
-                  <li className="border-t border-gray-200 pt-4">
-                    <Link href="/services/design-build-services" className="group flex items-center justify-between text-gray-700 font-bold hover:text-brand-orange transition-colors">
-                      Design Build Services
-                      <svg className="w-5 h-5 text-gray-400 group-hover:text-brand-orange transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </Link>
-                  </li>
+
                   <li className="border-t border-gray-200 pt-4">
                     <Link href="/our-trades" className="group flex items-center justify-between text-gray-700 font-bold hover:text-brand-orange transition-colors">
                       Our Trades

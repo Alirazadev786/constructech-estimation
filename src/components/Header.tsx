@@ -163,19 +163,7 @@ export default function Header() {
                             </div>
                           </Link>
 
-                          <Link href="/services/design-build-services" className="block group/link">
-                            <div className="flex items-start gap-3">
-                              <div className="bg-white/20 p-2 rounded shrink-0">
-                                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                                </svg>
-                              </div>
-                              <div>
-                                <h4 className="font-bold text-[15px] group-hover/link:text-brand-navy transition-colors">Design Build Services</h4>
-                                <p className="text-white/80 text-xs mt-1 italic">Single-source design and construction.</p>
-                              </div>
-                            </div>
-                          </Link>
+
                         </div>
                       </div>
 
