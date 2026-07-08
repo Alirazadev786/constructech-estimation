@@ -40,7 +40,7 @@ export default function HeroSlider() {
               <div className="text-left text-white max-w-2xl">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
                   Construction Estimating &amp;<br />
-                  <span className="text-brand-orange">Design Engineering Services</span>
+                  <span className="text-brand-orange">Quantity Takeoff Services</span>
                 </h1>
                 <p className="text-lg md:text-xl mb-8 leading-relaxed font-medium">
                   Take no risk, right from pre-design to bid documentation. Enhance your project management with the support of our professional estimators.

@@ -32,7 +32,7 @@ export default function Home() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-brand-orange font-bold text-lg mb-2 tracking-widest uppercase">Overview</h2>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-brand-navy mb-8">Construction Estimating & Design Engineering Services</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-brand-navy mb-8">Construction Estimating & Quantity Takeoff Services</h1>
           <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed mb-6">
             Constructech Estimation provides comprehensive, highly accurate construction cost estimating and material takeoff services. With over 15 years in the industry, our expert team utilizes cutting-edge software and a profound understanding of the construction lifecycle to deliver bids that win.
           </p>
