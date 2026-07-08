@@ -179,8 +179,8 @@ export default function Header() {
                         </div>
                       </div>
 
-                      {/* Right 2 Columns */}
-                      <div className="w-[70%] p-8 grid grid-cols-2 gap-6">
+                      {/* Right 1 Column */}
+                      <div className="w-[70%] p-8 grid grid-cols-1 gap-6">
 
                         {/* Col 2 */}
                         <div>
@@ -195,21 +195,6 @@ export default function Header() {
                           <ul className="space-y-3">
                             <li><Link href="/construction-cost-estimating-services-california" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Construction Cost Estimating Services in California</Link></li>
                             <li><Link href="/construction-cost-estimating-services-newyork" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Construction Cost Estimating Services in New york</Link></li>
-                          </ul>
-                        </div>
-
-                        {/* Col 3 */}
-                        <div>
-                          <div className="flex items-center gap-2 mb-2">
-                            <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                            </svg>
-                            <h3 className="text-brand-orange font-bold text-sm uppercase">Pre-Construction Services</h3>
-                          </div>
-                          <p className="text-xs text-gray-500 italic mb-4">Creating and detailing project plans.</p>
-                          <ul className="space-y-3">
-                            <li><Link href="/services/pre-construction/shop-drawings" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Shop Drawings</Link></li>
-                            <li><Link href="/services/pre-construction/scheduling-services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Scheduling Services</Link></li>
                           </ul>
                         </div>
 
