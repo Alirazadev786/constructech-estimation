@@ -62,11 +62,11 @@ export default function Footer() {
               Service Area
             </h3>
             <p className="text-gray-300 mb-4">
-              Providing expert estimating services across all 50 states in the USA.
+              Providing expert estimating services across the USA and Canada.
             </p>
             <div className="w-full h-48 bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
                <iframe 
-                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13149594.137817454!2d-109.11714241696515!3d36.31500693527771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited%20States!5e0!3m2!1sen!2sus!4v1718641234567!5m2!1sen!2sus" 
+                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d35451614.93589932!2d-100!3d50!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b0d03d191d8e12d%3A0x28974a974dfab9c1!2sNorth%20America!5e0!3m2!1sen!2sus!4v1718641234567!5m2!1sen!2sus" 
                  width="100%" 
                  height="100%" 
                  style={{border:0}} 

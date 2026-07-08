@@ -3,7 +3,7 @@ import content from '@/data/competitor_content.json';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: `Reliable Rebar Estimating Services in USA & Trusted Estimators`,
+  title: `Reliable Rebar Estimating Services in USA and Canada & Trusted Estimators`,
 };
 
 export default function Page() {

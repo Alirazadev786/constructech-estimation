@@ -14,7 +14,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Constructech Estimation | Construction Estimating Services",
-  description: "Constructech provides professional Construction Estimating Services in the United States, delivering accurate cost estimating, material takeoffs, and bid preparation.",
+  description: "Constructech provides professional Construction Estimating Services in the United States and Canada, delivering accurate cost estimating, material takeoffs, and bid preparation.",
 };
 
 export default function RootLayout({

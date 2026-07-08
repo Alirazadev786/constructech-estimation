@@ -3,7 +3,7 @@ import content from '@/data/competitor_content.json';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: `Trusted supplier estimating services for contractors in USA`,
+  title: `Trusted supplier estimating services for contractors in USA and Canada`,
 };
 
 export default function Page() {

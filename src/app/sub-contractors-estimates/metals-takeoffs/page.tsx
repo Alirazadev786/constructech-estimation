@@ -3,7 +3,7 @@ import content from '@/data/competitor_content.json';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: `Metals Estimation and Takeoff Services in USA For Contractors`,
+  title: `Metals Estimation and Takeoff Services in USA and Canada For Contractors`,
 };
 
 export default function Page() {

@@ -3,7 +3,7 @@ import content from '@/data/competitor_content.json';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: `Best Industrial Estimating Services For Contractors in USA`,
+  title: `Best Industrial Estimating Services For Contractors in USA and Canada`,
 };
 
 export default function Page() {

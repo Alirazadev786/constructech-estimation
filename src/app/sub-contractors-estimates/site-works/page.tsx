@@ -3,7 +3,7 @@ import content from '@/data/competitor_content.json';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: `Get perfect site-works Estimating services in USA`,
+  title: `Get perfect site-works Estimating services in USA and Canada`,
 };
 
 export default function Page() {

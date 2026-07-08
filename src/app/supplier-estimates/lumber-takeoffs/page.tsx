@@ -3,7 +3,7 @@ import content from '@/data/competitor_content.json';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: `Lumber Takeoff and Estimating Services in USA Estimators`,
+  title: `Lumber Takeoff and Estimating Services in USA and Canada Estimators`,
 };
 
 export default function Page() {

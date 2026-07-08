@@ -3,7 +3,7 @@ import content from '@/data/competitor_content.json';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: `Electrical Estimating Services In USA For Subcontractors`,
+  title: `Electrical Estimating Services In USA and Canada For Subcontractors`,
 };
 
 export default function Page() {
