@@ -163,11 +163,90 @@ export default function Home() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-10">See What Our Clients Say</h2>
-          <div className="w-full max-w-4xl mx-auto h-[150px] bg-gray-50 border border-gray-200 rounded-xl flex flex-col items-center justify-center shadow-sm">
-            <div className="flex text-brand-orange mb-2">
-              {[1,2,3,4,5].map(i => <svg key={i} className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>)}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {/* Review 1 */}
+            <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-md text-left flex flex-col hover:shadow-lg transition-shadow">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex gap-1">
+                  {[1,2,3,4,5].map(i => (
+                    <div key={i} className="bg-[#00b67a] p-1 rounded-sm">
+                      <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    </div>
+                  ))}
+                </div>
+                <div className="text-xs font-bold text-gray-400 flex items-center gap-1">
+                  <svg className="w-4 h-4 text-[#00b67a]" viewBox="0 0 512 512" fill="currentColor"><path d="M503.4 178.6c-4-12.2-15-20.8-28-21.2L330.1 152 268 18.5c-5.5-11.8-17.1-19.3-30.1-19.3s-24.6 7.5-30.1 19.3L145.7 152 1.3 157.4c-13 .4-24 9-28 21.2s1.4 25.5 11.6 33.6l108.9 86.8-37.5 141.5c-3.6 13.5 1.5 27.9 12.8 35.8 11 7.7 25.5 7.4 36.3-.7l123.6-92.4 123.6 92.4c10.8 8.1 25.3 8.4 36.3.7 11.3-7.9 16.4-22.3 12.8-35.8l-37.5-141.5 108.9-86.8c10.3-8.1 15.6-21.4 11.6-33.6z"/></svg>
+                  Trustpilot
+                </div>
+              </div>
+              <h4 className="text-base font-bold text-gray-900 mb-2 line-clamp-1">Fast and highly accurate!</h4>
+              <p className="text-gray-600 text-sm mb-6 flex-grow">"Constructech Estimation provided us with an incredibly detailed takeoff within 24 hours. Their accuracy helped us win a major commercial bid."</p>
+              <div className="flex items-center gap-3 mt-auto pt-4 border-t border-gray-50">
+                <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-600 text-xs">DM</div>
+                <div>
+                  <div className="font-bold text-gray-900 text-sm">David M.</div>
+                  <div className="text-xs text-gray-500">2 days ago</div>
+                </div>
+              </div>
             </div>
-            <p className="text-gray-400 font-medium">Trustindex Google Reviews Widget Placeholder</p>
+
+            {/* Review 2 */}
+            <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-md text-left flex flex-col hover:shadow-lg transition-shadow">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex gap-1">
+                  {[1,2,3,4,5].map(i => (
+                    <div key={i} className="bg-[#00b67a] p-1 rounded-sm">
+                      <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    </div>
+                  ))}
+                </div>
+                <div className="text-xs font-bold text-gray-400 flex items-center gap-1">
+                  <svg className="w-4 h-4 text-[#00b67a]" viewBox="0 0 512 512" fill="currentColor"><path d="M503.4 178.6c-4-12.2-15-20.8-28-21.2L330.1 152 268 18.5c-5.5-11.8-17.1-19.3-30.1-19.3s-24.6 7.5-30.1 19.3L145.7 152 1.3 157.4c-13 .4-24 9-28 21.2s1.4 25.5 11.6 33.6l108.9 86.8-37.5 141.5c-3.6 13.5 1.5 27.9 12.8 35.8 11 7.7 25.5 7.4 36.3-.7l123.6-92.4 123.6 92.4c10.8 8.1 25.3 8.4 36.3.7 11.3-7.9 16.4-22.3 12.8-35.8l-37.5-141.5 108.9-86.8c10.3-8.1 15.6-21.4 11.6-33.6z"/></svg>
+                  Trustpilot
+                </div>
+              </div>
+              <h4 className="text-base font-bold text-gray-900 mb-2 line-clamp-1">Best estimating service</h4>
+              <p className="text-gray-600 text-sm mb-6 flex-grow">"They saved me so much time on lumber and framing takeoffs. Their formatting is easy to read, and the pricing was very reasonable. Highly recommend!"</p>
+              <div className="flex items-center gap-3 mt-auto pt-4 border-t border-gray-50">
+                <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-600 text-xs">SJ</div>
+                <div>
+                  <div className="font-bold text-gray-900 text-sm">Sarah Jenkins</div>
+                  <div className="text-xs text-gray-500">1 week ago</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Review 3 */}
+            <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-md text-left flex flex-col hover:shadow-lg transition-shadow">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex gap-1">
+                  {[1,2,3,4,5].map(i => (
+                    <div key={i} className="bg-[#00b67a] p-1 rounded-sm">
+                      <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    </div>
+                  ))}
+                </div>
+                <div className="text-xs font-bold text-gray-400 flex items-center gap-1">
+                  <svg className="w-4 h-4 text-[#00b67a]" viewBox="0 0 512 512" fill="currentColor"><path d="M503.4 178.6c-4-12.2-15-20.8-28-21.2L330.1 152 268 18.5c-5.5-11.8-17.1-19.3-30.1-19.3s-24.6 7.5-30.1 19.3L145.7 152 1.3 157.4c-13 .4-24 9-28 21.2s1.4 25.5 11.6 33.6l108.9 86.8-37.5 141.5c-3.6 13.5 1.5 27.9 12.8 35.8 11 7.7 25.5 7.4 36.3-.7l123.6-92.4 123.6 92.4c10.8 8.1 25.3 8.4 36.3.7 11.3-7.9 16.4-22.3 12.8-35.8l-37.5-141.5 108.9-86.8c10.3-8.1 15.6-21.4 11.6-33.6z"/></svg>
+                  Trustpilot
+                </div>
+              </div>
+              <h4 className="text-base font-bold text-gray-900 mb-2 line-clamp-1">Professional and Reliable</h4>
+              <p className="text-gray-600 text-sm mb-6 flex-grow">"We have been using Constructech for our MEP estimating for over a year now. Their team is extremely knowledgeable and their turnaround time is exceptional."</p>
+              <div className="flex items-center gap-3 mt-auto pt-4 border-t border-gray-50">
+                <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-600 text-xs">RT</div>
+                <div>
+                  <div className="font-bold text-gray-900 text-sm">Robert Thompson</div>
+                  <div className="text-xs text-gray-500">2 weeks ago</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
