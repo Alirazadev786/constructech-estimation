@@ -56,24 +56,26 @@ export default function Footer() {
               Our Services
             </h3>
             <ul className="space-y-3">
-              <li><Link href="/services#cost-estimation" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Construction Cost Estimation</Link></li>
-              <li><Link href="/services#material-takeoffs" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Material Takeoffs</Link></li>
-              <li><Link href="/services#bid-preparation" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Bid Preparation & Support</Link></li>
-              <li><Link href="/services#quantity-takeoffs" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Quantity Takeoffs</Link></li>
+              <li><Link href="/services/cost-estimating" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Construction Cost Estimation</Link></li>
+              <li><Link href="/services/construction-takeoff" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Material Takeoffs</Link></li>
+              <li><Link href="/general-contractor-services" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">General Contractor Estimates</Link></li>
+              <li><Link href="/sub-contractors-estimates" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Subcontractor Estimates</Link></li>
+              <li><Link href="/supplier-estimates" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Supplier Estimates</Link></li>
+              <li><Link href="/our-trades" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Trade Takeoffs</Link></li>
             </ul>
           </div>
 
           {/* Map/Contact */}
           <div>
             <h3 className="text-xl font-bold text-white mb-6 uppercase tracking-wider relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-12 after:h-1 after:bg-brand-orange">
-              Service Area
+              Our Location & Area
             </h3>
             <p className="text-gray-300 mb-4">
-              Providing expert estimating services across the USA and Canada.
+              Providing expert estimating services globally, including USA, Canada, UK, and Australia.
             </p>
             <div className="w-full h-48 bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
                <iframe 
-                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d35451614.93589932!2d-100!3d50!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b0d03d191d8e12d%3A0x28974a974dfab9c1!2sNorth%20America!5e0!3m2!1sen!2sus!4v1718641234567!5m2!1sen!2sus" 
+                 src="https://www.google.com/maps?q=7901+4TH+ST+N+STE+300,+ST.+PETERSBURG,+FL.+US+33702&output=embed" 
                  width="100%" 
                  height="100%" 
                  style={{border:0}} 
