@@ -71,7 +71,7 @@ export default function Footer() {
               Our Location & Area
             </h3>
             <p className="text-gray-300 mb-4">
-              Providing expert estimating services globally, including USA, Canada, UK, and Australia.
+              Providing expert estimating services globally, with a focus on the USA and Canada.
             </p>
             <div className="w-full h-48 bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
                <iframe 
