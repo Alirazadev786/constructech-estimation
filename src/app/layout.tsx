@@ -13,8 +13,36 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://constructechestimation.com"),
   title: "Constructech Estimation | Construction Estimating Services",
   description: "Constructech provides professional Construction Estimating Services in the United States and Canada, delivering accurate cost estimating, material takeoffs, and bid preparation.",
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
+  openGraph: {
+    title: "Constructech Estimation",
+    description: "Constructech provides professional Construction Estimating Services in the United States and Canada, delivering accurate cost estimating, material takeoffs, and bid preparation.",
+    url: "https://constructechestimation.com",
+    siteName: "Constructech Estimation",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1024,
+        height: 845,
+        alt: "Constructech Estimation",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Constructech Estimation",
+    description: "Professional Construction Estimating Services in the United States and Canada.",
+    images: ["/logo.png"],
+  },
 };
 
 export default function RootLayout({
