@@ -4,7 +4,7 @@ export default function StickyActions() {
       
       {/* WhatsApp Button */}
       <a 
-        href="https://wa.me/17187192009" 
+        href="https://wa.me/17272846082" 
         target="_blank" 
         rel="noopener noreferrer"
         className="group bg-brand-navy hover:bg-brand-orange transition-colors py-2 px-2 md:py-2 md:px-2 rounded-l-[10px] text-center shadow-lg mb-[6px] w-full box-border"
@@ -21,7 +21,7 @@ export default function StickyActions() {
 
       {/* Phone Button */}
       <a 
-        href="tel:1-718-719-2009" 
+        href="tel:1-727-284-6082" 
         className="group bg-brand-navy hover:bg-brand-orange transition-colors py-2 px-2 md:py-2 md:px-2 rounded-l-[10px] text-center shadow-lg mb-[6px] w-full box-border"
       >
         <svg 

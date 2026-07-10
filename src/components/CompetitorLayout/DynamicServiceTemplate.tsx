@@ -81,11 +81,11 @@ export default function CompetitorPageLayout({ data }: { data: any }) {
                    Get highly accurate <span className="text-brand-navy font-bold">construction takeoffs & estimates</span>! Contact us today for a free quote.
                  </p>
                  <div className="flex flex-col sm:flex-row justify-center gap-6">
-                   <a href="tel:718-719-2009" className="bg-brand-orange text-white font-bold py-4 px-8 rounded flex items-center justify-center gap-2 hover:bg-orange-600 transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_20px_rgba(249,115,22,0.3)] text-lg">
+                   <a href="tel:727-284-6082" className="bg-brand-orange text-white font-bold py-4 px-8 rounded flex items-center justify-center gap-2 hover:bg-orange-600 transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_20px_rgba(249,115,22,0.3)] text-lg">
                      <svg className="w-6 h-6 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                      </svg>
-                     (718) 719-2009
+                     (727) 284-6082
                    </a>
                    <Link href="/contact" className="group/btn bg-brand-navy text-white font-bold py-4 px-8 rounded hover:bg-gray-800 transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_20px_rgba(11,28,46,0.3)] text-lg flex items-center justify-center gap-2">
                      Request a Quote

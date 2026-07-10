@@ -48,7 +48,7 @@ export default function HeroSlider() {
                 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a 
-                    href="tel:1-718-719-2009" 
+                    href="tel:1-727-284-6082" 
                     className="bg-brand-orange hover:bg-[#d65f29] text-white px-8 py-4 rounded font-bold text-lg text-center transition shadow-lg"
                   >
                     Call Us

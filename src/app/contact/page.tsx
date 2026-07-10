@@ -34,7 +34,7 @@ export default function ContactPage() {
                   </div>
                   <div className="ml-4">
                     <h3 className="text-lg font-bold text-brand-navy">Call Us</h3>
-                    <p className="text-gray-600 mt-1">+1-718-719-2009<br/>+1-888-859-0222</p>
+                    <p className="text-gray-600 mt-1">+1-727-284-6082<br/>+1-888-859-0222</p>
                   </div>
                 </div>
 
