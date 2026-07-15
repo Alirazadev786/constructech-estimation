@@ -24,7 +24,7 @@ export default function HeroSlider() {
       <div className="flex w-full h-full min-h-[450px] items-stretch">
 
         {/* Slide 1 */}
-        <div className="relative flex-[0_0_100%] min-w-0 flex items-center pt-4 pb-24 md:pt-6 md:pb-[180px]">
+        <div className="relative flex-[0_0_100%] min-w-0 flex items-center pt-4 pb-24 md:pt-6 md:pb-36">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -80,7 +80,7 @@ export default function HeroSlider() {
         </div>
 
         {/* Slide 2 */}
-        <div className="relative flex-[0_0_100%] min-w-0 flex items-center pt-4 pb-24 md:pt-6 md:pb-[180px]">
+        <div className="relative flex-[0_0_100%] min-w-0 flex items-center pt-4 pb-24 md:pt-6 md:pb-36">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
