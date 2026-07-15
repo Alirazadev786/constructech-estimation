@@ -24,7 +24,7 @@ export default function HeroSlider() {
       <div className="flex w-full h-full min-h-[450px] items-stretch">
 
         {/* Slide 1 */}
-        <div className="relative flex-[0_0_100%] min-w-0 flex items-center pt-4 pb-24 md:pt-6 md:pb-40">
+        <div className="relative flex-[0_0_100%] min-w-0 flex items-center pt-4 pb-16 md:pt-6 md:pb-24">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -66,7 +66,7 @@ export default function HeroSlider() {
               </div>
 
               {/* Right Image */}
-              <div className="relative w-full h-[250px] md:h-[280px] rounded-[20px] shadow-2xl overflow-hidden border-4 border-white/10 mt-10 md:mt-0">
+              <div className="relative w-full h-[250px] md:h-[350px] rounded-[20px] shadow-2xl overflow-hidden border-4 border-white/10 mt-10 md:mt-0">
                 <Image
                   src="/images/hero_estimators.png"
                   alt="Professional Estimators"
@@ -80,7 +80,7 @@ export default function HeroSlider() {
         </div>
 
         {/* Slide 2 */}
-        <div className="relative flex-[0_0_100%] min-w-0 flex items-center pt-4 pb-24 md:pt-6 md:pb-40">
+        <div className="relative flex-[0_0_100%] min-w-0 flex items-center pt-4 pb-16 md:pt-6 md:pb-24">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image

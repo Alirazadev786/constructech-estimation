@@ -10,7 +10,7 @@ export default function Home() {
       <HeroSlider />
 
       {/* STATS OVERLAP */}
-      <section className="relative z-20 md:-mt-24 px-4 sm:px-6 lg:px-8 bg-transparent pb-10 md:pb-0">
+      <section className="relative z-20 md:-mt-12 px-4 sm:px-6 lg:px-8 bg-transparent pb-10 md:pb-0">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {[
