@@ -10,7 +10,7 @@ export default function Home() {
       <HeroSlider />
 
       {/* STATS OVERLAP */}
-      <section className="relative z-20 md:-mt-16 px-4 sm:px-6 lg:px-8 bg-brand-navy md:bg-transparent pb-10 md:pb-0">
+      <section className="relative z-20 md:-mt-12 px-4 sm:px-6 lg:px-8 bg-transparent pb-10 md:pb-0">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {[
@@ -19,9 +19,9 @@ export default function Home() {
               { label: 'Years Experience', value: '15+' },
               { label: 'Successful Projects', value: '1000+' }
             ].map((stat, i) => (
-              <div key={i} className="bg-white rounded-[20px] shadow-[0px_10px_30px_0px_rgba(0,0,0,0.1)] p-6 text-center border-b-[5px] border-brand-orange transform hover:-translate-y-2 transition-transform duration-300">
-                <div className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-2">{stat.value}</div>
-                <div className="text-sm md:text-base font-semibold text-gray-600 uppercase tracking-wide">{stat.label}</div>
+              <div key={i} className="bg-white rounded-[20px] shadow-[0px_10px_30px_0px_rgba(0,0,0,0.1)] p-4 md:p-5 text-center border-b-[4px] border-brand-orange transform hover:-translate-y-2 transition-transform duration-300">
+                <div className="text-2xl md:text-3xl font-extrabold text-brand-navy mb-1">{stat.value}</div>
+                <div className="text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wide">{stat.label}</div>
               </div>
             ))}
           </div>

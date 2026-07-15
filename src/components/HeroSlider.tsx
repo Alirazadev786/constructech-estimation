@@ -20,8 +20,8 @@ export default function HeroSlider() {
   );
 
   return (
-    <section className="relative w-full bg-brand-navy min-h-[450px] flex items-start overflow-hidden" ref={emblaRef}>
-      <div className="flex w-full h-full min-h-[450px]">
+    <section className="relative w-full bg-brand-navy min-h-[450px] overflow-hidden" ref={emblaRef}>
+      <div className="flex w-full h-full min-h-[450px] items-stretch">
 
         {/* Slide 1 */}
         <div className="relative flex-[0_0_100%] min-w-0 flex items-center pt-4 pb-20 md:pt-6 md:pb-32">
@@ -41,11 +41,11 @@ export default function HeroSlider() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               {/* Left Content */}
               <div className="text-left text-white max-w-2xl">
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-tight mb-4">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4">
                   Construction Estimating &amp;<br />
                   <span className="text-brand-orange">Quantity Takeoff Services</span>
                 </h1>
-                <p className="text-base md:text-lg mb-8 leading-relaxed font-medium">
+                <p className="text-lg md:text-xl mb-8 leading-relaxed font-medium">
                   Take no risk, right from pre-design to bid documentation. Enhance your project management with the support of our professional estimators.
                 </p>
 
@@ -93,11 +93,11 @@ export default function HeroSlider() {
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-tight mb-4 text-white">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4 text-white">
               Residential & Commercial <br />
               <span className="text-brand-orange">Estimating Services</span>
             </h1>
-            <p className="text-lg md:text-xl mb-8 leading-relaxed font-medium text-white max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl mb-8 leading-relaxed font-medium text-white max-w-3xl mx-auto">
               Send us your plans for a quick and highly accurate quote.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
