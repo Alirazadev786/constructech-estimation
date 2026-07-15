@@ -13,7 +13,7 @@
   --color-brand-navy: var(--constructech-navy);
   --color-brand-orange: var(--constructech-orange);
   --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
-  --animate-marquee: marquee 25s linear infinite;
+  --animate-marquee: marquee 42s linear infinite;
   --animate-vibrate: vibrate 0.9s infinite;
 }
 
