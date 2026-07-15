@@ -11,7 +11,10 @@ export default function HeroSlider() {
   const [emblaRef] = useEmblaCarousel(
     { loop: true, duration: 40 },
     [
-      Autoplay({ delay: 7000, stopOnInteraction: false }),
+      Autoplay({ 
+        delay: (scrollSnaps) => scrollSnaps.map((_, i) => (i === 0 ? 4000 : 10000)), 
+        stopOnInteraction: false 
+      }),
       Fade()
     ]
   );
