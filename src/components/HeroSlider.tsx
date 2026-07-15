@@ -20,11 +20,11 @@ export default function HeroSlider() {
   );
 
   return (
-    <section className="relative w-full bg-brand-navy overflow-hidden" ref={emblaRef}>
+    <section className="relative w-full overflow-hidden bg-transparent" ref={emblaRef}>
       <div className="flex w-full h-full items-stretch">
 
         {/* Slide 1 */}
-        <div className="relative flex-[0_0_100%] min-w-0 flex items-center pt-4 pb-16 md:pt-6 md:pb-24">
+        <div className="relative flex-[0_0_100%] min-w-0 flex items-center pt-4 pb-10 md:pt-6 md:pb-12">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -80,7 +80,7 @@ export default function HeroSlider() {
         </div>
 
         {/* Slide 2 */}
-        <div className="relative flex-[0_0_100%] min-w-0 flex items-center pt-4 pb-16 md:pt-6 md:pb-24">
+        <div className="relative flex-[0_0_100%] min-w-0 flex items-center pt-4 pb-10 md:pt-6 md:pb-12">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
