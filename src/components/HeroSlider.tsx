@@ -11,7 +11,7 @@ export default function HeroSlider() {
   const [emblaRef] = useEmblaCarousel(
     { loop: true, duration: 40 },
     [
-      Autoplay({ delay: 5000, stopOnInteraction: false }),
+      Autoplay({ delay: 8000, stopOnInteraction: false }),
       Fade()
     ]
   );
