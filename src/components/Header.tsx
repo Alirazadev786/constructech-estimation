@@ -25,12 +25,12 @@ export default function Header() {
       {/* Main Header */}
       <header className="bg-white sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16 md:h-20">
+            <div className="flex justify-between items-center h-16 md:h-16">
               
               {/* Logo */}
               <div className="flex-shrink-0 flex items-center h-full py-1">
                 <Link href="/">
-                  <img src="/logo-transparent.png" alt="Constructech Estimation" className="h-12 md:h-16 w-auto object-contain origin-left transform scale-110 md:scale-125 translate-x-2" />
+                  <img src="/logo-transparent.png" alt="Constructech Estimation" className="h-10 md:h-12 w-auto object-contain origin-left transform scale-110 md:scale-125 translate-x-2" />
                 </Link>
               </div>
 
