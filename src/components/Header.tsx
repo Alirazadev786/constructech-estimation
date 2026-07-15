@@ -11,14 +11,18 @@ export default function Header() {
   return (
     <>
       {/* Marquee Banner */}
-      <div className="bg-brand-navy w-full relative z-20 py-2 border-b border-white/10">
-        <div className="max-w-full overflow-hidden whitespace-nowrap">
-          <div className="inline-block animate-marquee">
-            <span className="text-white text-sm font-bold mx-4">Get highly accurate construction takeoffs & estimates! Contact us today for a free quote at (727) 284-6082.</span>
-            <span className="text-white text-sm font-bold mx-4">Get highly accurate construction takeoffs & estimates! Contact us today for a free quote at (727) 284-6082.</span>
-            <span className="text-white text-sm font-bold mx-4">Get highly accurate construction takeoffs & estimates! Contact us today for a free quote at (727) 284-6082.</span>
-            <span className="text-white text-sm font-bold mx-4">Get highly accurate construction takeoffs & estimates! Contact us today for a free quote at (727) 284-6082.</span>
-          </div>
+      <div className="bg-brand-navy w-full relative z-20 py-2 border-b border-white/10 flex overflow-hidden">
+        <div className="animate-marquee whitespace-nowrap flex shrink-0">
+          <span className="text-white text-sm font-bold mx-10">Get highly accurate construction takeoffs & estimates! Contact us today for a free quote at (727) 284-6082.</span>
+          <span className="text-white text-sm font-bold mx-10">Get highly accurate construction takeoffs & estimates! Contact us today for a free quote at (727) 284-6082.</span>
+          <span className="text-white text-sm font-bold mx-10">Get highly accurate construction takeoffs & estimates! Contact us today for a free quote at (727) 284-6082.</span>
+          <span className="text-white text-sm font-bold mx-10">Get highly accurate construction takeoffs & estimates! Contact us today for a free quote at (727) 284-6082.</span>
+        </div>
+        <div className="animate-marquee whitespace-nowrap flex shrink-0">
+          <span className="text-white text-sm font-bold mx-10">Get highly accurate construction takeoffs & estimates! Contact us today for a free quote at (727) 284-6082.</span>
+          <span className="text-white text-sm font-bold mx-10">Get highly accurate construction takeoffs & estimates! Contact us today for a free quote at (727) 284-6082.</span>
+          <span className="text-white text-sm font-bold mx-10">Get highly accurate construction takeoffs & estimates! Contact us today for a free quote at (727) 284-6082.</span>
+          <span className="text-white text-sm font-bold mx-10">Get highly accurate construction takeoffs & estimates! Contact us today for a free quote at (727) 284-6082.</span>
         </div>
       </div>
 
