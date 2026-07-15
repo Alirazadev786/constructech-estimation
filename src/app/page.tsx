@@ -19,9 +19,9 @@ export default function Home() {
               { label: 'Years Experience', value: '15+' },
               { label: 'Successful Projects', value: '1000+' }
             ].map((stat, i) => (
-              <div key={i} className="bg-white rounded-[20px] shadow-[0px_10px_30px_0px_rgba(0,0,0,0.1)] p-4 md:p-5 text-center border-b-[4px] border-brand-orange transform hover:-translate-y-2 transition-transform duration-300">
-                <div className="text-2xl md:text-3xl font-extrabold text-brand-navy mb-1">{stat.value}</div>
-                <div className="text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wide">{stat.label}</div>
+              <div key={i} className="bg-white rounded-[16px] shadow-[0px_10px_30px_0px_rgba(0,0,0,0.1)] p-3 md:p-4 text-center border-b-[4px] border-brand-orange transform hover:-translate-y-2 transition-transform duration-300">
+                <div className="text-xl md:text-2xl font-extrabold text-brand-navy mb-1">{stat.value}</div>
+                <div className="text-[10px] md:text-xs font-semibold text-gray-600 uppercase tracking-wide">{stat.label}</div>
               </div>
             ))}
           </div>

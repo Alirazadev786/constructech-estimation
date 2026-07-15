@@ -52,13 +52,13 @@ export default function HeroSlider() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a
                     href="tel:1-727-284-6082"
-                    className="bg-brand-orange hover:bg-[#d65f29] text-white px-6 py-3 rounded font-bold text-lg text-center transition shadow-lg"
+                    className="bg-brand-orange hover:bg-[#d65f29] text-white px-8 py-4 rounded font-bold text-lg text-center transition shadow-lg"
                   >
                     Call Us
                   </a>
                   <Link
                     href="/contact"
-                    className="bg-white hover:bg-gray-100 text-brand-navy px-6 py-3 rounded font-bold text-lg text-center transition shadow-lg flex items-center justify-center gap-2"
+                    className="bg-white hover:bg-gray-100 text-brand-navy px-8 py-4 rounded font-bold text-lg text-center transition shadow-lg flex items-center justify-center gap-2"
                   >
                     Book an Appointment
                   </Link>
@@ -103,13 +103,13 @@ export default function HeroSlider() {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
                 href="/contact"
-                className="inline-block bg-brand-orange hover:bg-[#d65f29] text-white px-6 py-3 rounded-[40px] font-bold text-lg text-center transition shadow-[0px_4px_20px_0px_rgba(232,106,51,0.5)]"
+                className="inline-block bg-brand-orange hover:bg-[#d65f29] text-white px-8 py-4 rounded-[40px] font-bold text-xl text-center transition shadow-[0px_4px_20px_0px_rgba(232,106,51,0.5)]"
               >
                 Get a Quote
               </Link>
               <Link
                 href="/contact"
-                className="inline-block bg-white hover:bg-gray-100 text-brand-navy px-6 py-3 rounded-[40px] font-bold text-lg text-center transition shadow-[0px_4px_20px_0px_rgba(255,255,255,0.2)]"
+                className="inline-block bg-white hover:bg-gray-100 text-brand-navy px-8 py-4 rounded-[40px] font-bold text-xl text-center transition shadow-[0px_4px_20px_0px_rgba(255,255,255,0.2)]"
               >
                 Upload Plans
               </Link>
