@@ -20,11 +20,11 @@ export default function HeroSlider() {
   );
 
   return (
-    <section className="relative w-full bg-brand-navy min-h-[500px] flex items-center overflow-hidden" ref={emblaRef}>
+    <section className="relative w-full bg-brand-navy min-h-[500px] flex items-start overflow-hidden" ref={emblaRef}>
       <div className="flex w-full h-full min-h-[500px]">
 
         {/* Slide 1 */}
-        <div className="relative flex-[0_0_100%] min-w-0 flex items-center py-12 md:py-16">
+        <div className="relative flex-[0_0_100%] min-w-0 flex items-center pt-8 pb-20 md:pt-10 md:pb-28">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -41,7 +41,7 @@ export default function HeroSlider() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               {/* Left Content */}
               <div className="text-left text-white max-w-2xl">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4">
                   Construction Estimating &amp;<br />
                   <span className="text-brand-orange">Quantity Takeoff Services</span>
                 </h1>
@@ -80,7 +80,7 @@ export default function HeroSlider() {
         </div>
 
         {/* Slide 2 */}
-        <div className="relative flex-[0_0_100%] min-w-0 flex items-center py-12 md:py-16">
+        <div className="relative flex-[0_0_100%] min-w-0 flex items-center pt-8 pb-20 md:pt-10 md:pb-28">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -93,7 +93,7 @@ export default function HeroSlider() {
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-white">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4 text-white">
               Residential & Commercial <br />
               <span className="text-brand-orange">Estimating Services</span>
             </h1>
