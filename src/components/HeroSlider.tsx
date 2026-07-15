@@ -20,8 +20,8 @@ export default function HeroSlider() {
   );
 
   return (
-    <section className="relative w-full bg-brand-navy min-h-[450px] overflow-hidden" ref={emblaRef}>
-      <div className="flex w-full h-full min-h-[450px] items-stretch">
+    <section className="relative w-full bg-brand-navy overflow-hidden" ref={emblaRef}>
+      <div className="flex w-full h-full items-stretch">
 
         {/* Slide 1 */}
         <div className="relative flex-[0_0_100%] min-w-0 flex items-center pt-4 pb-16 md:pt-6 md:pb-24">
