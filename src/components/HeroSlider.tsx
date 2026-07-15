@@ -97,12 +97,20 @@ export default function HeroSlider() {
             <p className="text-xl md:text-2xl mb-8 leading-relaxed font-medium text-white max-w-3xl mx-auto">
               Send us your plans for a quick and highly accurate quote.
             </p>
-            <Link 
-              href="/contact" 
-              className="inline-block bg-brand-orange hover:bg-[#d65f29] text-white px-8 py-4 rounded-[40px] font-bold text-xl text-center transition shadow-[0px_4px_20px_0px_rgba(232,106,51,0.5)]"
-            >
-              Get Started Today
-            </Link>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link 
+                href="/contact" 
+                className="inline-block bg-brand-orange hover:bg-[#d65f29] text-white px-8 py-4 rounded-[40px] font-bold text-xl text-center transition shadow-[0px_4px_20px_0px_rgba(232,106,51,0.5)]"
+              >
+                Get a Quote
+              </Link>
+              <Link 
+                href="/contact" 
+                className="inline-block bg-white hover:bg-gray-100 text-brand-navy px-8 py-4 rounded-[40px] font-bold text-xl text-center transition shadow-[0px_4px_20px_0px_rgba(255,255,255,0.2)]"
+              >
+                Upload Plans
+              </Link>
+            </div>
           </div>
         </div>
       </div>
