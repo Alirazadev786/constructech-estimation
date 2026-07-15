@@ -11,20 +11,20 @@ export default function HeroSlider() {
   const [emblaRef] = useEmblaCarousel(
     { loop: true, duration: 40 },
     [
-      Autoplay({ 
-        delay: (scrollSnaps) => scrollSnaps.map((_, i) => (i === 0 ? 4000 : 10000)), 
-        stopOnInteraction: false 
+      Autoplay({
+        delay: (scrollSnaps) => scrollSnaps.map((_, i) => (i === 0 ? 4000 : 7000)),
+        stopOnInteraction: false
       }),
       Fade()
     ]
   );
 
   return (
-    <section className="relative w-full bg-brand-navy min-h-[600px] flex items-center overflow-hidden" ref={emblaRef}>
-      <div className="flex w-full h-full min-h-[600px]">
+    <section className="relative w-full bg-brand-navy min-h-[500px] flex items-center overflow-hidden" ref={emblaRef}>
+      <div className="flex w-full h-full min-h-[500px]">
 
         {/* Slide 1 */}
-        <div className="relative flex-[0_0_100%] min-w-0 flex items-center pt-16 pb-16 md:pb-32">
+        <div className="relative flex-[0_0_100%] min-w-0 flex items-center py-12 md:py-16">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -80,7 +80,7 @@ export default function HeroSlider() {
         </div>
 
         {/* Slide 2 */}
-        <div className="relative flex-[0_0_100%] min-w-0 flex items-center pt-16 pb-16 md:pb-32">
+        <div className="relative flex-[0_0_100%] min-w-0 flex items-center py-12 md:py-16">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
