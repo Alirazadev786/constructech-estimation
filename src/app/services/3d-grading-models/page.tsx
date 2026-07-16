@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import UploadPlansButton from '@/components/UploadPlansButton';
 
 export const metadata: Metadata = {
   title: '3D Earthwork Cut & Fill Grading Models | Constructech Estimation',
@@ -126,9 +127,9 @@ export default function ThreeDGradingModels() {
           <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Need Accurate Earthwork Volumes?</h2>
           <p className="text-lg text-white/95 mb-8">Send us your grading plans and survey files (CAD/PDF) today to get a precise 3D grading model estimate.</p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/contact" className="bg-white text-brand-orange font-bold py-3.5 px-8 rounded-lg hover:bg-gray-100 transition-colors shadow-lg">
+            <UploadPlansButton className="bg-white text-brand-orange font-bold py-3.5 px-8 rounded-lg hover:bg-gray-100 transition-colors shadow-lg cursor-pointer">
               Upload Your Plans
-            </Link>
+            </UploadPlansButton>
             <a href="tel:1-727-284-6082" className="bg-brand-navy text-white font-bold py-3.5 px-8 rounded-lg hover:bg-gray-900 transition-colors shadow-lg border border-brand-navy">
               Call (727) 284-6082
             </a>

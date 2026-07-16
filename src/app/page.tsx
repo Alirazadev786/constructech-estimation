@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import HeroSlider from '@/components/HeroSlider';
+import UploadPlansButton from '@/components/UploadPlansButton';
 
 export default function Home() {
   return (
@@ -308,9 +309,9 @@ export default function Home() {
           <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">Let's Get Started!</h2>
           <p className="text-xl text-white/90 mb-10">Upload your plans today to get an accurate estimate in 24 hours.</p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/contact" className="bg-white text-brand-orange font-bold py-4 px-10 rounded-lg text-lg hover:bg-gray-100 transition-colors shadow-xl">
+            <UploadPlansButton className="bg-white text-brand-orange font-bold py-4 px-10 rounded-lg text-lg hover:bg-gray-100 transition-colors shadow-xl cursor-pointer">
               Upload Plans
-            </Link>
+            </UploadPlansButton>
             <a href="tel:1-727-284-6082" className="bg-brand-navy text-white font-bold py-4 px-10 rounded-lg text-lg hover:bg-gray-800 transition-colors shadow-xl border border-brand-navy">
               Call (727) 284-6082
             </a>

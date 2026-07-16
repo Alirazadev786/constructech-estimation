@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import UploadPlansButton from '@/components/UploadPlansButton';
 
 export const metadata: Metadata = {
   title: 'Color-Coded Marked Blueprints & Estimating Plans | Constructech Estimation',
@@ -126,9 +127,9 @@ export default function ColorCodedMarkedPlans() {
           <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Need Visual Blueprint Verification?</h2>
           <p className="text-lg text-white/95 mb-8">Upload your blueprints today, and let us prepare a beautifully color-coded marked plan for your next proposal.</p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/contact" className="bg-white text-brand-orange font-bold py-3.5 px-8 rounded-lg hover:bg-gray-100 transition-colors shadow-lg">
+            <UploadPlansButton className="bg-white text-brand-orange font-bold py-3.5 px-8 rounded-lg hover:bg-gray-100 transition-colors shadow-lg cursor-pointer">
               Upload Your Plans
-            </Link>
+            </UploadPlansButton>
             <a href="tel:1-727-284-6082" className="bg-brand-navy text-white font-bold py-3.5 px-8 rounded-lg hover:bg-gray-900 transition-colors shadow-lg border border-brand-navy">
               Call (727) 284-6082
             </a>

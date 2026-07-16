@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyActions from "@/components/StickyActions";
 import Schema from "@/components/Schema";
+import GlobalUploadModal from "@/components/GlobalUploadModal";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -65,6 +66,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <StickyActions />
+        <GlobalUploadModal />
       </body>
     </html>
   );

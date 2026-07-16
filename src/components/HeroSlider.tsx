@@ -6,6 +6,7 @@ import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import Fade from 'embla-carousel-fade';
+import UploadPlansButton from './UploadPlansButton';
 
 export default function HeroSlider() {
   const [emblaRef] = useEmblaCarousel(
@@ -107,12 +108,11 @@ export default function HeroSlider() {
               >
                 Get a Quote
               </Link>
-              <Link
-                href="/contact"
-                className="inline-block bg-white hover:bg-gray-100 text-brand-navy px-8 py-4 rounded-[40px] font-bold text-xl text-center transition shadow-[0px_4px_20px_0px_rgba(255,255,255,0.2)]"
+              <UploadPlansButton
+                className="inline-block bg-white hover:bg-gray-100 text-brand-navy px-8 py-4 rounded-[40px] font-bold text-xl text-center transition shadow-[0px_4px_20px_0px_rgba(255,255,255,0.2)] cursor-pointer"
               >
                 Upload Plans
-              </Link>
+              </UploadPlansButton>
             </div>
           </div>
         </div>

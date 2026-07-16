@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
+import UploadPlansButton from '@/components/UploadPlansButton';
 
 export const metadata: Metadata = {
   title: 'Our Services | Constructech Estimation',
@@ -167,9 +168,9 @@ export default function ServicesPage() {
             Send us your plans today and get a highly accurate estimate within 24-48 hours.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="bg-brand-orange hover:bg-[#d65f29] text-white font-bold py-4 px-10 rounded text-lg transition-transform hover:-translate-y-1 shadow-[0_0_20px_rgba(242,101,34,0.4)]">
+            <UploadPlansButton className="bg-brand-orange hover:bg-[#d65f29] text-white font-bold py-4 px-10 rounded text-lg transition-transform hover:-translate-y-1 shadow-[0_0_20px_rgba(242,101,34,0.4)] cursor-pointer">
               Upload Plans Now
-            </Link>
+            </UploadPlansButton>
           </div>
         </div>
       </div>
