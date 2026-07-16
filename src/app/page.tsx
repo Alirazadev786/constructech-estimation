@@ -151,20 +151,23 @@ export default function Home() {
               {
                 title: 'Executive Takeoff Summary',
                 img: '/images/takeoff_summary.png',
-                alt: 'Executive Takeoff Summary Sheet'
+                alt: 'Executive Takeoff Summary Sheet',
+                link: '/services/executive-takeoff-summary'
               },
               {
                 title: 'Color Coded Marked Plans',
                 img: '/images/color_coded_marked_plans.png',
-                alt: 'Color Coded Marked Blueprint Plans'
+                alt: 'Color Coded Marked Blueprint Plans',
+                link: '/services/color-coded-marked-plans'
               },
               {
                 title: '3D Cut/Fill Grading Models',
                 img: '/images/grading_models.png',
-                alt: '3D Cut and Fill Grading Models'
+                alt: '3D Cut and Fill Grading Models',
+                link: '/services/3d-grading-models'
               }
             ].map((service, index) => (
-              <div key={index} className="flex flex-col items-center group">
+              <Link key={index} href={service.link} className="flex flex-col items-center group cursor-pointer w-full">
                 <div className="w-full relative h-[320px] rounded-xl overflow-hidden shadow-lg border border-gray-200 bg-gray-50 transition-all duration-300 transform group-hover:-translate-y-2 group-hover:shadow-2xl">
                   <Image
                     src={service.img}
@@ -177,7 +180,7 @@ export default function Home() {
                 <h3 className="text-xl md:text-2xl font-bold text-brand-navy group-hover:text-brand-orange transition-colors">
                   {service.title}
                 </h3>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
