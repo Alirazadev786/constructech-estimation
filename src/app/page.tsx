@@ -135,6 +135,54 @@ export default function Home() {
         </div>
       </section>
 
+      {/* VALUE ADDED SERVICES */}
+      <section className="py-20 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy uppercase tracking-wider mb-2">
+            Value Added Services at No Additional Cost
+          </h2>
+          <div className="w-24 h-1 bg-brand-orange mx-auto mb-6"></div>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-16 leading-relaxed">
+            Our nuanced process reduces the subjectivity of construction cost estimating – boiling it down to a science.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                title: 'Executive Takeoff Summary',
+                img: '/images/takeoff_summary.png',
+                alt: 'Executive Takeoff Summary Sheet'
+              },
+              {
+                title: 'Color Coded Marked Plans',
+                img: '/images/color_coded_marked_plans.png',
+                alt: 'Color Coded Marked Blueprint Plans'
+              },
+              {
+                title: '3D Cut/Fill Grading Models',
+                img: '/images/grading_models.png',
+                alt: '3D Cut and Fill Grading Models'
+              }
+            ].map((service, index) => (
+              <div key={index} className="flex flex-col items-center group">
+                <div className="w-full relative h-[320px] rounded-xl overflow-hidden shadow-lg border border-gray-200 bg-gray-50 transition-all duration-300 transform group-hover:-translate-y-2 group-hover:shadow-2xl">
+                  <Image
+                    src={service.img}
+                    alt={service.alt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="w-12 h-1 bg-brand-orange mt-6 mb-3 transition-all duration-300 group-hover:w-20"></div>
+                <h3 className="text-xl md:text-2xl font-bold text-brand-navy group-hover:text-brand-orange transition-colors">
+                  {service.title}
+                </h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* OUR PROCESS */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
