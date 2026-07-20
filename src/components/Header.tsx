@@ -153,14 +153,14 @@ export default function Header() {
               </div>
 
 
-              {/* Services Mega Menu */}
+              {/* Who We Serve Mega Menu */}
               <div 
                 className="group h-full flex items-center"
                 onMouseEnter={() => setIsTradesOpen(true)}
                 onMouseLeave={() => setIsTradesOpen(false)}
               >
                 <Link href="/services" className={`text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide flex items-center gap-1 py-8 ${isTradesOpen ? 'text-brand-orange border-b-2 border-brand-orange' : ''}`}>
-                  Services
+                  Who We Serve
                   <svg className={`w-4 h-4 transition-transform ${isTradesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
@@ -268,7 +268,7 @@ export default function Header() {
           <div className="md:hidden bg-white border-t border-gray-100">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link href="/" className="block px-3 py-2 text-base font-semibold text-gray-800 hover:bg-gray-50 hover:text-brand-orange uppercase">Home</Link>
-              <Link href="/services" className="block px-3 py-2 text-base font-semibold text-gray-800 hover:bg-gray-50 hover:text-brand-orange uppercase">Services</Link>
+              <Link href="/services" className="block px-3 py-2 text-base font-semibold text-gray-800 hover:bg-gray-50 hover:text-brand-orange uppercase">Who We Serve</Link>
               <Link href="/contact" className="block px-3 py-2 text-base font-semibold text-gray-800 hover:bg-gray-50 hover:text-brand-orange uppercase">Contact Us</Link>
             </div>
           </div>
