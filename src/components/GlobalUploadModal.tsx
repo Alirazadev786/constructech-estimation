@@ -1,10 +1,12 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { supabase } from '@/lib/supabase';
 
 interface FileDetails {
   name: string;
   size: string;
+  file: File;
 }
 
 export default function GlobalUploadModal() {
@@ -14,6 +16,7 @@ export default function GlobalUploadModal() {
   const [isUploading, setIsUploading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isDragActive, setIsDragActive] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
   
   // Form fields
   const [name, setName] = useState('');
@@ -29,15 +32,15 @@ export default function GlobalUploadModal() {
       setIsSuccess(false);
       setProgress(0);
       setIsUploading(false);
+      setErrorMsg('');
       
-      // Try to trigger the file browser automatically for desktop browsers
       setTimeout(() => {
         if (fileInputRef.current) {
           fileInputRef.current.value = '';
           try {
             fileInputRef.current.click();
           } catch (e) {
-            console.log('Auto file trigger blocked by browser security. Fallback to manual browse button is available.', e);
+            console.log('Auto file trigger blocked by browser security.', e);
           }
         }
       }, 50);
@@ -56,6 +59,7 @@ export default function GlobalUploadModal() {
         return {
           name: file.name,
           size: `${sizeInMb} MB`,
+          file: file
         };
       });
       setFiles(prev => [...prev, ...selectedFiles]);
@@ -63,6 +67,7 @@ export default function GlobalUploadModal() {
       setIsSuccess(false);
       setProgress(0);
       setIsUploading(false);
+      setErrorMsg('');
     }
   };
 
@@ -87,6 +92,7 @@ export default function GlobalUploadModal() {
         return {
           name: file.name,
           size: `${sizeInMb} MB`,
+          file: file
         };
       });
       setFiles(prev => [...prev, ...selectedFiles]);
@@ -103,32 +109,85 @@ export default function GlobalUploadModal() {
     setEmail('');
     setPhone('');
     setDetails('');
+    setErrorMsg('');
   };
 
-  const handleUploadSubmit = (e: React.FormEvent) => {
+  const handleUploadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email || !phone) {
       alert('Please fill in all required fields.');
       return;
     }
-
-    setIsUploading(true);
-    let currentProgress = 0;
     
+    setErrorMsg('');
+    setIsUploading(true);
+    
+    // Start a fake progress interval to show activity while uploading
+    let currentProgress = 0;
     const interval = setInterval(() => {
-      currentProgress += 5;
+      currentProgress += 2;
+      if (currentProgress > 90) currentProgress = 90; // Cap at 90% until done
       setProgress(currentProgress);
-      if (currentProgress >= 100) {
-        clearInterval(interval);
-        setIsUploading(false);
-        setIsSuccess(true);
-        // Clear form
-        setName('');
-        setEmail('');
-        setPhone('');
-        setDetails('');
+    }, 200);
+
+    try {
+      let filePaths = [];
+      
+      // Upload each file to Supabase Storage
+      for (const f of files) {
+        const fileExt = f.name.split('.').pop();
+        const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
+        const filePath = `${fileName}`;
+        
+        const { error: uploadError } = await supabase.storage
+          .from('blueprints')
+          .upload(filePath, f.file);
+          
+        if (uploadError) {
+          throw uploadError;
+        }
+        
+        // Get public URL
+        const { data } = supabase.storage.from('blueprints').getPublicUrl(filePath);
+        filePaths.push({ name: f.name, url: data.publicUrl });
       }
-    }, 150);
+      
+      // Insert lead into Supabase Database
+      const { error: dbError } = await supabase
+        .from('quote_requests')
+        .insert([
+          {
+            name,
+            email,
+            phone,
+            details,
+            status: 'New',
+            files: filePaths, // Store array of files with URLs
+          }
+        ]);
+        
+      if (dbError) {
+        throw dbError;
+      }
+      
+      clearInterval(interval);
+      setProgress(100);
+      setIsUploading(false);
+      setIsSuccess(true);
+      
+      // Clear form
+      setName('');
+      setEmail('');
+      setPhone('');
+      setDetails('');
+      setFiles([]);
+      
+    } catch (err: any) {
+      console.error('Upload error:', err);
+      clearInterval(interval);
+      setIsUploading(false);
+      setErrorMsg(err.message || 'An error occurred during upload.');
+    }
   };
 
   return (
@@ -149,7 +208,7 @@ export default function GlobalUploadModal() {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="bg-brand-navy p-6 text-white flex justify-between items-center">
+            <div className="bg-brand-navy p-6 text-white flex justify-between items-center shrink-0">
               <div>
                 <h2 className="text-xl font-bold">Upload Project Plans</h2>
                 <p className="text-xs text-gray-300 mt-1">Send us your blueprints to receive a free quote within 24 hours.</p>
@@ -165,6 +224,13 @@ export default function GlobalUploadModal() {
             </div>
 
             <div className="p-6 overflow-y-auto flex-grow space-y-6">
+              {errorMsg && (
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+                  <p className="font-bold">Upload Failed</p>
+                  <p>{errorMsg}</p>
+                </div>
+              )}
+              
               {isSuccess ? (
                 /* Success State */
                 <div className="text-center py-8 px-4 animate-scale-up">
@@ -307,7 +373,6 @@ export default function GlobalUploadModal() {
                         />
                       </div>
                     </div>
-
                     <div>
                       <label htmlFor="modal-phone" className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Phone Number *</label>
                       <input 
@@ -320,26 +385,38 @@ export default function GlobalUploadModal() {
                         placeholder="(555) 123-4567" 
                       />
                     </div>
-
                     <div>
-                      <label htmlFor="modal-details" className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Project Notes (Optional)</label>
+                      <label htmlFor="modal-details" className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Project Details & Requirements</label>
                       <textarea 
                         id="modal-details"
                         rows={3}
                         value={details}
                         onChange={(e) => setDetails(e.target.value)}
                         className="w-full px-3.5 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition text-sm resize-none"
-                        placeholder="Add any specific details, trades required, or deadlines..."
+                        placeholder="Please specify trade divisions, turnaround time needed, etc." 
                       ></textarea>
                     </div>
                   </div>
 
-                  <button 
-                    type="submit"
-                    className="w-full bg-brand-orange hover:bg-orange-600 text-white font-bold py-3.5 px-6 rounded-lg shadow-md transition-colors transform hover:-translate-y-0.5 cursor-pointer"
-                  >
-                    Submit Quote Request
-                  </button>
+                  {/* Submit Button */}
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      disabled={isUploading}
+                      className="w-full bg-brand-navy hover:bg-brand-orange text-white font-bold py-3.5 px-6 rounded-lg shadow-md transition-colors flex items-center justify-center gap-2 group cursor-pointer disabled:opacity-50"
+                    >
+                      <span>Submit Plans for Quote</span>
+                      <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </button>
+                    <p className="text-center text-xs text-gray-400 mt-4 flex items-center justify-center gap-1.5">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                      Your files and data are securely encrypted
+                    </p>
+                  </div>
                 </form>
               )}
             </div>
