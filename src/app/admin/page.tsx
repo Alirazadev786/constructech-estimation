@@ -24,6 +24,16 @@ export default function AdminDashboard() {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        router.push('/admin/login');
+      }
+    };
+    checkAuth();
+  }, [router]);
+
+  useEffect(() => {
     if (activeTab === 'leads') {
       fetchLeads();
     }
@@ -69,7 +79,8 @@ export default function AdminDashboard() {
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
     router.push('/admin/login');
   };
 

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { supabase } from '@/lib/supabase';
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('');
@@ -10,19 +11,28 @@ export default function AdminLogin() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simple authentication check
-    setTimeout(() => {
-      setIsLoading(false);
-      if (email === 'admin@constructech.com' && password === 'admin123') {
-        router.push('/admin');
-      } else {
-        alert('Invalid email or password. Please try again.');
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        throw error;
       }
-    }, 1000);
+
+      // Successful login
+      router.push('/admin');
+    } catch (err: any) {
+      console.error('Login error:', err);
+      alert(err.message || 'Invalid email or password. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
