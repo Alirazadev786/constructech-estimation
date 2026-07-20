@@ -34,6 +34,9 @@ export default function AdminDashboard() {
   
   // Modal State
   const [selectedLead, setSelectedLead] = useState<QuoteRequest | null>(null);
+  
+  // Delete Confirmation State
+  const [leadToDelete, setLeadToDelete] = useState<QuoteRequest | null>(null);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -104,14 +107,16 @@ export default function AdminDashboard() {
     }
   };
 
-  const deleteLead = async (lead: QuoteRequest) => {
-    if (!window.confirm('Are you sure you want to delete this lead? This action cannot be undone.')) {
-      return;
-    }
+  const handleDeleteClick = (lead: QuoteRequest) => {
+    setLeadToDelete(lead);
+  };
+
+  const confirmDeleteLead = async () => {
+    if (!leadToDelete) return;
 
     try {
-      if (lead.files && lead.files.length > 0) {
-        const filePaths = lead.files.map(f => {
+      if (leadToDelete.files && leadToDelete.files.length > 0) {
+        const filePaths = leadToDelete.files.map(f => {
           const urlParts = f.url.split('/plans/');
           return urlParts.length > 1 ? urlParts[1] : null;
         }).filter(Boolean) as string[];
@@ -127,14 +132,15 @@ export default function AdminDashboard() {
       const { error: dbError } = await supabase
         .from('quote_requests')
         .delete()
-        .eq('id', lead.id);
+        .eq('id', leadToDelete.id);
 
       if (dbError) throw dbError;
 
-      setLeads(leads.filter(l => l.id !== lead.id));
-      if (selectedLead?.id === lead.id) {
+      setLeads(leads.filter(l => l.id !== leadToDelete.id));
+      if (selectedLead?.id === leadToDelete.id) {
         setSelectedLead(null);
       }
+      setLeadToDelete(null);
       
     } catch (err) {
       console.error('Error deleting lead:', err);
@@ -492,7 +498,7 @@ export default function AdminDashboard() {
                                 </svg>
                               </button>
                               <button
-                                onClick={() => deleteLead(lead)}
+                                onClick={() => handleDeleteClick(lead)}
                                 className="p-2 text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 rounded-md transition-colors"
                                 title="Delete Lead"
                               >
@@ -684,7 +690,7 @@ export default function AdminDashboard() {
             {/* Modal Footer */}
             <div className="sticky bottom-0 bg-gray-50 px-6 py-4 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4 rounded-b-2xl shrink-0">
               <button
-                onClick={() => deleteLead(selectedLead)}
+                onClick={() => handleDeleteClick(selectedLead)}
                 className="w-full sm:w-auto flex justify-center items-center gap-2 text-sm font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-4 py-2.5 rounded-lg transition-colors"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -711,6 +717,39 @@ export default function AdminDashboard() {
               </div>
             </div>
 
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {leadToDelete && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 md:p-8 text-center">
+              <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Delete Lead?</h3>
+              <p className="text-gray-500 mb-8">
+                Are you sure you want to delete <span className="font-semibold text-gray-700">{leadToDelete.name}</span>? This action cannot be undone and will permanently remove all associated data and files.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button
+                  onClick={() => setLeadToDelete(null)}
+                  className="flex-1 px-6 py-3 rounded-xl text-sm font-bold text-gray-700 bg-gray-100 hover:bg-gray-200 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={confirmDeleteLead}
+                  className="flex-1 px-6 py-3 rounded-xl text-sm font-bold text-white bg-red-600 hover:bg-red-700 shadow-md transition-colors"
+                >
+                  Yes, Delete It
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
