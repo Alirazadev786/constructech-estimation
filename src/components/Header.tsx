@@ -47,77 +47,6 @@ export default function Header() {
                 About Us
               </Link>
 
-              {/* Our Trades Mega Menu */}
-              <div 
-                className="group h-full flex items-center"
-                onMouseEnter={() => setIsTradesOpen(true)}
-                onMouseLeave={() => setIsTradesOpen(false)}
-              >
-                <Link href="/our-trades" className={`text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide flex items-center gap-1 py-8 ${isTradesOpen ? 'text-brand-orange border-b-2 border-brand-orange' : ''}`}>
-                  Our Trades
-                  <svg className={`w-4 h-4 transition-transform ${isTradesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </Link>
-                
-                {isTradesOpen && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-[100%] w-[1100px] z-50 shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
-                    <div className="bg-white border-t-2 border-brand-orange p-8 grid grid-cols-4 gap-8 rounded-b-lg">
-                      
-                      {/* Column 1 */}
-                      <div>
-                        <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">General Contractor</h3>
-                        <ul className="space-y-3">
-                          <li><Link href="/general-contractor-services/public-projects-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Public Projects Estimating Services</Link></li>
-                          <li><Link href="/general-contractor-services/commercial-estimating" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Commercial Estimating Services</Link></li>
-                          <li><Link href="/general-contractor-services/residential-estimating" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Residential Estimating Services</Link></li>
-                          <li><Link href="/general-contractor-services/multi-family-apartments" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">MultiFamily Apartments Estimating Services</Link></li>
-                          <li><Link href="/general-contractor-services/industrial-estimating" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Industrial Estimating</Link></li>
-                        </ul>
-                      </div>
-
-                      {/* Column 2 */}
-                      <div>
-                        <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">Sub Contractors Estimating</h3>
-                        <ul className="space-y-3">
-                          <li><Link href="/sub-contractors-estimates/metals-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Metals Takeoffs Estimates</Link></li>
-                          <li><Link href="/sub-contractors-estimates/insulation-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Insulation Estimating Services</Link></li>
-                          <li><Link href="/sub-contractors-estimates/dry-wall-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Drywall Takeoff Estimating</Link></li>
-                          <li><Link href="/sub-contractors-estimates/concrete-estimating-services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Concrete Estimates</Link></li>
-                          <li><Link href="/sub-contractors-estimates/masonry-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Masonry Estimates</Link></li>
-                          <li><Link href="/sub-contractors-estimates/painting-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Painting Estimating Takeoff</Link></li>
-                        </ul>
-                      </div>
-
-                      {/* Column 3 */}
-                      <div>
-                        <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">Sub Contractors Estimating</h3>
-                        <ul className="space-y-3">
-                          <li><Link href="/sub-contractors-estimates/electrical-work-estimating-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Electrical Work Estimating</Link></li>
-                          <li><Link href="/sub-contractors-estimates/flooring-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Flooring Estimating Services</Link></li>
-                          <li><Link href="/sub-contractors-estimates/plumbing-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Plumbing Estimating Takeoff Services</Link></li>
-                          <li><Link href="/sub-contractors-estimates/exterior-finishes-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Interior Exterior Finishes Estimating Takeoff Services</Link></li>
-                          <li><Link href="/sub-contractors-estimates/site-works" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Sitework Earthwork Estimating Services</Link></li>
-                        </ul>
-                      </div>
-
-                      {/* Column 4 */}
-                      <div>
-                        <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">Supplier Estimating Takeoff</h3>
-                        <ul className="space-y-3">
-                          <li><Link href="/supplier-estimates/rebar-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Rebar Estimating Detailing Takeoff Services</Link></li>
-                          <li><Link href="/supplier-estimates/lumber-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Lumber Takeoff and Estimating Services</Link></li>
-                          <li><Link href="/supplier-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Supplier Estimating Takeoff</Link></li>
-                          <li><Link href="/supplier-estimates/steel-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Steel Cost Estimating Takeoff Services</Link></li>
-                          <li><Link href="/supplier-estimates/flooring-tiles-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Flooring Tiles Takeoff Services</Link></li>
-                        </ul>
-                      </div>
-
-                    </div>
-                  </div>
-                )}
-              </div>
-              
               {/* Services Mega Menu */}
               <div 
                 className="group h-full flex items-center"
@@ -224,6 +153,77 @@ export default function Header() {
               </div>
 
 
+              {/* Our Trades Mega Menu */}
+              <div 
+                className="group h-full flex items-center"
+                onMouseEnter={() => setIsTradesOpen(true)}
+                onMouseLeave={() => setIsTradesOpen(false)}
+              >
+                <Link href="/our-trades" className={`text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide flex items-center gap-1 py-8 ${isTradesOpen ? 'text-brand-orange border-b-2 border-brand-orange' : ''}`}>
+                  Our Trades
+                  <svg className={`w-4 h-4 transition-transform ${isTradesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </Link>
+                
+                {isTradesOpen && (
+                  <div className="absolute left-1/2 -translate-x-1/2 top-[100%] w-[1100px] z-50 shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
+                    <div className="bg-white border-t-2 border-brand-orange p-8 grid grid-cols-4 gap-8 rounded-b-lg">
+                      
+                      {/* Column 1 */}
+                      <div>
+                        <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">General Contractor</h3>
+                        <ul className="space-y-3">
+                          <li><Link href="/general-contractor-services/public-projects-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Public Projects Estimating Services</Link></li>
+                          <li><Link href="/general-contractor-services/commercial-estimating" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Commercial Estimating Services</Link></li>
+                          <li><Link href="/general-contractor-services/residential-estimating" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Residential Estimating Services</Link></li>
+                          <li><Link href="/general-contractor-services/multi-family-apartments" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">MultiFamily Apartments Estimating Services</Link></li>
+                          <li><Link href="/general-contractor-services/industrial-estimating" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Industrial Estimating</Link></li>
+                        </ul>
+                      </div>
+
+                      {/* Column 2 */}
+                      <div>
+                        <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">Sub Contractors Estimating</h3>
+                        <ul className="space-y-3">
+                          <li><Link href="/sub-contractors-estimates/metals-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Metals Takeoffs Estimates</Link></li>
+                          <li><Link href="/sub-contractors-estimates/insulation-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Insulation Estimating Services</Link></li>
+                          <li><Link href="/sub-contractors-estimates/dry-wall-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Drywall Takeoff Estimating</Link></li>
+                          <li><Link href="/sub-contractors-estimates/concrete-estimating-services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Concrete Estimates</Link></li>
+                          <li><Link href="/sub-contractors-estimates/masonry-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Masonry Estimates</Link></li>
+                          <li><Link href="/sub-contractors-estimates/painting-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Painting Estimating Takeoff</Link></li>
+                        </ul>
+                      </div>
+
+                      {/* Column 3 */}
+                      <div>
+                        <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">Sub Contractors Estimating</h3>
+                        <ul className="space-y-3">
+                          <li><Link href="/sub-contractors-estimates/electrical-work-estimating-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Electrical Work Estimating</Link></li>
+                          <li><Link href="/sub-contractors-estimates/flooring-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Flooring Estimating Services</Link></li>
+                          <li><Link href="/sub-contractors-estimates/plumbing-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Plumbing Estimating Takeoff Services</Link></li>
+                          <li><Link href="/sub-contractors-estimates/exterior-finishes-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Interior Exterior Finishes Estimating Takeoff Services</Link></li>
+                          <li><Link href="/sub-contractors-estimates/site-works" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Sitework Earthwork Estimating Services</Link></li>
+                        </ul>
+                      </div>
+
+                      {/* Column 4 */}
+                      <div>
+                        <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">Supplier Estimating Takeoff</h3>
+                        <ul className="space-y-3">
+                          <li><Link href="/supplier-estimates/rebar-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Rebar Estimating Detailing Takeoff Services</Link></li>
+                          <li><Link href="/supplier-estimates/lumber-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Lumber Takeoff and Estimating Services</Link></li>
+                          <li><Link href="/supplier-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Supplier Estimating Takeoff</Link></li>
+                          <li><Link href="/supplier-estimates/steel-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Steel Cost Estimating Takeoff Services</Link></li>
+                          <li><Link href="/supplier-estimates/flooring-tiles-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Flooring Tiles Takeoff Services</Link></li>
+                        </ul>
+                      </div>
+
+                    </div>
+                  </div>
+                )}
+              </div>
+              
               <Link href="/contact" className="text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide">
                 Contact Us
               </Link>
