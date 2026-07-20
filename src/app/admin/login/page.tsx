@@ -13,10 +13,15 @@ export default function AdminLogin() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // Simulate authentication for the frontend mock
+    
+    // Simple authentication check
     setTimeout(() => {
       setIsLoading(false);
-      router.push('/admin');
+      if (email === 'admin@constructech.com' && password === 'admin123') {
+        router.push('/admin');
+      } else {
+        alert('Invalid email or password. Please try again.');
+      }
     }, 1000);
   };
 
