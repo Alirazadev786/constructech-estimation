@@ -47,14 +47,14 @@ export default function Header() {
                 About Us
               </Link>
 
-              {/* Services Mega Menu */}
+              {/* Our Trades Mega Menu */}
               <div 
                 className="group h-full flex items-center"
                 onMouseEnter={() => setIsServicesOpen(true)}
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
-                <Link href="/services" className={`text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide flex items-center gap-1 py-8 ${isServicesOpen ? 'text-brand-orange border-b-2 border-brand-orange' : ''}`}>
-                  Services
+                <Link href="/our-trades" className={`text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide flex items-center gap-1 py-8 ${isServicesOpen ? 'text-brand-orange border-b-2 border-brand-orange' : ''}`}>
+                  Our Trades
                   <svg className={`w-4 h-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
@@ -153,14 +153,14 @@ export default function Header() {
               </div>
 
 
-              {/* Our Trades Mega Menu */}
+              {/* Services Mega Menu */}
               <div 
                 className="group h-full flex items-center"
                 onMouseEnter={() => setIsTradesOpen(true)}
                 onMouseLeave={() => setIsTradesOpen(false)}
               >
-                <Link href="/our-trades" className={`text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide flex items-center gap-1 py-8 ${isTradesOpen ? 'text-brand-orange border-b-2 border-brand-orange' : ''}`}>
-                  Our Trades
+                <Link href="/services" className={`text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide flex items-center gap-1 py-8 ${isTradesOpen ? 'text-brand-orange border-b-2 border-brand-orange' : ''}`}>
+                  Services
                   <svg className={`w-4 h-4 transition-transform ${isTradesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
