@@ -27,6 +27,13 @@ export default function AdminDashboard() {
   const [error, setError] = useState('');
   const [isExporting, setIsExporting] = useState(false);
   const [showExportMenu, setShowExportMenu] = useState(false);
+  
+  // Pagination State
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  
+  // Modal State
+  const [selectedLead, setSelectedLead] = useState<QuoteRequest | null>(null);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -40,6 +47,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     if (activeTab === 'quotes' || activeTab === 'uploaded_plans') {
+      setCurrentPage(1); // Reset page on tab switch
       fetchLeads();
     }
   }, [activeTab]);
@@ -86,6 +94,10 @@ export default function AdminDashboard() {
       setLeads(leads.map(lead => 
         lead.id === id ? { ...lead, status: newStatus } : lead
       ));
+      
+      if (selectedLead && selectedLead.id === id) {
+        setSelectedLead({ ...selectedLead, status: newStatus });
+      }
     } catch (err) {
       console.error('Error updating status:', err);
       alert('Failed to update status');
@@ -120,6 +132,9 @@ export default function AdminDashboard() {
       if (dbError) throw dbError;
 
       setLeads(leads.filter(l => l.id !== lead.id));
+      if (selectedLead?.id === lead.id) {
+        setSelectedLead(null);
+      }
       
     } catch (err) {
       console.error('Error deleting lead:', err);
@@ -158,7 +173,7 @@ export default function AdminDashboard() {
 
   const exportCurrentView = () => {
     const tabName = activeTab === 'quotes' ? 'Quotes' : 'Uploaded_Plans';
-    exportToExcel(leads, `${tabName}_Leads_Export`);
+    exportToExcel(currentLeads, `${tabName}_Page_${currentPage}_Export`);
     setShowExportMenu(false);
   };
 
@@ -187,8 +202,16 @@ export default function AdminDashboard() {
     router.push('/admin/login');
   };
 
+  // Pagination Logic
+  const totalPages = Math.ceil(leads.length / itemsPerPage) || 1;
+  const indexOfLastLead = currentPage * itemsPerPage;
+  const indexOfFirstLead = indexOfLastLead - itemsPerPage;
+  const currentLeads = leads.slice(indexOfFirstLead, indexOfLastLead);
+
   return (
     <div className="flex h-screen w-full bg-gray-50 font-poppins">
+      
+      {/* Sidebar */}
       <aside className="w-64 bg-brand-navy text-white flex flex-col hidden md:flex shrink-0">
         <div className="h-16 flex items-center px-6 border-b border-white/10">
           <img src="/logo-transparent.png" alt="Logo" className="h-8 brightness-0 invert" />
@@ -240,8 +263,19 @@ export default function AdminDashboard() {
         </div>
       </aside>
 
-      <main className="flex-1 flex flex-col overflow-hidden">
-        <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 lg:px-8 shadow-sm z-10 shrink-0">
+      {/* Main Content */}
+      <main className="flex-1 flex flex-col overflow-hidden relative">
+        
+        {/* Mobile Header Toggle */}
+        <div className="md:hidden bg-brand-navy text-white p-4 flex justify-between items-center shrink-0">
+          <img src="/logo-transparent.png" alt="Logo" className="h-6 brightness-0 invert" />
+          <div className="flex gap-2">
+            <button onClick={() => setActiveTab('quotes')} className={`px-3 py-1 rounded text-xs ${activeTab === 'quotes' ? 'bg-brand-orange' : 'bg-white/10'}`}>Quotes</button>
+            <button onClick={() => setActiveTab('uploaded_plans')} className={`px-3 py-1 rounded text-xs ${activeTab === 'uploaded_plans' ? 'bg-brand-orange' : 'bg-white/10'}`}>Plans</button>
+          </div>
+        </div>
+
+        <header className="hidden md:flex h-16 bg-white border-b border-gray-200 items-center justify-between px-6 lg:px-8 shadow-sm z-10 shrink-0">
           <h1 className="text-xl font-bold text-gray-800">
             {activeTab === 'quotes' && 'Quotes (Contact Form)'}
             {activeTab === 'uploaded_plans' && 'Uploaded Plans'}
@@ -250,23 +284,27 @@ export default function AdminDashboard() {
           
           <div className="flex items-center gap-4">
             <span className="text-sm font-medium text-gray-600 hidden sm:block">Admin User</span>
-            <div className="h-8 w-8 rounded-full bg-brand-orange text-white flex items-center justify-center font-bold text-sm">
+            <button onClick={handleLogout} className="h-8 w-8 rounded-full bg-brand-orange text-white flex items-center justify-center font-bold text-sm shadow-md hover:bg-orange-600 transition-colors" title="Logout">
               A
-            </div>
+            </button>
           </div>
         </header>
 
-        <div className="flex-1 overflow-auto p-6 lg:p-8">
+        <div className="flex-1 overflow-auto p-4 md:p-6 lg:p-8">
           
           {activeTab === 'quotes' || activeTab === 'uploaded_plans' ? (
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-              <div className="px-6 py-5 border-b border-gray-200 flex justify-between items-center bg-gray-50/50">
-                <h3 className="text-lg font-bold text-gray-900">Recent Submissions</h3>
-                <div className="flex items-center gap-3">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 flex flex-col h-full">
+              
+              {/* Table Header Controls */}
+              <div className="px-4 md:px-6 py-4 md:py-5 border-b border-gray-200 flex flex-col md:flex-row justify-between items-start md:items-center bg-gray-50/50 gap-4">
+                <h3 className="text-lg font-bold text-gray-900 hidden md:block">Recent Submissions</h3>
+                <div className="flex flex-wrap items-center gap-3 w-full md:w-auto justify-end">
+                  
+                  {/* Export Dropdown */}
                   <div className="relative">
                     <button 
                       onClick={() => setShowExportMenu(!showExportMenu)}
-                      className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                      className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-3 md:px-4 py-2 rounded-lg text-sm font-medium transition-colors w-full md:w-auto"
                       disabled={isExporting}
                     >
                       {isExporting ? (
@@ -279,46 +317,49 @@ export default function AdminDashboard() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                         </svg>
                       )}
-                      Export Data
+                      <span className="hidden sm:inline">Export Data</span>
+                      <span className="sm:hidden">Export</span>
                     </button>
                     {showExportMenu && (
-                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-20">
+                      <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-100 py-1 z-20">
                         <button 
                           onClick={exportCurrentView}
-                          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          className="w-full text-left px-4 py-3 md:py-2 text-sm text-gray-700 hover:bg-gray-50 border-b border-gray-100"
                         >
-                          Export Current View
+                          Export Current Page ({currentLeads.length})
                         </button>
                         <button 
                           onClick={exportAllLeads}
-                          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          className="w-full text-left px-4 py-3 md:py-2 text-sm text-gray-700 hover:bg-gray-50"
                         >
-                          Export All (Entire Database)
+                          Export All Leads ({leads.length})
                         </button>
                       </div>
                     )}
                   </div>
+                  
+                  {/* Refresh Button */}
                   <button 
                     onClick={fetchLeads} 
-                    className="p-2 text-gray-500 hover:text-brand-orange hover:bg-orange-50 rounded-lg transition-colors"
+                    className="p-2 text-gray-500 hover:text-brand-orange hover:bg-orange-50 rounded-lg transition-colors bg-white border border-gray-200 md:border-transparent"
                     title="Refresh Data"
                   >
                     <svg className={`w-5 h-5 ${isLoading ? 'animate-spin' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                     </svg>
                   </button>
-                  <span className="bg-brand-orange/10 text-brand-orange text-xs font-bold px-3 py-1 rounded-full">
+                  <span className="bg-brand-orange/10 text-brand-orange text-xs font-bold px-3 py-2 md:py-1 rounded-full whitespace-nowrap">
                     {leads.length} Total
                   </span>
                 </div>
               </div>
               
-              <div className="overflow-x-auto min-h-[400px]">
+              {/* Table Wrapper (Horizontally Scrollable) */}
+              <div className="flex-1 overflow-x-auto min-h-[400px]">
                 {error ? (
                   <div className="p-8 text-center text-red-500">
                     <p className="font-bold">Error loading data.</p>
                     <p className="text-sm">{error}</p>
-                    <p className="text-sm mt-2 text-gray-500">Please make sure you have created the `quote_requests` table in Supabase.</p>
                   </div>
                 ) : isLoading && leads.length === 0 ? (
                   <div className="p-12 flex justify-center">
@@ -332,63 +373,63 @@ export default function AdminDashboard() {
                     No requests found for this category.
                   </div>
                 ) : (
-                  <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                  <table className="min-w-max w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50 sticky top-0 z-10 shadow-sm">
                       <tr>
-                        <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                        <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider min-w-[250px]">
                           Client Details
                         </th>
-                        <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                        <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider min-w-[300px]">
                           Notes / Requirements
                         </th>
                         {activeTab === 'quotes' && (
-                          <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                          <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider min-w-[200px]">
                             Service Required
                           </th>
                         )}
-                        <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                        <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider min-w-[150px]">
                           Date / Status
                         </th>
                         {activeTab === 'uploaded_plans' && (
-                          <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                          <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider min-w-[250px]">
                             Plans
                           </th>
                         )}
-                        <th scope="col" className="px-6 py-4 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                        <th scope="col" className="px-6 py-4 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider min-w-[150px] sticky right-0 bg-gray-50">
                           Actions
                         </th>
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                      {leads.map((lead) => (
-                        <tr key={lead.id} className="hover:bg-gray-50/50 transition-colors">
-                          <td className="px-6 py-4 whitespace-nowrap">
+                      {currentLeads.map((lead) => (
+                        <tr key={lead.id} className="hover:bg-gray-50/80 transition-colors group">
+                          <td className="px-6 py-4 whitespace-nowrap cursor-pointer" onClick={() => setSelectedLead(lead)}>
                             <div className="flex flex-col">
-                              <span className="text-sm font-bold text-gray-900">{lead.name}</span>
+                              <span className="text-sm font-bold text-brand-navy group-hover:text-brand-orange transition-colors">{lead.name}</span>
                               <span className="text-sm text-gray-500">{lead.email}</span>
                               <span className="text-xs text-gray-400 mt-0.5">{lead.phone}</span>
                             </div>
                           </td>
-                          <td className="px-6 py-4">
-                            <div className="text-sm text-gray-900 max-w-xs line-clamp-2" title={lead.details || 'No details provided'}>
+                          <td className="px-6 py-4 cursor-pointer" onClick={() => setSelectedLead(lead)}>
+                            <div className="text-sm text-gray-900 truncate max-w-[300px]">
                               {lead.details || <span className="text-gray-400 italic">No details provided</span>}
                             </div>
                           </td>
                           {activeTab === 'quotes' && (
-                            <td className="px-6 py-4 whitespace-nowrap">
+                            <td className="px-6 py-4 whitespace-nowrap cursor-pointer" onClick={() => setSelectedLead(lead)}>
                               <div className="text-sm text-gray-900">
                                 {lead.service_required || <span className="text-gray-400 italic">-</span>}
                               </div>
                             </td>
                           )}
                           <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-900">
+                            <div className="text-sm text-gray-900 mb-1">
                               {new Date(lead.created_at).toLocaleDateString()}
                             </div>
                             <select 
                               value={lead.status || 'New'}
                               onChange={(e) => updateLeadStatus(lead.id, e.target.value)}
-                              className={`mt-1 text-xs font-medium rounded-full px-2 py-1 outline-none border cursor-pointer ${
+                              className={`text-xs font-medium rounded-md px-2 py-1 outline-none border cursor-pointer w-full max-w-[120px] ${
                                 lead.status === 'New' || !lead.status ? 'bg-green-50 text-green-700 border-green-200' : 
                                 lead.status === 'Reviewed' ? 'bg-blue-50 text-blue-700 border-blue-200' : 
                                 'bg-gray-50 text-gray-700 border-gray-200'
@@ -404,43 +445,58 @@ export default function AdminDashboard() {
                             <td className="px-6 py-4 text-left text-sm font-medium">
                               {lead.files && lead.files.length > 0 ? (
                                 <div className="flex flex-col items-start gap-2">
-                                  {lead.files.map((file, idx) => (
+                                  {lead.files.slice(0, 2).map((file, idx) => (
                                     <a 
                                       key={idx}
                                       href={file.url} 
                                       target="_blank" 
                                       rel="noopener noreferrer"
-                                      className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-navy/5 hover:bg-brand-navy/10 text-brand-navy rounded-md transition-colors text-xs"
+                                      className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-navy/5 hover:bg-brand-navy/10 text-brand-navy rounded-md transition-colors text-xs max-w-[200px]"
                                     >
                                       <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                       </svg>
-                                      <span className="truncate max-w-[150px]">{file.name}</span>
+                                      <span className="truncate">{file.name}</span>
                                     </a>
                                   ))}
+                                  {lead.files.length > 2 && (
+                                    <button onClick={() => setSelectedLead(lead)} className="text-xs text-brand-orange hover:underline pl-1">
+                                      + {lead.files.length - 2} more files
+                                    </button>
+                                  )}
                                 </div>
                               ) : (
                                 <span className="text-gray-400 italic text-xs">No plan attached</span>
                               )}
                             </td>
                           )}
-                          <td className="px-6 py-4 text-right whitespace-nowrap text-sm font-medium">
-                            <div className="flex items-center justify-end gap-3">
+                          <td className="px-6 py-4 text-right whitespace-nowrap text-sm font-medium sticky right-0 bg-white group-hover:bg-gray-50/80 transition-colors shadow-[-10px_0_15px_-10px_rgba(0,0,0,0.05)] border-l border-gray-100">
+                            <div className="flex items-center justify-end gap-2">
                               <button
-                                onClick={() => exportToExcel([lead], `${lead.name}_Lead_Export`)}
-                                className="text-green-600 hover:text-green-900 transition-colors"
+                                onClick={() => setSelectedLead(lead)}
+                                className="p-2 text-blue-600 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 rounded-md transition-colors"
+                                title="View Full Details"
+                              >
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                              </button>
+                              <button
+                                onClick={() => exportToExcel([lead], `${lead.name.replace(/\\s+/g, '_')}_Lead`)}
+                                className="p-2 text-green-600 hover:text-green-900 bg-green-50 hover:bg-green-100 rounded-md transition-colors"
                                 title="Export Lead to Excel"
                               >
-                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                 </svg>
                               </button>
                               <button
                                 onClick={() => deleteLead(lead)}
-                                className="text-red-500 hover:text-red-700 transition-colors"
+                                className="p-2 text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 rounded-md transition-colors"
                                 title="Delete Lead"
                               >
-                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                 </svg>
                               </button>
@@ -452,6 +508,35 @@ export default function AdminDashboard() {
                   </table>
                 )}
               </div>
+
+              {/* Pagination Controls */}
+              {!isLoading && leads.length > 0 && (
+                <div className="px-6 py-4 border-t border-gray-200 bg-gray-50 flex items-center justify-between shrink-0">
+                  <div className="text-sm text-gray-500 hidden sm:block">
+                    Showing <span className="font-medium">{indexOfFirstLead + 1}</span> to <span className="font-medium">{Math.min(indexOfLastLead, leads.length)}</span> of <span className="font-medium">{leads.length}</span> results
+                  </div>
+                  <div className="flex gap-2 w-full sm:w-auto justify-between sm:justify-end">
+                    <button
+                      onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                      disabled={currentPage === 1}
+                      className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    >
+                      Previous
+                    </button>
+                    <span className="flex items-center px-4 text-sm font-medium text-gray-700">
+                      Page {currentPage} of {totalPages}
+                    </span>
+                    <button
+                      onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                      disabled={currentPage === totalPages}
+                      className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
+              )}
+
             </div>
           ) : (
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center flex flex-col items-center justify-center h-[50vh]">
@@ -465,6 +550,170 @@ export default function AdminDashboard() {
           
         </div>
       </main>
+
+      {/* Lead Details Modal */}
+      {selectedLead && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm overflow-y-auto pt-20 pb-20">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-full overflow-y-auto border border-gray-100 flex flex-col animate-in fade-in zoom-in-95 duration-200 m-auto relative">
+            
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-white px-6 py-4 border-b border-gray-100 flex justify-between items-center z-10 shrink-0">
+              <div>
+                <h2 className="text-xl font-bold text-gray-900">Lead Details</h2>
+                <p className="text-sm text-gray-500 mt-0.5">Submitted on {new Date(selectedLead.created_at).toLocaleString()}</p>
+              </div>
+              <button 
+                onClick={() => setSelectedLead(null)}
+                className="p-2 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-6 md:p-8 space-y-8 flex-1">
+              
+              {/* Contact Info Card */}
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+                  <svg className="w-4 h-4 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                  Contact Information
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <p className="text-xs text-gray-500 font-medium mb-1">Full Name</p>
+                    <p className="text-base font-semibold text-gray-900">{selectedLead.name}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500 font-medium mb-1">Email Address</p>
+                    <a href={`mailto:${selectedLead.email}`} className="text-base font-medium text-brand-navy hover:text-brand-orange transition-colors">
+                      {selectedLead.email}
+                    </a>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500 font-medium mb-1">Phone Number</p>
+                    <a href={`tel:${selectedLead.phone}`} className="text-base font-medium text-brand-navy hover:text-brand-orange transition-colors">
+                      {selectedLead.phone || 'Not provided'}
+                    </a>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500 font-medium mb-1">Current Status</p>
+                    <select 
+                      value={selectedLead.status || 'New'}
+                      onChange={(e) => updateLeadStatus(selectedLead.id, e.target.value)}
+                      className={`text-sm font-bold rounded-md px-3 py-1.5 outline-none border cursor-pointer mt-0.5 w-full md:w-auto ${
+                        selectedLead.status === 'New' || !selectedLead.status ? 'bg-green-50 text-green-700 border-green-200' : 
+                        selectedLead.status === 'Reviewed' ? 'bg-blue-50 text-blue-700 border-blue-200' : 
+                        'bg-gray-50 text-gray-700 border-gray-200'
+                      }`}
+                    >
+                      <option value="New">New</option>
+                      <option value="Reviewed">Reviewed</option>
+                      <option value="Contacted">Contacted</option>
+                      <option value="Closed">Closed</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              {/* Requirements & Details */}
+              <div>
+                <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+                  <svg className="w-4 h-4 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Requirements & Notes
+                </h3>
+                
+                {selectedLead.service_required && (
+                  <div className="mb-6">
+                    <p className="text-xs text-gray-500 font-medium mb-2">Service Requested</p>
+                    <span className="inline-block bg-brand-navy/5 border border-brand-navy/10 text-brand-navy px-4 py-2 rounded-lg text-sm font-semibold">
+                      {selectedLead.service_required}
+                    </span>
+                  </div>
+                )}
+                
+                <div>
+                  <p className="text-xs text-gray-500 font-medium mb-2">Detailed Notes</p>
+                  <div className="bg-white border border-gray-200 rounded-xl p-5 text-gray-700 text-sm leading-relaxed whitespace-pre-wrap min-h-[100px]">
+                    {selectedLead.details || <span className="italic text-gray-400">No additional details were provided by the client.</span>}
+                  </div>
+                </div>
+              </div>
+
+              {/* Attached Files */}
+              {selectedLead.files && selectedLead.files.length > 0 && (
+                <div>
+                  <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <svg className="w-4 h-4 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                    </svg>
+                    Attached Files ({selectedLead.files.length})
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {selectedLead.files.map((file, idx) => (
+                      <a 
+                        key={idx}
+                        href={file.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 bg-white border border-gray-200 hover:border-brand-orange rounded-xl transition-all group shadow-sm hover:shadow-md"
+                      >
+                        <div className="h-10 w-10 bg-brand-navy/5 text-brand-navy rounded-lg flex items-center justify-center shrink-0 group-hover:bg-brand-orange/10 group-hover:text-brand-orange transition-colors">
+                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                          </svg>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium text-gray-900 truncate">{file.name}</p>
+                          <p className="text-xs text-gray-500">Click to download</p>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+            </div>
+
+            {/* Modal Footer */}
+            <div className="sticky bottom-0 bg-gray-50 px-6 py-4 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4 rounded-b-2xl shrink-0">
+              <button
+                onClick={() => deleteLead(selectedLead)}
+                className="w-full sm:w-auto flex justify-center items-center gap-2 text-sm font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-4 py-2.5 rounded-lg transition-colors"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+                Delete Lead
+              </button>
+              <div className="flex w-full sm:w-auto gap-3">
+                <button 
+                  onClick={() => setSelectedLead(null)}
+                  className="flex-1 sm:flex-none px-5 py-2.5 rounded-lg text-sm font-bold text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 transition-colors"
+                >
+                  Close
+                </button>
+                <button 
+                  onClick={() => exportToExcel([selectedLead], `${selectedLead.name.replace(/\\s+/g, '_')}_Lead`)}
+                  className="flex-1 sm:flex-none px-5 py-2.5 rounded-lg text-sm font-bold text-white bg-brand-orange hover:bg-orange-600 shadow-md transition-colors flex justify-center items-center gap-2"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  Export Data
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
     </div>
   );
 }
