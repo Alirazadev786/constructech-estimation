@@ -52,22 +52,40 @@ export default function GlobalUploadModal() {
     };
   }, []);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const selectedFiles: FileDetails[] = Array.from(e.target.files).map(file => {
+  const processFiles = (fileList: FileList) => {
+    const validFiles: FileDetails[] = [];
+    const invalidFiles: string[] = [];
+
+    Array.from(fileList).forEach(file => {
+      if (file.size > 2 * 1024 * 1024) {
+        invalidFiles.push(file.name);
+      } else {
         const sizeInMb = (file.size / (1024 * 1024)).toFixed(2);
-        return {
+        validFiles.push({
           name: file.name,
           size: `${sizeInMb} MB`,
           file: file
-        };
-      });
-      setFiles(prev => [...prev, ...selectedFiles]);
+        });
+      }
+    });
+
+    if (invalidFiles.length > 0) {
+      alert(`The following files exceed the 2MB limit and will not be uploaded:\n\n${invalidFiles.join('\n')}`);
+    }
+
+    if (validFiles.length > 0) {
+      setFiles(prev => [...prev, ...validFiles]);
       setIsOpen(true);
       setIsSuccess(false);
       setProgress(0);
       setIsUploading(false);
       setErrorMsg('');
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      processFiles(e.target.files);
     }
   };
 
@@ -87,15 +105,7 @@ export default function GlobalUploadModal() {
     setIsDragActive(false);
 
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      const selectedFiles: FileDetails[] = Array.from(e.dataTransfer.files).map(file => {
-        const sizeInMb = (file.size / (1024 * 1024)).toFixed(2);
-        return {
-          name: file.name,
-          size: `${sizeInMb} MB`,
-          file: file
-        };
-      });
-      setFiles(prev => [...prev, ...selectedFiles]);
+      processFiles(e.dataTransfer.files);
     }
   };
 
