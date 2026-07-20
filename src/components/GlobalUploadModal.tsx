@@ -163,6 +163,7 @@ export default function GlobalUploadModal() {
             details,
             status: 'New',
             files: filePaths, // Store array of files with URLs
+            type: 'upload',
           }
         ]);
         

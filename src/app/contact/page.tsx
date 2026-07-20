@@ -1,11 +1,55 @@
-import { Metadata } from 'next';
+"use client";
 
-export const metadata: Metadata = {
-  title: 'Contact Us | Constructech Estimation',
-  description: 'Get in touch with Constructech Estimation for accurate construction estimates and material takeoffs. Request a free quote today.',
-};
+import { useState } from 'react';
+import { supabase } from '@/lib/supabase';
 
 export default function ContactPage() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [service, setService] = useState('Cost Estimation');
+  const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setErrorMsg('');
+    
+    try {
+      const { error: dbError } = await supabase
+        .from('quote_requests')
+        .insert([
+          {
+            name,
+            email,
+            phone,
+            details: message,
+            status: 'New',
+            type: 'contact',
+            service_required: service,
+          }
+        ]);
+        
+      if (dbError) throw dbError;
+      
+      setIsSuccess(true);
+      setName('');
+      setEmail('');
+      setPhone('');
+      setService('Cost Estimation');
+      setMessage('');
+      
+    } catch (err: any) {
+      console.error('Submit error:', err);
+      setErrorMsg(err.message || 'An error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       <div className="bg-brand-navy py-16 md:py-24">
@@ -81,43 +125,102 @@ export default function ContactPage() {
             <div className="w-full lg:w-2/3">
               <div className="bg-gray-50 p-8 md:p-10 rounded-2xl border border-gray-100">
                 <h2 className="text-2xl font-bold text-brand-navy mb-6">Send a Message</h2>
-                <form className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-                      <input type="text" id="name" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition" placeholder="John Doe" />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                      <input type="email" id="email" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition" placeholder="john@example.com" />
-                    </div>
+                {isSuccess ? (
+                  <div className="bg-green-50 border border-green-200 text-green-700 p-6 rounded-lg mb-6">
+                    <h3 className="font-bold text-lg mb-2">Message Sent!</h3>
+                    <p>Thank you for reaching out. We have received your message and will get back to you shortly.</p>
+                    <button 
+                      onClick={() => setIsSuccess(false)}
+                      className="mt-4 text-green-700 font-bold underline"
+                    >
+                      Send another message
+                    </button>
                   </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                      <input type="tel" id="phone" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition" placeholder="(555) 123-4567" />
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {errorMsg && (
+                      <div className="bg-red-50 border border-red-200 text-red-600 p-4 rounded-lg">
+                        {errorMsg}
+                      </div>
+                    )}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                        <input 
+                          type="text" 
+                          id="name" 
+                          required
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition" 
+                          placeholder="John Doe" 
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                        <input 
+                          type="email" 
+                          id="email" 
+                          required
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition" 
+                          placeholder="john@example.com" 
+                        />
+                      </div>
                     </div>
-                    <div>
-                      <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">Service Required</label>
-                      <select id="service" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition bg-white">
-                        <option>Cost Estimation</option>
-                        <option>Material Takeoffs</option>
-                        <option>Bid Preparation</option>
-                        <option>Other</option>
-                      </select>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                        <input 
+                          type="tel" 
+                          id="phone" 
+                          required
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition" 
+                          placeholder="(555) 123-4567" 
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">Service Required</label>
+                        <select 
+                          id="service" 
+                          value={service}
+                          onChange={(e) => setService(e.target.value)}
+                          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition bg-white"
+                        >
+                          <option value="Cost Estimation">Cost Estimation</option>
+                          <option value="Material Takeoffs">Material Takeoffs</option>
+                          <option value="Bid Preparation">Bid Preparation</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
                     </div>
-                  </div>
 
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Project Details</label>
-                    <textarea id="message" rows={5} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition resize-none" placeholder="Tell us about your project, timelines, and specific requirements..."></textarea>
-                  </div>
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Project Details</label>
+                      <textarea 
+                        id="message" 
+                        required
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        rows={5} 
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition resize-none" 
+                        placeholder="Tell us about your project, timelines, and specific requirements..."
+                      ></textarea>
+                    </div>
 
-                  <button type="button" className="w-full bg-brand-orange hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-lg shadow-md transition transform hover:-translate-y-1">
-                    Submit Request
-                  </button>
-                </form>
+                    <button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="w-full bg-brand-orange hover:bg-orange-600 disabled:bg-gray-400 text-white font-bold py-4 px-8 rounded-lg shadow-md transition transform hover:-translate-y-1 disabled:transform-none disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? 'Sending...' : 'Submit Request'}
+                    </button>
+                  </form>
+                )}
               </div>
             </div>
 

@@ -14,11 +14,13 @@ interface QuoteRequest {
   details: string;
   status: string;
   files: { name: string; url: string }[];
+  type: string;
+  service_required: string;
 }
 
 export default function AdminDashboard() {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState('leads');
+  const [activeTab, setActiveTab] = useState('quotes');
   const [leads, setLeads] = useState<QuoteRequest[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
@@ -34,7 +36,7 @@ export default function AdminDashboard() {
   }, [router]);
 
   useEffect(() => {
-    if (activeTab === 'leads') {
+    if (activeTab === 'quotes' || activeTab === 'uploaded_plans') {
       fetchLeads();
     }
   }, [activeTab]);
@@ -43,10 +45,18 @@ export default function AdminDashboard() {
     setIsLoading(true);
     setError('');
     try {
-      const { data, error } = await supabase
+      let query = supabase
         .from('quote_requests')
         .select('*')
         .order('created_at', { ascending: false });
+        
+      if (activeTab === 'quotes') {
+        query = query.eq('type', 'contact');
+      } else if (activeTab === 'uploaded_plans') {
+        query = query.or('type.eq.upload,type.is.null');
+      }
+
+      const { data, error } = await query;
 
       if (error) {
         throw error;
@@ -94,23 +104,23 @@ export default function AdminDashboard() {
         
         <div className="flex-1 py-6 px-4 space-y-2">
           <button 
-            onClick={() => setActiveTab('dashboard')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeTab === 'dashboard' ? 'bg-brand-orange text-white' : 'text-gray-300 hover:bg-white/10 hover:text-white'}`}
+            onClick={() => setActiveTab('quotes')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeTab === 'quotes' ? 'bg-brand-orange text-white' : 'text-gray-300 hover:bg-white/10 hover:text-white'}`}
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
             </svg>
-            Dashboard
+            Quotes
           </button>
           
           <button 
-            onClick={() => setActiveTab('leads')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeTab === 'leads' ? 'bg-brand-orange text-white' : 'text-gray-300 hover:bg-white/10 hover:text-white'}`}
+            onClick={() => setActiveTab('uploaded_plans')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeTab === 'uploaded_plans' ? 'bg-brand-orange text-white' : 'text-gray-300 hover:bg-white/10 hover:text-white'}`}
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
-            Quote Requests
+            Uploaded Plans
           </button>
 
           <button 
@@ -143,8 +153,8 @@ export default function AdminDashboard() {
         {/* Top Header */}
         <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 lg:px-8 shadow-sm z-10 shrink-0">
           <h1 className="text-xl font-bold text-gray-800">
-            {activeTab === 'dashboard' && 'Dashboard Overview'}
-            {activeTab === 'leads' && 'Quote Requests'}
+            {activeTab === 'quotes' && 'Quotes (Contact Form)'}
+            {activeTab === 'uploaded_plans' && 'Uploaded Plans'}
             {activeTab === 'settings' && 'Admin Settings'}
           </h1>
           
@@ -159,7 +169,7 @@ export default function AdminDashboard() {
         {/* Content Area */}
         <div className="flex-1 overflow-auto p-6 lg:p-8">
           
-          {activeTab === 'leads' ? (
+          {activeTab === 'quotes' || activeTab === 'uploaded_plans' ? (
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
               <div className="px-6 py-5 border-b border-gray-200 flex justify-between items-center bg-gray-50/50">
                 <h3 className="text-lg font-bold text-gray-900">Recent Submissions</h3>
@@ -195,7 +205,7 @@ export default function AdminDashboard() {
                   </div>
                 ) : leads.length === 0 ? (
                   <div className="p-12 text-center text-gray-500">
-                    No quote requests found. Submissions will appear here.
+                    No requests found for this category.
                   </div>
                 ) : (
                   <table className="min-w-full divide-y divide-gray-200">
@@ -207,12 +217,19 @@ export default function AdminDashboard() {
                         <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
                           Notes / Requirements
                         </th>
+                        {activeTab === 'quotes' && (
+                          <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                            Service Required
+                          </th>
+                        )}
                         <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
                           Date / Status
                         </th>
-                        <th scope="col" className="px-6 py-4 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                          Plans & Actions
-                        </th>
+                        {activeTab === 'uploaded_plans' && (
+                          <th scope="col" className="px-6 py-4 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                            Plans & Actions
+                          </th>
+                        )}
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
@@ -230,6 +247,13 @@ export default function AdminDashboard() {
                               {lead.details || <span className="text-gray-400 italic">No details provided</span>}
                             </div>
                           </td>
+                          {activeTab === 'quotes' && (
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <div className="text-sm text-gray-900">
+                                {lead.service_required || <span className="text-gray-400 italic">-</span>}
+                              </div>
+                            </td>
+                          )}
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="text-sm text-gray-900">
                               {new Date(lead.created_at).toLocaleDateString()}
@@ -249,28 +273,30 @@ export default function AdminDashboard() {
                               <option value="Closed">Closed</option>
                             </select>
                           </td>
-                          <td className="px-6 py-4 text-right text-sm font-medium">
-                            {lead.files && lead.files.length > 0 ? (
-                              <div className="flex flex-col items-end gap-2">
-                                {lead.files.map((file, idx) => (
-                                  <a 
-                                    key={idx}
-                                    href={file.url} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-navy/5 hover:bg-brand-navy/10 text-brand-navy rounded-md transition-colors text-xs"
-                                  >
-                                    <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                                    </svg>
-                                    <span className="truncate max-w-[150px]">{file.name}</span>
-                                  </a>
-                                ))}
-                              </div>
-                            ) : (
-                              <span className="text-gray-400 italic text-xs mr-4">No plan attached</span>
-                            )}
-                          </td>
+                          {activeTab === 'uploaded_plans' && (
+                            <td className="px-6 py-4 text-right text-sm font-medium">
+                              {lead.files && lead.files.length > 0 ? (
+                                <div className="flex flex-col items-end gap-2">
+                                  {lead.files.map((file, idx) => (
+                                    <a 
+                                      key={idx}
+                                      href={file.url} 
+                                      target="_blank" 
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-navy/5 hover:bg-brand-navy/10 text-brand-navy rounded-md transition-colors text-xs"
+                                    >
+                                      <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                      </svg>
+                                      <span className="truncate max-w-[150px]">{file.name}</span>
+                                    </a>
+                                  ))}
+                                </div>
+                              ) : (
+                                <span className="text-gray-400 italic text-xs mr-4">No plan attached</span>
+                              )}
+                            </td>
+                          )}
                         </tr>
                       ))}
                     </tbody>
@@ -284,7 +310,7 @@ export default function AdminDashboard() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
               </svg>
               <h3 className="text-lg font-medium text-gray-900 mb-1">Coming Soon</h3>
-              <p className="text-gray-500 max-w-sm mx-auto">This section is currently under development. Please check the Quote Requests tab to view your leads.</p>
+              <p className="text-gray-500 max-w-sm mx-auto">This section is currently under development. Please check the other tabs to view your leads.</p>
             </div>
           )}
           
