@@ -12,7 +12,9 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
 });
+//this is const meta code area there we can update the meta tags for the website
 
+//we can also update the meta tags in the individual pages for that we have to import the Metadata from the next/head and use it in the page
 export const metadata: Metadata = {
   metadataBase: new URL("https://constructechestimation.com"),
   title: "Constructech Estimation | Construction Estimating Services",

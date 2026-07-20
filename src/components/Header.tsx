@@ -34,7 +34,7 @@ export default function Header() {
               {/* Logo */}
               <div className="flex-shrink-0 flex items-center h-full py-1">
                 <Link href="/" className="h-full flex items-center">
-                  <img src="/logo-transparent.png" alt="Constructech Estimation" className="h-10 md:h-12 w-auto object-contain origin-left transform scale-[1.3] md:scale-[1.5] translate-x-3" />
+                  <img src="/logo-transparent.png" alt="Constructech Estimation" className="h-10 md:h-12 w-auto object-contain origin-left transform scale-[1.5] md:scale-[1.8] translate-x-3" />
                 </Link>
               </div>
 
