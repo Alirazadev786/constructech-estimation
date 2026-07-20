@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
+import * as XLSX from 'xlsx';
 
 interface QuoteRequest {
   id: string;
@@ -24,6 +25,8 @@ export default function AdminDashboard() {
   const [leads, setLeads] = useState<QuoteRequest[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
+  const [isExporting, setIsExporting] = useState(false);
+  const [showExportMenu, setShowExportMenu] = useState(false);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -89,6 +92,96 @@ export default function AdminDashboard() {
     }
   };
 
+  const deleteLead = async (lead: QuoteRequest) => {
+    if (!window.confirm('Are you sure you want to delete this lead? This action cannot be undone.')) {
+      return;
+    }
+
+    try {
+      if (lead.files && lead.files.length > 0) {
+        const filePaths = lead.files.map(f => {
+          const urlParts = f.url.split('/plans/');
+          return urlParts.length > 1 ? urlParts[1] : null;
+        }).filter(Boolean) as string[];
+
+        if (filePaths.length > 0) {
+          const { error: storageError } = await supabase.storage.from('plans').remove(filePaths);
+          if (storageError) {
+            console.error('Error deleting files from storage:', storageError);
+          }
+        }
+      }
+
+      const { error: dbError } = await supabase
+        .from('quote_requests')
+        .delete()
+        .eq('id', lead.id);
+
+      if (dbError) throw dbError;
+
+      setLeads(leads.filter(l => l.id !== lead.id));
+      
+    } catch (err) {
+      console.error('Error deleting lead:', err);
+      alert('Failed to delete the lead.');
+    }
+  };
+
+  const exportToExcel = (leadsToExport: QuoteRequest[], filename: string) => {
+    const formattedData = leadsToExport.map(lead => ({
+      'Date': new Date(lead.created_at).toLocaleString(),
+      'Name': lead.name,
+      'Email': lead.email,
+      'Phone': lead.phone,
+      'Service Required': lead.service_required || 'N/A',
+      'Details': lead.details || 'N/A',
+      'Status': lead.status || 'New',
+      'Files Attached': lead.files && lead.files.length > 0 ? lead.files.map(f => f.name).join(', ') : 'None'
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(formattedData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Leads");
+
+    const maxWidths = formattedData.reduce((acc, row) => {
+      Object.keys(row).forEach((key, index) => {
+        const val = String((row as any)[key] || "");
+        acc[index] = Math.max(acc[index] || key.length, val.length) + 2; 
+      });
+      return acc;
+    }, [] as number[]);
+    
+    worksheet['!cols'] = maxWidths.map(w => ({ width: Math.min(w, 50) })); 
+
+    XLSX.writeFile(workbook, `${filename}.xlsx`);
+  };
+
+  const exportCurrentView = () => {
+    const tabName = activeTab === 'quotes' ? 'Quotes' : 'Uploaded_Plans';
+    exportToExcel(leads, `${tabName}_Leads_Export`);
+    setShowExportMenu(false);
+  };
+
+  const exportAllLeads = async () => {
+    setIsExporting(true);
+    setShowExportMenu(false);
+    try {
+      const { data, error } = await supabase
+        .from('quote_requests')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      
+      exportToExcel(data || [], "All_Database_Leads_Export");
+    } catch (err) {
+      console.error('Error exporting all leads:', err);
+      alert('Failed to export all leads.');
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
   const handleLogout = async () => {
     await supabase.auth.signOut();
     router.push('/admin/login');
@@ -96,7 +189,6 @@ export default function AdminDashboard() {
 
   return (
     <div className="flex h-screen w-full bg-gray-50 font-poppins">
-      {/* Sidebar */}
       <aside className="w-64 bg-brand-navy text-white flex flex-col hidden md:flex shrink-0">
         <div className="h-16 flex items-center px-6 border-b border-white/10">
           <img src="/logo-transparent.png" alt="Logo" className="h-8 brightness-0 invert" />
@@ -148,9 +240,7 @@ export default function AdminDashboard() {
         </div>
       </aside>
 
-      {/* Main Content */}
       <main className="flex-1 flex flex-col overflow-hidden">
-        {/* Top Header */}
         <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 lg:px-8 shadow-sm z-10 shrink-0">
           <h1 className="text-xl font-bold text-gray-800">
             {activeTab === 'quotes' && 'Quotes (Contact Form)'}
@@ -166,7 +256,6 @@ export default function AdminDashboard() {
           </div>
         </header>
 
-        {/* Content Area */}
         <div className="flex-1 overflow-auto p-6 lg:p-8">
           
           {activeTab === 'quotes' || activeTab === 'uploaded_plans' ? (
@@ -174,6 +263,41 @@ export default function AdminDashboard() {
               <div className="px-6 py-5 border-b border-gray-200 flex justify-between items-center bg-gray-50/50">
                 <h3 className="text-lg font-bold text-gray-900">Recent Submissions</h3>
                 <div className="flex items-center gap-3">
+                  <div className="relative">
+                    <button 
+                      onClick={() => setShowExportMenu(!showExportMenu)}
+                      className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                      disabled={isExporting}
+                    >
+                      {isExporting ? (
+                        <svg className="animate-spin w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                      ) : (
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                      )}
+                      Export Data
+                    </button>
+                    {showExportMenu && (
+                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-20">
+                        <button 
+                          onClick={exportCurrentView}
+                          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        >
+                          Export Current View
+                        </button>
+                        <button 
+                          onClick={exportAllLeads}
+                          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        >
+                          Export All (Entire Database)
+                        </button>
+                      </div>
+                    )}
+                  </div>
                   <button 
                     onClick={fetchLeads} 
                     className="p-2 text-gray-500 hover:text-brand-orange hover:bg-orange-50 rounded-lg transition-colors"
@@ -189,7 +313,7 @@ export default function AdminDashboard() {
                 </div>
               </div>
               
-              <div className="overflow-x-auto">
+              <div className="overflow-x-auto min-h-[400px]">
                 {error ? (
                   <div className="p-8 text-center text-red-500">
                     <p className="font-bold">Error loading data.</p>
@@ -226,10 +350,13 @@ export default function AdminDashboard() {
                           Date / Status
                         </th>
                         {activeTab === 'uploaded_plans' && (
-                          <th scope="col" className="px-6 py-4 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                            Plans & Actions
+                          <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                            Plans
                           </th>
                         )}
+                        <th scope="col" className="px-6 py-4 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                          Actions
+                        </th>
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
@@ -274,9 +401,9 @@ export default function AdminDashboard() {
                             </select>
                           </td>
                           {activeTab === 'uploaded_plans' && (
-                            <td className="px-6 py-4 text-right text-sm font-medium">
+                            <td className="px-6 py-4 text-left text-sm font-medium">
                               {lead.files && lead.files.length > 0 ? (
-                                <div className="flex flex-col items-end gap-2">
+                                <div className="flex flex-col items-start gap-2">
                                   {lead.files.map((file, idx) => (
                                     <a 
                                       key={idx}
@@ -293,10 +420,32 @@ export default function AdminDashboard() {
                                   ))}
                                 </div>
                               ) : (
-                                <span className="text-gray-400 italic text-xs mr-4">No plan attached</span>
+                                <span className="text-gray-400 italic text-xs">No plan attached</span>
                               )}
                             </td>
                           )}
+                          <td className="px-6 py-4 text-right whitespace-nowrap text-sm font-medium">
+                            <div className="flex items-center justify-end gap-3">
+                              <button
+                                onClick={() => exportToExcel([lead], `${lead.name}_Lead_Export`)}
+                                className="text-green-600 hover:text-green-900 transition-colors"
+                                title="Export Lead to Excel"
+                              >
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                              </button>
+                              <button
+                                onClick={() => deleteLead(lead)}
+                                className="text-red-500 hover:text-red-700 transition-colors"
+                                title="Delete Lead"
+                              >
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                              </button>
+                            </div>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
