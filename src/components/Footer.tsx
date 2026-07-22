@@ -45,7 +45,9 @@ export default function Footer() {
             <ul className="space-y-3">
               <li><Link href="/" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Home</Link></li>
               <li><Link href="/about" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">About Us</Link></li>
+              <li><Link href="/who-we-serve" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Who We Serve</Link></li>
               <li><Link href="/services" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Our Services</Link></li>
+              <li><Link href="/work" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Work Samples</Link></li>
               <li><Link href="/contact" className="text-gray-300 hover:text-brand-orange transition flex items-center before:content-['›'] before:text-brand-orange before:mr-2 before:text-xl">Contact Us</Link></li>
             </ul>
           </div>
