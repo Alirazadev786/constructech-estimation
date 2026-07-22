@@ -221,6 +221,10 @@ export default function Header() {
                 )}
               </div>
               
+              <Link href="/work" className="text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide">
+                Work Samples
+              </Link>
+
               <Link href="/contact" className="text-gray-800 hover:text-brand-orange font-semibold text-[15px] uppercase tracking-wide">
                 Contact Us
               </Link>
@@ -266,6 +270,7 @@ export default function Header() {
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link href="/" className="block px-3 py-2 text-base font-semibold text-gray-800 hover:bg-gray-50 hover:text-brand-orange uppercase">Home</Link>
               <Link href="/services" className="block px-3 py-2 text-base font-semibold text-gray-800 hover:bg-gray-50 hover:text-brand-orange uppercase">Services</Link>
+              <Link href="/work" className="block px-3 py-2 text-base font-semibold text-gray-800 hover:bg-gray-50 hover:text-brand-orange uppercase">Work Samples</Link>
               <Link href="/contact" className="block px-3 py-2 text-base font-semibold text-gray-800 hover:bg-gray-50 hover:text-brand-orange uppercase">Contact Us</Link>
             </div>
           </div>

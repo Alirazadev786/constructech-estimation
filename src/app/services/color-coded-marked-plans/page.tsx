@@ -51,7 +51,7 @@ export default function ColorCodedMarkedPlans() {
                 className="object-cover"
               />
             </div>
-            
+
             {/* Descriptive Content */}
             <div>
               <h2 className="text-3xl font-extrabold text-brand-navy mb-6">
@@ -63,7 +63,7 @@ export default function ColorCodedMarkedPlans() {
               <p className="text-gray-600 text-lg mb-8 leading-relaxed">
                 Whether you need to identify carpet vs. vinyl flooring, partition walls vs. structural walls, or MEP fixture counts, our highlighted layouts match every line-item in your takeoff summary sheet. This serves as an invaluable tool for field crews during installation and is highly persuasive in client presentations.
               </p>
-              
+
               <h3 className="text-xl font-bold text-brand-navy mb-4">What Our Marked Plans Highlight:</h3>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
                 {[
