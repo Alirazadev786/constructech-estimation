@@ -11,6 +11,36 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   const serviceCategories = [
     {
+      title: "Core Estimating Services",
+      description: "Comprehensive cost estimation, material quantification, value engineering, and CPM scheduling solutions.",
+      items: [
+        { name: "Cost Estimation", href: "/services/cost-estimating" },
+        { name: "Material Takeoff", href: "/services/material-takeoff" },
+        { name: "Value Engineering", href: "/services/value-engineering" },
+        { name: "CPM Scheduling", href: "/services/cpm-scheduling" }
+      ],
+      icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+      image: "/images/hero_estimators.png"
+    },
+    {
+      title: "Subcontractor Estimating (Trades)",
+      description: "Highly detailed trade-specific takeoffs designed to help subcontractors bid accurately and win more contracts.",
+      items: [
+        { name: "Concrete Takeoff Estimates", href: "/sub-contractors-estimates/concrete-estimating-services" },
+        { name: "Masonry Takeoff Estimates", href: "/sub-contractors-estimates/masonry-estimates" },
+        { name: "Metal Takeoff Estimates", href: "/sub-contractors-estimates/metals-takeoffs" },
+        { name: "Lumber Takeoff Estimates", href: "/supplier-estimates/lumber-takeoffs" },
+        { name: "Drywall Takeoff Estimates", href: "/sub-contractors-estimates/dry-wall-takeoffs" },
+        { name: "Flooring Takeoff Estimates", href: "/sub-contractors-estimates/flooring-estimates" },
+        { name: "Interior & Exterior Takeoff Estimates", href: "/sub-contractors-estimates/exterior-finishes-estimates" },
+        { name: "Plumbing Takeoff Estimates", href: "/sub-contractors-estimates/plumbing-estimates" },
+        { name: "HVAC Takeoff Estimates", href: "/sub-contractors-estimates/hvac-estimates" },
+        { name: "Electrical Takeoff Estimates", href: "/sub-contractors-estimates/electrical-work-estimating-takeoffs" }
+      ],
+      icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
+      image: "/images/sub_contractors.png"
+    },
+    {
       title: "General Contractor Estimating",
       description: "Comprehensive estimating services tailored for general contractors managing large-scale public, commercial, and residential projects.",
       items: [
@@ -21,24 +51,7 @@ export default function ServicesPage() {
         { name: "Industrial Estimating", href: "/general-contractor-services/industrial-estimating" }
       ],
       icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4",
-      image: "/images/hero_estimators.png"
-    },
-    {
-      title: "Subcontractor Estimating",
-      description: "Highly detailed trade-specific takeoffs designed to help subcontractors bid accurately and win more contracts.",
-      items: [
-        { name: "Metals Takeoffs", href: "/sub-contractors-estimates/metals-takeoffs" },
-        { name: "Insulation Estimates", href: "/sub-contractors-estimates/insulation-estimates" },
-        { name: "Drywall Takeoffs", href: "/sub-contractors-estimates/dry-wall-takeoffs" },
-        { name: "Concrete Estimates", href: "/sub-contractors-estimates/concrete-estimating-services" },
-        { name: "Masonry Estimates", href: "/sub-contractors-estimates/masonry-estimates" },
-        { name: "Painting Estimates", href: "/sub-contractors-estimates/painting-estimates" },
-        { name: "Electrical Takeoffs", href: "/sub-contractors-estimates/electrical-work-estimating-takeoffs" },
-        { name: "Plumbing & HVAC", href: "/sub-contractors-estimates/plumbing-estimates" }
-      ],
-      icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
-      image: "/images/sub_contractors.png"
-
+      image: "/images/general_contractors.png"
     },
     {
       title: "Supplier Estimating",
@@ -50,7 +63,7 @@ export default function ServicesPage() {
         { name: "Flooring & Tiles Takeoffs", href: "/supplier-estimates/flooring-tiles-takeoffs" }
       ],
       icon: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4",
-      image: "/images/general_contractors.png"
+      image: "/images/hero_estimators.png"
     }
   ];
 
