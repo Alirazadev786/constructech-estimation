@@ -206,14 +206,14 @@ export default function Header() {
                             <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                             </svg>
-                            <h3 className="text-brand-orange font-bold text-sm uppercase">Industries We Serve</h3>
+                            <h3 className="text-brand-orange font-bold text-sm uppercase">Our Key Estimating Services</h3>
                           </div>
-                          <p className="text-xs text-gray-500 italic mb-4">Estimating solutions for all construction sectors.</p>
+                          <p className="text-xs text-gray-500 italic mb-4">Precision estimating solutions tailored for your construction projects.</p>
                           <ul className="space-y-3">
-                            <li><Link href="/general-contractor-services/residential-estimating" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Residential Construction Estimating</Link></li>
-                            <li><Link href="/general-contractor-services/commercial-estimating" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Commercial Projects Estimating</Link></li>
-                            <li><Link href="/general-contractor-services/industrial-estimating" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Industrial Facilities Estimating</Link></li>
-                            <li><Link href="/general-contractor-services/public-projects-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Public & Government Works</Link></li>
+                            <li><Link href="/services/cost-estimating" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Cost Estimation</Link></li>
+                            <li><Link href="/services/material-takeoff" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Material Takeoff</Link></li>
+                            <li><Link href="/services/value-engineering" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">Value Engineering</Link></li>
+                            <li><Link href="/services/cpm-scheduling" className="text-sm font-semibold text-gray-800 hover:text-brand-orange leading-snug block">CPM Scheduling</Link></li>
                           </ul>
                         </div>
 
