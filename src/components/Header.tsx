@@ -146,13 +146,13 @@ export default function Header() {
                                 </svg>
                               </div>
                               <div>
-                                <h4 className="font-bold text-[15px] group-hover/link:text-brand-navy transition-colors">Cost Estimating</h4>
+                                <h4 className="font-bold text-[15px] group-hover/link:text-brand-navy transition-colors">Cost Estimation</h4>
                                 <p className="text-white/80 text-xs mt-1 italic">Predicting project costs.</p>
                               </div>
                             </div>
                           </Link>
 
-                          <Link href="/services/construction-takeoff" className="block group/link">
+                          <Link href="/services/material-takeoff" className="block group/link">
                             <div className="flex items-start gap-3">
                               <div className="bg-white/20 p-2 rounded shrink-0">
                                 <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -160,13 +160,13 @@ export default function Header() {
                                 </svg>
                               </div>
                               <div>
-                                <h4 className="font-bold text-[15px] group-hover/link:text-brand-navy transition-colors">Construction Takeoff</h4>
-                                <p className="text-white/80 text-xs mt-1 italic">Measuring materials and quantities.</p>
+                                <h4 className="font-bold text-[15px] group-hover/link:text-brand-navy transition-colors">Material Takeoff</h4>
+                                <p className="text-white/80 text-xs mt-1 italic">Measuring materials & quantities.</p>
                               </div>
                             </div>
                           </Link>
 
-                          <Link href="/services/mep-estimating" className="block group/link">
+                          <Link href="/services/value-engineering" className="block group/link">
                             <div className="flex items-start gap-3">
                               <div className="bg-white/20 p-2 rounded shrink-0">
                                 <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -174,8 +174,8 @@ export default function Header() {
                                 </svg>
                               </div>
                               <div>
-                                <h4 className="font-bold text-[15px] group-hover/link:text-brand-navy transition-colors">MEP Estimating</h4>
-                                <p className="text-white/80 text-xs mt-1 italic">Mechanical, electrical, plumbing.</p>
+                                <h4 className="font-bold text-[15px] group-hover/link:text-brand-navy transition-colors">Value Engineering</h4>
+                                <p className="text-white/80 text-xs mt-1 italic">Optimizing project budgets.</p>
                               </div>
                             </div>
                           </Link>
