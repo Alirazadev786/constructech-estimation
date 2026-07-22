@@ -27,7 +27,7 @@ export default function Header() {
       </div>
 
       {/* Main Header */}
-      <header className="bg-white sticky top-0 z-50 shadow-sm">
+      <header className="bg-white sticky top-0 z-[100] shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16 md:h-16">
               
@@ -61,7 +61,7 @@ export default function Header() {
                 </Link>
                 
                 {isTradesOpen && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-[100%] w-[1100px] z-50 shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
+                  <div className="absolute left-1/2 -translate-x-1/2 top-[100%] w-[1100px] z-[100] shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
                     <div className="bg-white border-t-2 border-brand-orange p-8 grid grid-cols-4 gap-8 rounded-b-lg">
                       
                       {/* Column 1 */}
@@ -104,11 +104,10 @@ export default function Header() {
                       <div>
                         <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">Supplier Estimating Takeoff</h3>
                         <ul className="space-y-3">
-                          <li><Link href="/supplier-estimates/rebar-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Rebar Estimating Detailing Takeoff Services</Link></li>
-                          <li><Link href="/supplier-estimates/lumber-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Lumber Takeoff and Estimating Services</Link></li>
-                          <li><Link href="/supplier-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Supplier Estimating Takeoff</Link></li>
-                          <li><Link href="/supplier-estimates/steel-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Steel Cost Estimating Takeoff Services</Link></li>
-                          <li><Link href="/supplier-estimates/flooring-tiles-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Flooring Tiles Takeoff Services</Link></li>
+                          <li><Link href="/supplier-estimates/rebar-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Rebar Detailing Takeoff and Estimates</Link></li>
+                          <li><Link href="/sub-contractors-estimates/masonry-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Masonry Blocks Takeoff and Estimates</Link></li>
+                          <li><Link href="/sub-contractors-estimates/metals-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Metal Work Takeoff and Estimates</Link></li>
+                          <li><Link href="/supplier-estimates/lumber-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Lumber Cut Lengths Takeoff and Estimates</Link></li>
                         </ul>
                       </div>
 

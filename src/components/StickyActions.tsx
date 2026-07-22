@@ -1,6 +1,6 @@
 export default function StickyActions() {
   return (
-    <div className="fixed right-0 top-[311px] z-50 flex flex-col w-[50px] md:w-[100px]">
+    <div className="fixed right-0 top-[311px] z-30 flex flex-col w-[50px] md:w-[100px]">
       
       {/* WhatsApp Button */}
       <a 

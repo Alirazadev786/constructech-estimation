@@ -47,11 +47,10 @@ export default function WhoWeServePage() {
       icon: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4",
       image: "/images/general_contractors.png",
       items: [
-        { name: "Rebar Estimating Detailing Takeoff Services", href: "/supplier-estimates/rebar-takeoffs" },
-        { name: "Lumber Takeoff and Estimating Services", href: "/supplier-estimates/lumber-takeoffs" },
-        { name: "Supplier Estimating Takeoff", href: "/supplier-estimates" },
-        { name: "Steel Cost Estimating Takeoff Services", href: "/supplier-estimates/steel-takeoffs" },
-        { name: "Flooring Tiles Takeoff Services", href: "/supplier-estimates/flooring-tiles-takeoffs" }
+        { name: "Rebar Detailing Takeoff and Estimates", href: "/supplier-estimates/rebar-takeoffs" },
+        { name: "Masonry Blocks Takeoff and Estimates", href: "/sub-contractors-estimates/masonry-estimates" },
+        { name: "Metal Work Takeoff and Estimates", href: "/sub-contractors-estimates/metals-takeoffs" },
+        { name: "Lumber Cut Lengths Takeoff and Estimates", href: "/supplier-estimates/lumber-takeoffs" }
       ]
     }
   ];
