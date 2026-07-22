@@ -80,12 +80,11 @@ export default function Header() {
                       <div>
                         <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">Sub Contractors Estimating</h3>
                         <ul className="space-y-3">
-                          <li><Link href="/sub-contractors-estimates/metals-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Metals Takeoffs Estimates</Link></li>
-                          <li><Link href="/sub-contractors-estimates/insulation-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Insulation Estimating Services</Link></li>
-                          <li><Link href="/sub-contractors-estimates/dry-wall-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Drywall Takeoff Estimating</Link></li>
-                          <li><Link href="/sub-contractors-estimates/concrete-estimating-services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Concrete Estimates</Link></li>
-                          <li><Link href="/sub-contractors-estimates/masonry-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Masonry Estimates</Link></li>
-                          <li><Link href="/sub-contractors-estimates/painting-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Painting Estimating Takeoff</Link></li>
+                          <li><Link href="/sub-contractors-estimates/concrete-estimating-services" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Concrete Takeoff Estimates</Link></li>
+                          <li><Link href="/sub-contractors-estimates/masonry-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Masonry Takeoff Estimates</Link></li>
+                          <li><Link href="/sub-contractors-estimates/metals-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Metal Takeoff Estimates</Link></li>
+                          <li><Link href="/supplier-estimates/lumber-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Lumber Takeoff Estimates</Link></li>
+                          <li><Link href="/sub-contractors-estimates/dry-wall-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Drywall Takeoff Estimates</Link></li>
                         </ul>
                       </div>
 
@@ -93,11 +92,11 @@ export default function Header() {
                       <div>
                         <h3 className="text-brand-orange font-bold text-base mb-4 border-b border-gray-100 pb-2">Sub Contractors Estimating</h3>
                         <ul className="space-y-3">
-                          <li><Link href="/sub-contractors-estimates/electrical-work-estimating-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Electrical Work Estimating</Link></li>
-                          <li><Link href="/sub-contractors-estimates/flooring-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Flooring Estimating Services</Link></li>
-                          <li><Link href="/sub-contractors-estimates/plumbing-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Plumbing Estimating Takeoff Services</Link></li>
-                          <li><Link href="/sub-contractors-estimates/exterior-finishes-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Interior Exterior Finishes Estimating Takeoff Services</Link></li>
-                          <li><Link href="/sub-contractors-estimates/site-works" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Sitework Earthwork Estimating Services</Link></li>
+                          <li><Link href="/sub-contractors-estimates/flooring-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Flooring Takeoff Estimates</Link></li>
+                          <li><Link href="/sub-contractors-estimates/exterior-finishes-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Interior and Exterior Takeoff Estimates</Link></li>
+                          <li><Link href="/sub-contractors-estimates/plumbing-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Plumbing Takeoff Estimates</Link></li>
+                          <li><Link href="/sub-contractors-estimates/hvac-estimates" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">HVAC Takeoff Estimates</Link></li>
+                          <li><Link href="/sub-contractors-estimates/electrical-work-estimating-takeoffs" className="text-sm font-semibold text-gray-800 hover:text-brand-orange">Electrical Takeoff Estimates</Link></li>
                         </ul>
                       </div>
 
