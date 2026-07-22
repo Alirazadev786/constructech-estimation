@@ -1,13 +1,88 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
 
 export default function CompetitorPageLayout({ data }: { data: any }) {
   if (!data) return <div className="min-h-screen flex items-center justify-center font-bold text-2xl text-brand-navy">Page not found</div>;
+
+  // Track accordion open state
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
+  // Parse FAQs and normal content sections
+  const faqs: FAQItem[] = [];
+  const normalSections: any[] = [];
+
+  const sections = data.sections || [];
+  let isFaqBlock = false;
+
+  for (let i = 0; i < sections.length; i++) {
+    const sec = sections[i];
+    const text = (sec.text || "").replace(/\u2756/g, "").replace(/❖/g, "").strip ? (sec.text || "").replace(/\u2756/g, "").replace(/❖/g, "").trim() : (sec.text || "");
+    const secType = sec.type;
+
+    // Detect explicit FAQ section heading
+    if (text.toLowerCase().includes("frequently asked") || text.toLowerCase() === "faqs" || text.toLowerCase() === "faq") {
+      isFaqBlock = true;
+      continue;
+    }
+
+    // Check if this item is a Question (heading ending with '?')
+    const isQuestionHeading = (secType === 'h2' || secType === 'h3' || secType === 'h4') && text.trim().endsWith('?');
+
+    if (isQuestionHeading || isFaqBlock) {
+      // If it's a question heading, look for the next paragraph as answer
+      if (isQuestionHeading) {
+        let answerText = "Contact our estimating team at (727) 284-6082 for detailed information on this topic.";
+        if (i + 1 < sections.length && sections[i + 1].type === 'p') {
+          answerText = sections[i + 1].text.replace(/\u2756/g, "").replace(/❖/g, "").trim();
+          i++; // Skip the next paragraph since it's consumed as answer
+        }
+        faqs.push({ question: text, answer: answerText });
+      } else if (secType === 'p' && text.includes('?')) {
+        // Paragraph question
+        faqs.push({ question: text, answer: "Our professional estimators provide comprehensive support for all technical project queries." });
+      } else if (secType !== 'h1') {
+        normalSections.push(sec);
+      }
+    } else {
+      normalSections.push(sec);
+    }
+  }
+
+  // Fallback default FAQs if none extracted from content
+  const displayFaqs: FAQItem[] = faqs.length > 0 ? faqs : [
+    {
+      question: "What is the turnaround time for a construction takeoff or cost estimate?",
+      answer: "Our standard turnaround time is 24 to 48 hours for most residential and commercial projects, depending on scope and drawing complexity."
+    },
+    {
+      question: "What file formats do you accept for plan submissions?",
+      answer: "We accept PDF, DWG (AutoCAD), TIFF, PNG, and ZIP archives containing blueprints and specifications."
+    },
+    {
+      question: "How accurate are Constructech Estimation cost estimates?",
+      answer: "Our estimators utilize localized zip-code-based material databases and RSMeans cost data to ensure our estimates are within 95-98% accuracy of actual field costs."
+    },
+    {
+      question: "How do I get started with an estimate?",
+      answer: "Simply click 'Upload Plans' or contact us at (727) 284-6082 to submit your drawings. We will review your project and send a fee proposal immediately."
+    }
+  ];
 
   return (
     <div className="bg-white">
       {/* Hero Section */}
       <div className="bg-brand-navy py-20 md:py-32 relative overflow-hidden">
-        {/* Abstract Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('/images/hero_bg.png')] bg-cover bg-center"></div>
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-brand-orange rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
         
@@ -26,40 +101,43 @@ export default function CompetitorPageLayout({ data }: { data: any }) {
       <div className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-12">
           
-          {/* Main Content */}
+          {/* Main Content Column */}
           <div className="w-full lg:w-[70%]">
             <div className="prose prose-lg max-w-none prose-headings:text-brand-navy prose-p:text-gray-600 prose-li:text-gray-600 marker:text-brand-orange">
-              {data.sections && data.sections.map((section: any, idx: number) => {
-                if (section.type === 'h1') return <h1 key={idx} className="text-4xl font-extrabold text-brand-navy mb-6 mt-12">{section.text}</h1>;
+              {normalSections.map((section: any, idx: number) => {
+                const text = (section.text || "").replace(/\u2756/g, "").replace(/❖/g, "").trim();
+
+                if (section.type === 'h1') return <h1 key={idx} className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-6 mt-10">{text}</h1>;
                 if (section.type === 'h2') return (
-                  <h2 key={idx} className="text-3xl font-bold text-brand-navy mb-6 mt-12 flex items-center gap-3">
-                    <span className="w-8 h-1 bg-brand-orange hidden sm:inline-block"></span>
-                    {section.text}
+                  <h2 key={idx} className="text-2xl md:text-3xl font-bold text-brand-navy mb-5 mt-10 flex items-center gap-3">
+                    <span className="w-6 h-1 bg-brand-orange hidden sm:inline-block rounded"></span>
+                    {text}
                   </h2>
                 );
-                if (section.type === 'h3') return <h3 key={idx} className="text-2xl font-bold text-brand-navy mb-4 mt-8">{section.text}</h3>;
+                if (section.type === 'h3') return <h3 key={idx} className="text-xl md:text-2xl font-semibold text-brand-navy mb-4 mt-8">{text}</h3>;
                 if (section.type === 'p') {
-                  // Ignore generic footer/nav text that might have been scraped
-                  if (section.text.includes("© Construct'EM") || section.text.includes("Social Links")) return null;
-                  return <p key={idx} className="mb-6 leading-relaxed text-[17px]">{section.text}</p>;
+                  if (text.includes("© Construct'EM") || text.includes("Social Links")) return null;
+                  return <p key={idx} className="mb-6 leading-relaxed text-[16px] md:text-[17px] text-gray-700">{text}</p>;
                 }
                 if (section.type === 'list') {
-                  // Filter out generic navigation lists scraped from the footer
                   const isNavList = section.items.some((item: string) => 
                     item.includes("info@Constructech") || item.includes("Head Office") || item.includes("Reviews")
                   );
                   if (isNavList) return null;
 
                   return (
-                    <ul key={idx} className="mb-8 space-y-3 bg-gray-50 p-6 rounded-xl border border-gray-100">
-                      {section.items.map((item: string, i: number) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <svg className="w-6 h-6 text-brand-orange shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span className="text-gray-700 font-medium">{item}</span>
-                        </li>
-                      ))}
+                    <ul key={idx} className="mb-8 space-y-3 bg-gray-50 p-6 rounded-xl border border-gray-100 shadow-sm">
+                      {section.items.map((item: string, i: number) => {
+                        const cleanItem = item.replace(/\u2756/g, "").replace(/❖/g, "").trim();
+                        return (
+                          <li key={i} className="flex items-start gap-3">
+                            <svg className="w-5 h-5 text-brand-orange shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span className="text-gray-800 font-medium text-base leading-snug">{cleanItem}</span>
+                          </li>
+                        );
+                      })}
                     </ul>
                   );
                 }
@@ -67,7 +145,51 @@ export default function CompetitorPageLayout({ data }: { data: any }) {
               })}
             </div>
 
-            {/* Bottom CTA Banner */}
+            {/* Accordion FAQ Dropdown Section */}
+            <div className="mt-16 bg-gray-50 p-8 rounded-2xl border border-gray-200 shadow-sm">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="bg-brand-orange p-2.5 rounded-lg text-white">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-extrabold text-brand-navy">Frequently Asked Questions</h3>
+                  <p className="text-sm text-gray-500">Find quick answers regarding our estimating process and deliverables.</p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {displayFaqs.map((faq, index) => {
+                  const isOpen = openFaqIndex === index;
+                  return (
+                    <div 
+                      key={index} 
+                      className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-xs transition-all"
+                    >
+                      <button
+                        onClick={() => toggleFaq(index)}
+                        className="w-full text-left p-5 font-bold text-brand-navy hover:text-brand-orange flex justify-between items-center gap-4 transition-colors"
+                      >
+                        <span className="text-base md:text-lg">{faq.question}</span>
+                        <span className={`p-1.5 rounded-full bg-gray-100 text-brand-navy transform transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180 bg-brand-orange text-white' : ''}`}>
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </span>
+                      </button>
+
+                      {isOpen && (
+                        <div className="px-5 pb-5 pt-1 text-gray-600 text-sm md:text-base leading-relaxed border-t border-gray-100 bg-gray-50/50">
+                          {faq.answer}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
             {/* Bottom CTA Banner */}
             <div className="mt-16 group relative bg-white border border-gray-100 rounded-2xl p-10 text-center overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-orange to-yellow-400"></div>
@@ -115,17 +237,24 @@ export default function CompetitorPageLayout({ data }: { data: any }) {
                     </Link>
                   </li>
                   <li className="border-t border-gray-200 pt-4">
-                    <Link href="/services/construction-takeoff" className="group flex items-center justify-between text-gray-700 font-bold hover:text-brand-orange transition-colors">
-                      Construction Takeoff
+                    <Link href="/services/material-takeoff" className="group flex items-center justify-between text-gray-700 font-bold hover:text-brand-orange transition-colors">
+                      Material Takeoff
                       <svg className="w-5 h-5 text-gray-400 group-hover:text-brand-orange transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </Link>
                   </li>
-
                   <li className="border-t border-gray-200 pt-4">
-                    <Link href="/our-trades" className="group flex items-center justify-between text-gray-700 font-bold hover:text-brand-orange transition-colors">
-                      Our Trades
+                    <Link href="/services/value-engineering" className="group flex items-center justify-between text-gray-700 font-bold hover:text-brand-orange transition-colors">
+                      Value Engineering
+                      <svg className="w-5 h-5 text-gray-400 group-hover:text-brand-orange transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </li>
+                  <li className="border-t border-gray-200 pt-4">
+                    <Link href="/services/cpm-scheduling" className="group flex items-center justify-between text-gray-700 font-bold hover:text-brand-orange transition-colors">
+                      CPM Scheduling
                       <svg className="w-5 h-5 text-gray-400 group-hover:text-brand-orange transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
@@ -172,4 +301,3 @@ export default function CompetitorPageLayout({ data }: { data: any }) {
     </div>
   );
 }
-
