@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
+import RobotCaptcha from '@/components/RobotCaptcha';
 
 export default function ContactPage() {
   const [name, setName] = useState('');
@@ -12,9 +13,15 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [isRobotVerified, setIsRobotVerified] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isRobotVerified) {
+      setErrorMsg('Please complete the robot verification check before submitting.');
+      return;
+    }
+
     setIsSubmitting(true);
     setErrorMsg('');
     
@@ -41,6 +48,7 @@ export default function ContactPage() {
       setPhone('');
       setService('Cost Estimation');
       setMessage('');
+      setIsRobotVerified(false);
       
     } catch (err: any) {
       console.error('Submit error:', err);
@@ -210,6 +218,13 @@ export default function ContactPage() {
                         className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition resize-none" 
                         placeholder="Tell us about your project, timelines, and specific requirements..."
                       ></textarea>
+                    </div>
+
+                    <div className="py-1">
+                      <RobotCaptcha 
+                        isVerified={isRobotVerified} 
+                        onVerify={setIsRobotVerified} 
+                      />
                     </div>
 
                     <button 

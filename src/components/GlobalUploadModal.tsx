@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { supabase } from '@/lib/supabase';
+import RobotCaptcha from '@/components/RobotCaptcha';
 
 interface FileDetails {
   name: string;
@@ -23,6 +24,8 @@ export default function GlobalUploadModal() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [details, setDetails] = useState('');
+  const [driveLink, setDriveLink] = useState('');
+  const [isRobotVerified, setIsRobotVerified] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -33,6 +36,7 @@ export default function GlobalUploadModal() {
       setProgress(0);
       setIsUploading(false);
       setErrorMsg('');
+      setIsRobotVerified(false);
     };
 
     window.addEventListener('trigger-plan-upload', handleTrigger);
@@ -46,7 +50,8 @@ export default function GlobalUploadModal() {
     const invalidFiles: string[] = [];
 
     Array.from(fileList).forEach(file => {
-      if (file.size > 2 * 1024 * 1024) {
+      // Limit increased to 20MB per file
+      if (file.size > 20 * 1024 * 1024) {
         invalidFiles.push(file.name);
       } else {
         const sizeInMb = (file.size / (1024 * 1024)).toFixed(2);
@@ -59,7 +64,7 @@ export default function GlobalUploadModal() {
     });
 
     if (invalidFiles.length > 0) {
-      alert(`The following files exceed the 2MB limit and will not be uploaded:\n\n${invalidFiles.join('\n')}`);
+      alert(`The following files exceed the 20MB limit. Please provide a Google Drive / Dropbox link instead:\n\n${invalidFiles.join('\n')}`);
     }
 
     if (validFiles.length > 0) {
@@ -108,13 +113,20 @@ export default function GlobalUploadModal() {
     setEmail('');
     setPhone('');
     setDetails('');
+    setDriveLink('');
     setErrorMsg('');
+    setIsRobotVerified(false);
   };
 
   const handleUploadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email || !phone) {
       alert('Please fill in all required fields.');
+      return;
+    }
+
+    if (!isRobotVerified) {
+      setErrorMsg('Please complete the robot verification check below before submitting.');
       return;
     }
     
@@ -150,6 +162,11 @@ export default function GlobalUploadModal() {
         const { data } = supabase.storage.from('blueprints').getPublicUrl(filePath);
         filePaths.push({ name: f.name, url: data.publicUrl });
       }
+
+      // If Google Drive link was provided, append as a file entry
+      if (driveLink) {
+        filePaths.push({ name: 'Google Drive / Cloud Link', url: driveLink });
+      }
       
       // Insert lead into Supabase Database
       const { error: dbError } = await supabase
@@ -159,9 +176,9 @@ export default function GlobalUploadModal() {
             name,
             email,
             phone,
-            details,
+            details: driveLink ? `${details}\n\nGoogle Drive Link: ${driveLink}` : details,
             status: 'New',
-            files: filePaths, // Store array of files with URLs
+            files: filePaths,
             type: 'upload',
           }
         ]);
@@ -180,7 +197,9 @@ export default function GlobalUploadModal() {
       setEmail('');
       setPhone('');
       setDetails('');
+      setDriveLink('');
       setFiles([]);
+      setIsRobotVerified(false);
       
     } catch (err: any) {
       console.error('Upload error:', err);
@@ -226,7 +245,7 @@ export default function GlobalUploadModal() {
             <div className="p-6 overflow-y-auto flex-grow space-y-6">
               {errorMsg && (
                 <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
-                  <p className="font-bold">Upload Failed</p>
+                  <p className="font-bold">Validation / Upload Error</p>
                   <p>{errorMsg}</p>
                 </div>
               )}
@@ -274,33 +293,53 @@ export default function GlobalUploadModal() {
                 </div>
               ) : files.length === 0 ? (
                 /* Dropzone / File Selector State */
-                <div 
-                  onDragEnter={handleDrag}
-                  onDragOver={handleDrag}
-                  onDragLeave={handleDrag}
-                  onDrop={handleDrop}
-                  className={`border-2 border-dashed rounded-2xl p-8 text-center flex flex-col items-center justify-center transition-all ${
-                    isDragActive 
-                      ? 'border-brand-orange bg-orange-50/30 scale-[0.99]' 
-                      : 'border-gray-300 hover:border-brand-orange bg-gray-50/50'
-                  }`}
-                >
-                  <div className="w-16 h-16 bg-orange-100 text-brand-orange rounded-full flex items-center justify-center mb-4 transition-transform hover:scale-110 duration-300">
-                    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-bold text-brand-navy mb-1">Drag and drop your plans here</h3>
-                  <p className="text-sm text-gray-500 mb-6 max-w-xs leading-relaxed font-medium">
-                    Or browse from your device. Supports PDF, CAD (DWG, DXF), ZIP, RAR, images.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => fileInputRef.current?.click()}
-                    className="bg-brand-orange hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-all transform hover:-translate-y-0.5 cursor-pointer"
+                <div className="space-y-4">
+                  <div 
+                    onDragEnter={handleDrag}
+                    onDragOver={handleDrag}
+                    onDragLeave={handleDrag}
+                    onDrop={handleDrop}
+                    className={`border-2 border-dashed rounded-2xl p-8 text-center flex flex-col items-center justify-center transition-all ${
+                      isDragActive 
+                        ? 'border-brand-orange bg-orange-50/30 scale-[0.99]' 
+                        : 'border-gray-300 hover:border-brand-orange bg-gray-50/50'
+                    }`}
                   >
-                    Browse Files
-                  </button>
+                    <div className="w-16 h-16 bg-orange-100 text-brand-orange rounded-full flex items-center justify-center mb-4 transition-transform hover:scale-110 duration-300">
+                      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-bold text-brand-navy mb-1">Drag and drop your plans here</h3>
+                    <p className="text-xs text-gray-500 mb-6 max-w-xs leading-relaxed font-medium">
+                      Supports PDF, CAD (DWG, DXF), ZIP, RAR, images (Up to 20MB per file).
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="bg-brand-orange hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-all transform hover:-translate-y-0.5 cursor-pointer"
+                    >
+                      Browse Files
+                    </button>
+                  </div>
+
+                  {/* Google Drive Link Option */}
+                  <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 text-left">
+                    <label htmlFor="modal-drive-link-initial" className="block text-xs font-bold text-brand-navy mb-1.5 flex items-center gap-1.5">
+                      <svg className="w-4 h-4 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                      </svg>
+                      <span>Or Provide Google Drive / Cloud Link (If files exceed 20MB)</span>
+                    </label>
+                    <input 
+                      type="url" 
+                      id="modal-drive-link-initial"
+                      value={driveLink}
+                      onChange={(e) => setDriveLink(e.target.value)}
+                      placeholder="https://drive.google.com/drive/folders/..." 
+                      className="w-full px-3.5 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none text-xs bg-white"
+                    />
+                  </div>
                 </div>
               ) : (
                 /* Form State */
@@ -343,6 +382,21 @@ export default function GlobalUploadModal() {
                         </div>
                       ))}
                     </div>
+                  </div>
+
+                  {/* Google Drive Link Field in Form */}
+                  <div>
+                    <label htmlFor="modal-drive-link" className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
+                      Google Drive / Dropbox Link (Optional)
+                    </label>
+                    <input 
+                      type="url" 
+                      id="modal-drive-link"
+                      value={driveLink}
+                      onChange={(e) => setDriveLink(e.target.value)}
+                      className="w-full px-3.5 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition text-sm"
+                      placeholder="https://drive.google.com/drive/folders/..." 
+                    />
                   </div>
 
                   {/* Form Fields */}
@@ -398,6 +452,14 @@ export default function GlobalUploadModal() {
                     </div>
                   </div>
 
+                  {/* Robot Captcha Check */}
+                  <div className="pt-2">
+                    <RobotCaptcha 
+                      isVerified={isRobotVerified} 
+                      onVerify={setIsRobotVerified} 
+                    />
+                  </div>
+
                   {/* Submit Button */}
                   <div className="pt-2">
                     <button
@@ -426,3 +488,4 @@ export default function GlobalUploadModal() {
     </>
   );
 }
+
