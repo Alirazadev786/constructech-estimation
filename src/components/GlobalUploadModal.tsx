@@ -33,17 +33,6 @@ export default function GlobalUploadModal() {
       setProgress(0);
       setIsUploading(false);
       setErrorMsg('');
-      
-      setTimeout(() => {
-        if (fileInputRef.current) {
-          fileInputRef.current.value = '';
-          try {
-            fileInputRef.current.click();
-          } catch (e) {
-            console.log('Auto file trigger blocked by browser security.', e);
-          }
-        }
-      }, 50);
     };
 
     window.addEventListener('trigger-plan-upload', handleTrigger);
